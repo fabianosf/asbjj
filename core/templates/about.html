@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="about section" id="about">
+    <div class="container">
+         <div class="row">
+                 <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
+                     <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Somos a ASBJJ</h2>
+
+                     <p data-aos="fade-up" data-aos-delay="400">
+                         <div>
+                         <h6>
+                         Somos uma academia acolhedora e inclusiva.<br>
+                          Todos são bem-vindos, independentemente de sua idade, sexo, tamanho ou experiência.
+                         Nosso foco é o aprendizado. Queremos que você aprenda o jiu-jitsu de forma eficaz e segura.
+                         Temos um ambiente de treinamento positivo e motivador. Queremos que você se divirta enquanto aprende.
+                     </h6>
+                 </div>
+                 <br>
+
+                 O que você está esperando?
+
+                 Venha nos conhecer e experimente o jiu-jitsu com a gente!
+                     </p>
+                     
+                 </div>
+
+                 
+                 <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
+                     <div class="team-thumb">
+                         <img src="{% static 'images/team/team-image.jpg' %}" class="img-fluid mt-5" alt="Trainer">
+
+                         <div class="team-info d-flex flex-column">
+
+                             <h3>Alexandre Salgado</h3>
+                             <!-- <span>Professor de Jiu-Jitsu</span> -->                                  
+
+                             <ul class="social-icon mt-3">
+                                 <li><a href="https://www.facebook.com/alexandresalgadobjj" class="fa fa-facebook"></a></li>
+                                 <li><a href="https://www.instagram.com/alexandresalgadobjj" class="fa fa-instagram"></a></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="800">
+                     <div class="team-thumb">
+                         <img src="{% static 'images/team/team-image01.jpg' %}" class="img-fluid mt-5" alt="Trainer">
+
+                         <div class="team-info d-flex flex-column">
+
+                             <h3>Anna Carolina Luz</h3>                            
+
+                             <ul class="social-icon mt-3">
+                                 <li><a href="https://www.facebook.com/annacarol.luz" class="fa fa-facebook"></a></li>
+                                 <li><a href="https://www.instagram.com/annacarolluzbjj" class="fa fa-instagram"></a></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+
+         </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+     <!-- HOME -->
+     {% include 'home.html' %}
+     <!-- END HOME -->
+     
+
+
+     <!-- ABOUT -->
+     {% include 'about.html' %}
+     <!-- END ABOUT -->
+     
+
+
+     <!-- CLASS -->
+     {% include 'class.html' %}
+     <!-- ENDCLASS -->
+     
+
+
+     <!-- CONTACT -->
+     {% include 'contact.html' %}
+     <!-- END CONTACT -->
+     
+
+    {% endblock %}
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'js/jquery.min.js' %}"></script>
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/aos.js' %}"></script>
+     <script src="{% static 'js/smoothscroll.js' %}"></script>
+     <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
