@@ -639,6 +639,15 @@ button#submit-button:hover {
   color: var(--primary-color);
 }
 
+.copyright-text {
+  font-weight: 600;
+  font-weight: bolder;
+}
+
+.mr-1 {
+  font-size: 18px;
+  font-weight: 350;
+}
 
 /*---------------------------------------
      SOCIAL ICON              
@@ -750,4 +759,3 @@ button#submit-button:hover {
   margin-bottom: -2px;
 }
 
-@media (max-width: 767.98px) {}
