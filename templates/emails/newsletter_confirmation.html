@@ -1,0 +1,47 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+<h2>Confirme sua Inscrição</h2>
+
+<p>Olá <strong>{{ subscriber.full_name|default:"Prezado(a)" }}</strong>,</p>
+
+<p>Obrigado por se inscrever na newsletter da ASBJJ!</p>
+
+<div class="highlight">
+    <h3>Para confirmar sua inscrição</h3>
+    <p>Clique no botão abaixo para ativar sua inscrição e começar a receber nossas novidades:</p>
+    
+    <a href="{{ confirmation_url }}" class="button">
+        Confirmar Inscrição
+    </a>
+</div>
+
+<div class="highlight">
+    <h3>O que você receberá em nossa newsletter:</h3>
+    <ul>
+        <li>🎯 Novidades sobre nossas modalidades</li>
+        <li>💪 Dicas de treino e condicionamento físico</li>
+        <li>🍎 Orientações sobre nutrição e saúde</li>
+        <li>🏆 Eventos, competições e graduações</li>
+        <li>🎁 Promoções e ofertas especiais</li>
+        <li>📚 Conteúdo exclusivo sobre artes marciais</li>
+    </ul>
+</div>
+
+<div class="contact-info">
+    <h3>Modalidades Disponíveis</h3>
+    <ul>
+        <li><strong>Jiu-Jitsu:</strong> Desenvolvimento técnico e físico</li>
+        <li><strong>Defesa Pessoal:</strong> Autoproteção e autoconfiança</li>
+        <li><strong>Yoga:</strong> Equilíbrio corpo e mente</li>
+    </ul>
+</div>
+
+<p><strong>Frequência:</strong> Nossa newsletter é enviada semanalmente, mas você pode cancelar a qualquer momento.</p>
+
+<p>Se você não se inscreveu em nossa newsletter, pode ignorar este e-mail.</p>
+
+<p>Atenciosamente,<br>
+<strong>Equipe ASBJJ</strong><br>
+Alexandre Salgado Brazilian Jiu-Jitsu</p>
+{% endblock %}

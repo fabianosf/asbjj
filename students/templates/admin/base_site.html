@@ -1,0 +1,136 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'core/img/logo.png' %}" alt="ASBJJ" height="40" style="margin-right: 10px;">
+        ASBJJ - Administração
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+<div style="text-align: right; padding: 10px; background: rgba(255,255,255,0.1);">
+    <a href="{% url 'logout' %}" style="color: white; text-decoration: none; padding: 8px 15px; background: rgba(255,255,255,0.2); border-radius: 5px;">
+        <i class="fas fa-sign-out-alt"></i> Sair
+    </a>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        /* Estilos personalizados para o admin */
+        .module h2, .module caption, .inline-group h2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .button, input[type=submit], input[type=button], .submit-row input, a.button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        
+        .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .default {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+        
+        .default:hover {
+            background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+        }
+        
+        .deletelink {
+            background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+        }
+        
+        .deletelink:hover {
+            background: linear-gradient(135deg, #c82333 0%, #d91a72 100%);
+        }
+        
+        #header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        #user-tools a:focus, #user-tools a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .breadcrumbs {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .breadcrumbs a {
+            color: #667eea;
+        }
+        
+        .breadcrumbs a:hover {
+            color: #5a6fd8;
+        }
+        
+        /* Melhorar a aparência dos formulários */
+        .form-row input[type=text], .form-row input[type=email], .form-row input[type=password], 
+        .form-row input[type=number], .form-row input[type=url], .form-row input[type=date],
+        .form-row select, .form-row textarea {
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            padding: 8px 12px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-row input[type=text]:focus, .form-row input[type=email]:focus, .form-row input[type=password]:focus,
+        .form-row input[type=number]:focus, .form-row input[type=url]:focus, .form-row input[type=date]:focus,
+        .form-row select:focus, .form-row textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        /* Melhorar a aparência das tabelas */
+        #result_list {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #result_list th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        #result_list tr:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Estilo para mensagens */
+        .messagelist .success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .messagelist .warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .messagelist .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .messagelist .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+    </style>
+{% endblock %}

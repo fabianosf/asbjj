@@ -1,0 +1,928 @@
+Watching for file changes with StatReloader
+[30/Aug/2024 21:04:29] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:04:34] "GET /sobre/ HTTP/1.0" 200 14233
+Not Found: /favicon.ico
+[30/Aug/2024 21:04:37] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 21:04:38] "GET /servicos/ HTTP/1.0" 200 17007
+[30/Aug/2024 21:04:40] "GET /contato/ HTTP/1.0" 200 8461
+[30/Aug/2024 21:04:44] "GET /accounts/login/ HTTP/1.0" 200 8877
+[30/Aug/2024 21:06:37] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 21:06:39] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 21:06:56] "GET /sobre/ HTTP/1.0" 200 14233
+[30/Aug/2024 21:07:11] "GET /contato/ HTTP/1.0" 200 8461
+[30/Aug/2024 21:07:25] "GET /accounts/login/ HTTP/1.0" 200 8877
+[30/Aug/2024 21:07:27] "GET /accounts/login/ HTTP/1.0" 200 8877
+[30/Aug/2024 21:07:30] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:08:18] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:15:17] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 21:15:18] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 21:16:45] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 21:16:49] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 21:18:33] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:18:35] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 21:18:42] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 21:21:23] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:21:29] "GET /sobre/ HTTP/1.0" 200 14233
+[30/Aug/2024 21:21:31] "GET /servicos/ HTTP/1.0" 200 17007
+[30/Aug/2024 21:21:48] "GET /contato/ HTTP/1.0" 200 8461
+Not Found: /boaform/admin/formLogin
+[30/Aug/2024 21:27:36] "GET /boaform/admin/formLogin?username=ec8&psd=ec8 HTTP/1.0" 404 2945
+[30/Aug/2024 21:32:46] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:50:14] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 21:56:26] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 21:56:29] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 22:08:00] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 22:08:03] "GET /favicon.ico HTTP/1.0" 404 2884
+Not Found: /.env
+[30/Aug/2024 22:46:55] "GET /.env HTTP/1.0" 404 2863
+[30/Aug/2024 23:35:49] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 23:37:51] "GET / HTTP/1.0" 200 13134
+Not Found: /favicon.ico
+[30/Aug/2024 23:37:56] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 23:38:01] "GET / HTTP/1.0" 200 13134
+Not Found: /robots.txt
+[30/Aug/2024 23:38:01] "GET /robots.txt HTTP/1.0" 404 2881
+[30/Aug/2024 23:38:02] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 23:38:03] "GET /sobre/ HTTP/1.0" 200 14233
+[30/Aug/2024 23:38:03] "GET /servicos/ HTTP/1.0" 200 17007
+[30/Aug/2024 23:38:04] "GET /contato/ HTTP/1.0" 200 8461
+[30/Aug/2024 23:38:04] "GET /accounts/login/ HTTP/1.0" 200 8877
+[30/Aug/2024 23:38:05] "GET / HTTP/1.0" 200 13134
+[30/Aug/2024 23:38:05] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+[30/Aug/2024 23:38:06] "GET /accounts/register/ HTTP/1.0" 200 6858
+[30/Aug/2024 23:38:06] "GET /admin/ HTTP/1.0" 302 0
+[30/Aug/2024 23:38:07] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+Not Found: /favicon.ico
+[30/Aug/2024 23:38:07] "GET /favicon.ico HTTP/1.0" 404 2884
+Not Found: /favicon.ico
+[30/Aug/2024 23:38:11] "GET /favicon.ico HTTP/1.0" 404 2884
+[30/Aug/2024 23:44:35] "GET / HTTP/1.0" 200 13134
+/home/fabianosf/asbjj_bootstrap/core/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 30, 2024 - 21:04:11
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+[31/Aug/2024 00:24:42] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:24:58] "GET /sitemap.xml HTTP/1.0" 200 856
+Not Found: /favicon.ico
+[31/Aug/2024 00:24:58] "GET /favicon.ico HTTP/1.0" 404 3011
+[31/Aug/2024 00:25:34] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:25:41] "GET /sitemap.xml HTTP/1.0" 200 856
+Not Found: /robots.txt
+[31/Aug/2024 00:25:53] "GET /robots.txt HTTP/1.0" 404 3008
+[31/Aug/2024 00:25:53] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 00:29:42] "GET / HTTP/1.0" 200 13134
+/home/fabianosf/asbjj_bootstrap/core/sitemaps.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:24:10
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+[31/Aug/2024 00:31:48] "GET / HTTP/1.0" 200 13134
+Internal Server Error: /sitemap.xml
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/views.py", line 23, in inner
+    response = func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/views.py", line 117, in sitemap
+    urls.extend(site.get_urls(page=page, site=req_site, protocol=req_protocol))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/core/sitemaps.py", line 15, in get_urls
+    urls = super().get_urls(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/__init__.py", line 104, in get_urls
+    return self._urls(page, protocol, domain)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/__init__.py", line 124, in _urls
+    loc = f"{protocol}://{domain}{self._location(item)}"
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/__init__.py", line 69, in _location
+    return self._get("location", item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/contrib/sitemaps/__init__.py", line 39, in _get
+    return attr(item)
+           ^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/core/sitemaps.py", line 12, in location
+    return reverse(item)
+           ^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+[31/Aug/2024 00:31:57] "GET /sitemap.xml HTTP/1.0" 500 101885
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:31:27
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 00:34:45] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 00:34:52] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 00:34:53] "GET / HTTP/1.0" 400 143
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:34:38
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 00:35:46] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:36:22] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:37:13] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:37:22] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:37:25] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:37:32] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:37:36] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:37:42] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:38:00] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:38:01] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 00:38:01] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:38:02] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 00:38:02] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 00:38:03] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 00:38:04] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 00:38:04] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+[31/Aug/2024 00:38:05] "GET /accounts/register/ HTTP/1.0" 200 6858
+[31/Aug/2024 00:38:05] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 00:38:06] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:35:45
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 00:43:28] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:43:41] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:43:52] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:47:48] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:47:53] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:48:15] "GET /sitemap.xml HTTP/1.0" 500 145
+[31/Aug/2024 00:49:59] "GET /sitemap.xml HTTP/1.0" 500 145
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:49:44
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 00:55:44] "GET /sitemap.xml HTTP/1.0" 500 145
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:55:34
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 00:56:31] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 00:56:48] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:57:02] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:57:15] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 00:58:39] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 00:58:41] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 01:00:00] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 01:00:00] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:00:01] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:00:15] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 01:00:47] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:00:47] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:00:51] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 01:00:56] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:02:06] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:11:30] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:11:48] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:12:46] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:15:20] "GET /admin/login/ HTTP/1.0" 200 4178
+[31/Aug/2024 01:15:20] "GET /admin/login/ HTTP/1.0" 200 4178
+[31/Aug/2024 01:15:45] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:15:49] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 01:15:56] "GET /sitemap.xml HTTP/1.0" 200 856
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 00:56:25
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 01:22:32] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 01:22:41] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 01:25:45] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 01:43:19] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 02:12:06] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 02:32:25] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 03:27:08] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 03:27:55] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 03:27:56] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 03:28:07] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 05:36:12] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 05:36:12] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 05:47:26] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 05:58:41] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 05:59:33] "GET / HTTP/1.1" 200 13134
+[31/Aug/2024 06:09:56] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 06:21:11] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 06:39:49] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 06:58:12] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 07:09:22] code 400, message Bad request version ('À\x13À')
+[31/Aug/2024 07:09:22] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 07:09:23] code 400, message Bad HTTP/0.9 request type ("\x16\x03\x01\x00Ê\x01\x00\x00Æ\x03\x03ð¬Ö¯Û\x04Þ;ÓvÜ¿Ç[¶7Ë!+gþÿ\x0e\x9al7rö¶1U%\x00\x00hÌ\x14Ì\x13À/À+À0À,À\x11À\x07À'À#À\x13À")
+[31/Aug/2024 07:09:23] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 07:09:27] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 07:09:50] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 07:28:12] "GET /accounts/register/ HTTP/1.0" 200 6858
+[31/Aug/2024 07:38:12] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 07:56:12] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 08:27:50] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 08:29:48] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 08:58:13] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 09:03:49] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 09:19:22] "GET /manager/html HTTP/1.0" 404 179
+[31/Aug/2024 09:24:13] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 09:27:12] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+[31/Aug/2024 09:36:44] "GET /ab2g HTTP/1.0" 404 179
+[31/Aug/2024 09:36:45] "GET /ab2h HTTP/1.0" 404 179
+[31/Aug/2024 09:36:45] "GET /alive.php HTTP/1.0" 404 179
+[31/Aug/2024 09:36:49] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 09:36:50] "GET /t4 HTTP/1.0" 404 179
+[31/Aug/2024 09:36:51] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 09:36:51] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 09:36:52] "GET /teorema505?t=1 HTTP/1.0" 404 179
+[31/Aug/2024 09:58:29] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 10:01:43] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 10:01:45] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 10:02:04] "GET /sitemaps.xml HTTP/1.0" 404 179
+[31/Aug/2024 10:02:10] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 10:06:11] "GET /accounts/register/ HTTP/1.0" 200 6858
+[31/Aug/2024 10:06:42] "POST /hello.world?%ADd+allow_url_include%3d1+%ADd+auto_prepend_file%3dphp://input HTTP/1.0" 404 179
+[31/Aug/2024 10:06:43] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:43] "GET /vendor/phpunit/phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:43] "GET /vendor/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:43] "GET /vendor/phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:44] "GET /vendor/phpunit/phpunit/LICENSE/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:44] "GET /vendor/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:44] "GET /phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:44] "GET /phpunit/phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:45] "GET /phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:45] "GET /phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:46] "GET /lib/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:46] "GET /lib/phpunit/phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:46] "GET /lib/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:46] "GET /lib/phpunit/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:47] "GET /lib/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:47] "GET /laravel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:47] "GET /www/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:47] "GET /ws/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:47] "GET /yii/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:48] "GET /zend/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:49] "GET /ws/ec/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:49] "GET /V2/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:49] "GET /tests/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:49] "GET /test/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:50] "GET /testing/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:50] "GET /api/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:50] "GET /demo/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:50] "GET /cms/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:50] "GET /crm/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:51] "GET /admin/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 302 0
+[31/Aug/2024 10:06:52] "GET /backup/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:52] "GET /blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:52] "GET /workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:52] "GET /panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:53] "GET /public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:53] "GET /apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:53] "GET /app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:53] "GET /index.php?s=/index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 179
+[31/Aug/2024 10:06:53] "GET /public/index.php?s=/index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 179
+[31/Aug/2024 10:06:54] "GET /index.php?lang=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?echo(md5("hi"));?>+/tmp/index1.php HTTP/1.0" 404 179
+[31/Aug/2024 10:06:55] "GET /index.php?lang=../../../../../../../../tmp/index1 HTTP/1.0" 404 179
+[31/Aug/2024 10:20:50] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 10:21:39] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 11:06:24] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 11:06:25] "GET /HNAP1/ HTTP/1.0" 404 179
+[31/Aug/2024 11:09:20] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 11:23:09] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 11:23:12] "GET /HNAP1/ HTTP/1.0" 404 179
+[31/Aug/2024 11:53:02] code 400, message Bad request version ('À\x14À')
+[31/Aug/2024 11:53:02] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 12:10:48] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+[31/Aug/2024 12:14:13] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 12:27:35] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 12:27:35] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 12:27:44] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 12:39:39] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 13:00:31] "GET /sitemap.xml HTTP/1.0" 200 856
+[31/Aug/2024 13:00:57] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 13:02:41] "GET /admin HTTP/1.0" 301 0
+[31/Aug/2024 13:02:41] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 13:02:42] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 13:02:50] "POST /admin/login/?next=/admin/ HTTP/1.0" 403 1027
+[31/Aug/2024 13:02:56] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 12:58:41
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[31/Aug/2024 13:05:32] "GET /admin HTTP/1.0" 301 0
+[31/Aug/2024 13:05:33] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 13:05:33] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+Forbidden (Origin checking failed - https://asbjj.com.br does not match any trusted origins.): /admin/login/
+[31/Aug/2024 13:05:40] "POST /admin/login/?next=/admin/ HTTP/1.0" 403 2568
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:05:20
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /
+[31/Aug/2024 13:08:17] "GET / HTTP/1.0" 400 65317
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /
+[31/Aug/2024 13:10:18] "GET / HTTP/1.0" 400 65454
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:10:12
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /
+[31/Aug/2024 13:14:22] "GET / HTTP/1.0" 400 65454
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:13:50
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:17:21
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /admin/
+[31/Aug/2024 13:19:24] "GET /admin/ HTTP/1.0" 400 65443
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /
+[31/Aug/2024 13:19:38] "GET / HTTP/1.0" 400 65361
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:19:16
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 13:22:29] "GET / HTTP/1.0" 400 143
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): accounts, admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2024 - 13:22:23
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 13:26:41] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 13:26:52] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 13:26:52] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 13:26:58] "POST /admin/login/?next=/admin/ HTTP/1.0" 500 145
+[31/Aug/2024 13:26:59] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 13:27:05] "POST /admin/login/?next=/admin/ HTTP/1.0" 500 145
+[31/Aug/2024 13:27:09] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 13:27:22] "POST /admin/login/?next=/admin/ HTTP/1.0" 500 145
+[31/Aug/2024 13:28:53] "GET /admin/login/?next=/admin/ HTTP/1.0" 400 143
+[31/Aug/2024 13:29:01] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:32:08] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:32:22] "GET /admin/ HTTP/1.0" 400 143
+[31/Aug/2024 13:32:26] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:32:27] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:32:48] "GET /admin/login/?next=/admin/ HTTP/1.0" 400 143
+[31/Aug/2024 13:32:53] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:42:04] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:42:07] code 400, message Bad request version ('\x00\x02\x01\x00\x00#\x00\x00\x00')
+[31/Aug/2024 13:42:07] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:42:07] code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06Súú\x00\x00\x003\x04ï\x04íúú\x00\x01\x00c\x99\x04À<(F^S\x16VS"å\x8aDÂð¶44')
+[31/Aug/2024 13:42:07] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:42:07] code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+[31/Aug/2024 13:42:07] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:42:08] code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x12\x00\x00\x00')
+[31/Aug/2024 13:42:08] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:42:08] code 400, message Bad request version ('\x13Ë×\x87ô\x04/\x11oÿ&\x15(\x81\x0eåß\x18¢S\x7f¸©8bu')
+[31/Aug/2024 13:42:08] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:42:08] code 400, message Bad request version ('\x9a\x9a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S**\x00\x00\x00-\x00\x02\x01\x01\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04í')
+[31/Aug/2024 13:42:08] You're accessing the development server over HTTPS, but it only supports HTTP.
+[31/Aug/2024 13:43:28] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 13:44:20] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 13:44:26] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 13:52:28] "GET / HTTP/1.1" 200 13134
+[31/Aug/2024 14:36:11] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 14:36:12] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 14:36:12] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 14:36:13] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 15:00:41] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 15:08:19] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 15:08:22] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 15:08:29] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 15:15:54] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 15:19:24] "GET /.env HTTP/1.0" 404 179
+[31/Aug/2024 15:19:24] "POST / HTTP/1.0" 403 1435
+[31/Aug/2024 17:41:47] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 17:41:50] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 17:42:37] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 19:25:24] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 19:29:56] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 19:51:36] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 19:51:36] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 19:51:38] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 19:51:42] "POST /admin/login/?next=/admin/ HTTP/1.0" 403 1027
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 13:44:16
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+[31/Aug/2024 19:54:08] "GET / HTTP/1.0" 200 13134
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 22, in <module>
+    main()
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 22, in <module>
+    main()
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Watching for file changes with StatReloader
+[31/Aug/2024 19:59:59] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 20:00:04] "POST /admin/login/?next=/admin/ HTTP/1.0" 200 4383
+[31/Aug/2024 20:00:16] "POST /admin/login/?next=/admin/ HTTP/1.0" 200 4399
+[31/Aug/2024 20:00:39] "POST /admin/login/?next=/admin/ HTTP/1.0" 200 4399
+[31/Aug/2024 20:00:49] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[31/Aug/2024 20:00:49] "GET /admin/ HTTP/1.0" 200 5617
+[31/Aug/2024 20:00:56] "POST /admin/logout/ HTTP/1.0" 302 0
+[31/Aug/2024 20:00:56] "GET /accounts/login/ HTTP/1.0" 200 8877
+/home/fabianosf/asbjj_bootstrap/projeto/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 19:59:41
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[31/Aug/2024 20:08:49] "GET /sitemap.xml HTTP/1.0" 200 856
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:08:13
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django'. You may need to add 'django' to ALLOWED_HOSTS.
+Bad Request: /admin/
+[31/Aug/2024 20:12:00] "GET /admin/ HTTP/1.0" 400 65429
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:11:41
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:15:11
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:16:59
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:18:36
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/home/fabianosf/asbjj_bootstrap/projeto/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:19:05
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 20:20:15] "GET /sitemap.xml HTTP/1.0" 400 143
+[31/Aug/2024 20:20:21] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:20:22] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:20:26] "GET /admin/ HTTP/1.0" 400 143
+[31/Aug/2024 20:22:53] "GET /admin/ HTTP/1.0" 400 143
+[31/Aug/2024 20:24:56] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:29:22] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:29:23] "GET /odinhttpcall1725146962 HTTP/1.0" 400 143
+[31/Aug/2024 20:29:23] "POST /sdk HTTP/1.0" 400 143
+[31/Aug/2024 20:29:23] "GET /evox/about HTTP/1.0" 400 143
+[31/Aug/2024 20:29:23] "GET /HNAP1 HTTP/1.0" 400 143
+[31/Aug/2024 20:29:24] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:29:25] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:29:27] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:34:00] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:34:05] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 20:43:59] "GET /admin/ HTTP/1.0" 302 0
+[31/Aug/2024 20:44:00] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 4191
+[31/Aug/2024 20:44:47] "POST /admin/login/?next=/admin/ HTTP/1.0" 200 4399
+[31/Aug/2024 20:45:00] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[31/Aug/2024 20:45:00] "GET /admin/ HTTP/1.0" 200 5617
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:43:47
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 20:49:11] "GET /admin/ HTTP/1.0" 200 6254
+[31/Aug/2024 20:49:41] "GET /admin/sites/site/ HTTP/1.0" 200 9590
+[31/Aug/2024 20:49:41] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:49:49] "GET /admin/sites/site/1/change/ HTTP/1.0" 200 9181
+[31/Aug/2024 20:49:50] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:50:21] "POST /admin/sites/site/1/change/ HTTP/1.0" 302 0
+[31/Aug/2024 20:50:21] "GET /admin/sites/site/ HTTP/1.0" 200 9771
+[31/Aug/2024 20:50:21] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:51:04] "GET /sitemap.xml HTTP/1.0" 200 849
+[31/Aug/2024 20:52:28] "GET /admin/sites/site/?o=-1 HTTP/1.0" 200 9681
+[31/Aug/2024 20:52:29] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:52:31] "GET /admin/sites/site/1/change/?_changelist_filters=o%3D-1 HTTP/1.0" 200 9249
+[31/Aug/2024 20:52:31] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:53:03] "POST /admin/sites/site/1/change/?_changelist_filters=o%3D-1 HTTP/1.0" 302 0
+[31/Aug/2024 20:53:04] "GET /admin/sites/site/?o=-1 HTTP/1.0" 200 9887
+[31/Aug/2024 20:53:04] "GET /admin/jsi18n/ HTTP/1.0" 200 8958
+[31/Aug/2024 20:53:40] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 20:57:23] "GET /admin/ HTTP/1.0" 301 0
+[31/Aug/2024 20:57:25] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:28] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:28] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:28] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:28] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:29] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:29] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:29] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:29] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:30] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:30] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:30] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:30] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:31] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:31] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:31] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:32] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:32] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:32] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:35] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:35] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:40] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:40] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:41] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:41] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:41] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:41] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:42] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:42] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:42] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:42] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:43] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:43] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:43] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:43] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:44] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:44] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:44] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:45] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:46] "GET / HTTP/1.0" 301 0
+[31/Aug/2024 20:57:46] "GET / HTTP/1.0" 301 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 20:57:13
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 21:01:26
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+[31/Aug/2024 21:04:38] "GET / HTTP/1.0" 200 13249
+[31/Aug/2024 21:04:47] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 21:05:36] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 21:14:24] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 21:14:26] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 21:14:27] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 21:19:30] "GET / HTTP/1.0" 400 143
+[31/Aug/2024 21:28:21] "GET /accounts/logout/ HTTP/1.0" 302 0
+[31/Aug/2024 21:28:23] "GET /accounts/login/ HTTP/1.0" 200 10126
+[31/Aug/2024 22:03:29] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 22:03:57] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 22:04:11] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 22:13:23] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00')
+[31/Aug/2024 22:13:23] "    c                           " 400 -
+[31/Aug/2024 22:15:02] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 22:15:24] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 22:42:52] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 22:43:03] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:44:47] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 22:45:13] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 22:45:15] "GET /favicon.ico HTTP/1.0" 404 179
+[31/Aug/2024 22:45:33] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 22:46:19] "GET /sitemap.xml HTTP/1.0" 200 898
+[31/Aug/2024 22:47:27] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 22:47:48] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:48] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:48] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:48] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:51] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:51] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 22:47:52] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:52] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:52] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:47:52] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:48:04] "GET /robots.txt HTTP/1.0" 404 179
+[31/Aug/2024 22:48:14] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 22:48:14] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 22:48:14] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 22:48:15] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 22:48:38] "GET /accounts/register/ HTTP/1.0" 200 6858
+[31/Aug/2024 22:48:39] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+[31/Aug/2024 22:48:55] "GET / HTTP/1.0" 200 13134
+[31/Aug/2024 22:48:58] "GET /sobre/ HTTP/1.0" 200 14233
+[31/Aug/2024 22:49:00] "GET /accounts/login/ HTTP/1.0" 200 8877
+[31/Aug/2024 22:49:02] "GET /servicos/ HTTP/1.0" 200 17007
+[31/Aug/2024 22:49:03] "GET /contato/ HTTP/1.0" 200 8461
+[31/Aug/2024 22:49:05] "GET /accounts/register/ HTTP/1.0" 200 6858
+[31/Aug/2024 22:49:06] "GET /accounts/password_reset/ HTTP/1.0" 200 4132
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 31, 2024 - 21:04:23
+Django version 5.0.7, using settings 'projeto.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Traceback (most recent call last):
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 22, in <module>
+    main()
+  File "/home/fabianosf/asbjj_bootstrap/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/core/management/__init__.py", line 382, in execute
+    settings.INSTALLED_APPS
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/conf/__init__.py", line 89, in __getattr__
+    self._setup(name)
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/conf/__init__.py", line 76, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fabianosf/asbjj_bootstrap/env/lib/python3.12/site-packages/django/conf/__init__.py", line 190, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/fabianosf/asbjj_bootstrap/projeto/settings.py", line 69
+    <<<<<<< HEAD
+    ^^
+SyntaxError: invalid syntax

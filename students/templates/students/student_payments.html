@@ -1,0 +1,169 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Meus Pagamentos - ASBJJ{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .payments-page {
+            padding: 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .payments-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .payment-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-amount {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .payment-details {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .payment-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        
+        .status-paid {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-overdue {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="payments-page">
+    <a href="{% url 'student_dashboard' %}" class="back-btn">
+        ← Voltar ao Dashboard
+    </a>
+    
+    <div class="page-header">
+        <div class="page-title">💳 Meus Pagamentos</div>
+        <div class="page-subtitle">{{ student.full_name }}</div>
+    </div>
+    
+    <div class="payments-container">
+        {% if payments %}
+            {% for payment in payments %}
+            <div class="payment-item">
+                <div class="payment-info">
+                    <div class="payment-amount">R$ {{ payment.final_amount|floatformat:2 }}</div>
+                    <div class="payment-details">
+                        <strong>Plano:</strong> {{ payment.subscription.payment_plan.name }}<br>
+                        <strong>Vencimento:</strong> {{ payment.due_date|date:"d/m/Y" }}<br>
+                        <strong>Método:</strong> {{ payment.get_payment_method_display }}
+                        {% if payment.paid_date %}
+                        <br><strong>Pago em:</strong> {{ payment.paid_date|date:"d/m/Y" }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="payment-status status-{{ payment.payment_status }}">
+                    {{ payment.get_payment_status_display }}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <div style="font-size: 3em; margin-bottom: 20px;">💳</div>
+                <h3>Nenhum pagamento encontrado</h3>
+                <p>Você ainda não possui pagamentos registrados.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+

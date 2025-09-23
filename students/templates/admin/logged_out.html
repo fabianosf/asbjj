@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}Logout - ASBJJ{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); max-width: 400px; width: 100%;">
+        <div style="margin-bottom: 30px;">
+            <img src="{% static 'core/img/logo.png' %}" alt="ASBJJ" height="60" style="margin-bottom: 15px;">
+            <h2 style="color: #333; margin: 0;">Logout Realizado</h2>
+        </div>
+        
+        <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #28a745;">
+            <strong>✅ Sucesso!</strong><br>
+            Você foi desconectado com sucesso do sistema.
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="/" style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: transform 0.3s;">
+                🏠 Voltar ao Site Principal
+            </a>
+        </div>
+        
+        <div style="margin-top: 15px;">
+            <a href="{% url 'login' %}" style="display: inline-block; padding: 10px 20px; background: #f8f9fa; color: #667eea; text-decoration: none; border-radius: 5px; font-size: 14px;">
+                🔐 Fazer Login Novamente
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Redirecionar automaticamente após 3 segundos
+    setTimeout(function() {
+        window.location.href = "/";
+    }, 3000);
+</script>
+{% endblock %}

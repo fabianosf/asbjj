@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!-- Begin Page sobre -->
+<div id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1></h1>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- End Page sobre -->
+<style>
+    .sobre-img {
+        max-width: 100%;
+        /* Garante que a imagem não ultrapasse a largura do contêiner */
+        height: auto;
+        /* Mantém a proporção da imagem */
+    }
+
+    /* Ajustes específicos para dispositivos móveis */
+    @media (max-width: 767px) {
+        .sobre-img {
+            width: 100%;
+            /* Ajusta a largura da imagem para 100% do contêiner em dispositivos móveis */
+            height: auto;
+            /* Mantém a proporção da imagem */
+        }
+    }
+</style>
+
+
+<!-- begin inf. sobre a empresa -->
+<section id="sobre" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'img/professores.jpg' %}" alt="Professores"
+                    class="img-fluid rounded-circle sobre-img">
+                <h1>O que nós fazemos?</h1>
+                <p>Na nossa academia, estamos comprometidos em transformar vidas através do jiu-jítsu e do bem-estar.
+                    Com mais de 10 anos de experiência, nosso time de instrutores dedicados, liderado por Alexandre
+                    Salgado e sua esposa Ana Carol, oferece um ambiente acolhedor e seguro para alunos de todas as
+                    idades e níveis de habilidade.</p>
+                <p>Jiu-Jítsu para todas as idades. Quer você seja um adulto procurando melhorar sua forma física, uma
+                    criança começando sua jornada nas artes marciais, ou um adolescente buscando autoconfiança e
+                    disciplina, temos a aula perfeita para você. Nossa abordagem personalizada garante que cada aluno
+                    receba a atenção necessária para crescer e se desenvolver, tanto dentro quanto fora do tatame.</p>
+                <p>Defesa Pessoal. Também oferecemos treinamentos especializados em defesa pessoal, capacitando nossos
+                    alunos a se protegerem com técnicas eficazes e práticas. Queremos que você se sinta seguro e
+                    confiante em qualquer situação.</p>
+                <p>Yoga para Equilíbrio e Bem-Estar. Além das aulas de jiu-jítsu, oferecemos sessões de yoga ministradas
+                    pela nossa instrutora Ana Carolina. O yoga é uma prática complementar ideal para o jiu-jítsu, ajudando
+                    a melhorar a flexibilidade, reduzir o estresse e encontrar o equilíbrio físico e mental.</p>
+            </div>
+            <div class="col-md-6">
+                <!-- Se desejar adicionar mais conteúdo aqui, adicione-o -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end sobre a empresa -->
+
+
+<!-- begin weekdays and multiple schedule table section -->
+<section id="weekdays-multiple-schedule-table" class="p-5">
+    <div class="container">
+
+        <!-- Título da tabela -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h2>Horários da Semana</h2>
+            </div>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-center bg-primary text-white">
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td class="bg-dark text-white">
+                        <h5>7:00 - 8:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>12:00 - 13:00</h5>
+                        <p>Iniciantes kimono</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>7:00 - 8:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>12:00 - 13:00</h5>
+                        <p>Iniciantes kimono</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>7:00 - 8:00</h5>
+                        <p>Todos os níveis.</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td class="bg-dark text-white">
+                        <h5>18:00 - 19:00</h5>
+                        <p>Jiu-Jitsu</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>18:00 - 19:00</h5>
+                        <p>Jiu-Jitsu</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>18:00 - 19:00</h5>
+                        <p>Jiu-Jitsu</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>18:00 - 19:00</h5>
+                        <p>Jiu-Jitsu</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>18:00 - 19:00</h5>
+                        <p>Open Match</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td class="bg-dark text-white">
+                        <h5>19:20 - 20:20</h5>
+                        <p>Jiu-Jitsu(Infantil)</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>19:00 - 20:00</h5>
+                        <p>Jiu-Jitsu(Infantil)</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>19:20 - 20:20</h5>
+                        <p>Jiu-Jitsu(Infantil)</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>19:00 - 20:00</h5>
+                        <p>Jiu-Jitsu(Infantil)</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>Open Match</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td class="bg-dark text-white">
+                        <h5>20:00 - 21:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>20:00 - 21:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>20:00 - 21:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>20:00 - 21:00</h5>
+                        <p>Todos os níveis</p>
+                    </td>
+                    <td class="bg-dark text-white">
+                        <h5>Open Match</h5>
+                        <p>Open Match</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<!-- end weekdays and multiple schedule table section -->
+
+
+<!-- end icones boxes cards -->
+
+
+<!-- begin prova social -->
+
+<section id="testimonials" class="p-4 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center">O que nossos alunos acham??</h2>
+        <div class="row text-center">
+            <div class="col">
+                <div class="slider">
+                    <div>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">
+                                "O que eu mais gosto nas aulas é o ambiente de apoio e amizade que encontrei aqui. Os
+                                colegas e instrutores são sempre encorajadores, e sinto que realmente faço parte de uma
+                                comunidade. Além disso, as técnicas de autodefesa que aprendi me deram uma enorme
+                                confiança."
+                            </p>
+                            <footer class="blockquote-footer">
+                                João Pereira
+                                <cite title="Empresa 1"></cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">
+                                "O jiu-jitsu não só me ajudou a manter o peso, mas também aumentou minha autoestima. A
+                                cada conquista e técnica dominada, me sinto mais confiante e realizada. Os instrutores
+                                são incríveis e sempre dispostos a ajudar, o que faz toda a diferença."
+                            </p>
+                            <footer class="blockquote-footer">
+                                Carla Mendes
+                                <cite title="Empresa 1"></cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">
+                                "Comecei a treinar jiu-jitsu para melhorar minha forma física, mas encontrei muito mais
+                                do que isso. A prática me ajudou a desenvolver disciplina e foco, e a comunidade aqui é
+                                maravilhosa. Sinto que sempre posso contar com meus colegas e instrutores."
+                            </p>
+                            <footer class="blockquote-footer">
+                                Beatriz Lima
+                                <cite title="Empresa 1"></cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end prova social -->
+
+ 
+<!-- begin footer-->
+ <!-- 
+<footer id="main-footer" class="text-center p-4">
+    <div class="container">
+        <div class="footer-text">
+            
+            <p>
+                ASBJJ - Academia de Artes Marciais | Este site é desenvolvido com <i class="fa fa-heart" aria-hidden="true"></i> por <a
+                    href="https://fabianosf.github.io/fabianosf_/" target="_blank">Fabiano Freitas</a>
+            </p>
+            
+        </div>
+    </div>
+</footer>
+-->
+ 
+<!-- end footer-->
+
+
+{% endblock %}

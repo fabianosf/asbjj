@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ SITE_URL }}/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /agendamentos/
+Disallow: /static/admin/
+Disallow: /media/
+
+# Allow important pages
+Allow: /
+Allow: /sobre/
+Allow: /servicos/
+Allow: /contato/
+Allow: /blog/
+Allow: /galeria/
+Allow: /aulas/
+Allow: /depoimentos/

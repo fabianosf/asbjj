@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASBJJ - {{ title|default:"E-mail" }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #dc3545, #ffc107);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .content h2 {
+            color: #dc3545;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .content p {
+            margin-bottom: 15px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: linear-gradient(135deg, #c82333, #a71e2a);
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .contact-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .contact-info h3 {
+            margin: 0 0 10px 0;
+            color: #dc3545;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #ffc107;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .header {
+                padding: 20px 15px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>ASBJJ</h1>
+            <p>Alexandre Salgado Brazilian Jiu-Jitsu</p>
+        </div>
+        
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <h3>Entre em Contato</h3>
+                <p><strong>E-mail:</strong> admin@asbjj.com.br</p>
+                <p><strong>WhatsApp:</strong> +55 11 99999-9999</p>
+                <p><strong>Site:</strong> <a href="https://asbjj.com.br">https://asbjj.com.br</a></p>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://instagram.com/asbjj">Instagram</a>
+                <a href="https://facebook.com/asbjj">Facebook</a>
+                <a href="https://youtube.com/asbjj">YouTube</a>
+            </div>
+            
+            <p>
+                Este e-mail foi enviado para {{ recipient_email }}.<br>
+                Se você não deseja mais receber nossos e-mails, 
+                <a href="{{ unsubscribe_url }}">clique aqui para se descadastrar</a>.
+            </p>
+            
+            <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+                ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu. Academia de Artes Marciais.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

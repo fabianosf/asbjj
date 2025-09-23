@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ site_config.site_name|default:"ASBJJ" }} - Academia de Jiu-Jitsu, Defesa Pessoal e Yoga{% endblock %}
+
+{% block description %}Academia especializada em Jiu-Jitsu, Defesa Pessoal e Yoga em São Paulo. Professores Alexandre Salgado e Ana Carolina. Aulas para todas as idades.{% endblock %}
+
+{% block keywords %}jiu-jitsu, defesa pessoal, yoga, academia, São Paulo, Alexandre Salgado, Ana Carolina, aulas, treino{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content fade-in">
+                    <h1 class="hero-title">Transforme sua vida com as artes marciais</h1>
+                    <p class="hero-subtitle">
+                        Academia especializada em Jiu-Jitsu, Defesa Pessoal e Yoga. 
+                        Professores experientes, ambiente acolhedor e resultados garantidos.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'core:contact' %}" class="btn btn-warning btn-lg me-3 mb-3">
+                            <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+                        </a>
+                        <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg mb-3">
+                            <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <img src="{% static 'img/tatame.jpeg' %}" alt="Artes Marciais" class="img-fluid rounded shadow-custom" style="max-height: 400px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Por que escolher a ASBJJ?</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h3 class="feature-title">Professores Experientes</h3>
+                    <p class="feature-description">
+                        Alexandre Salgado e Ana Carolina são instrutores certificados com anos de experiência 
+                        no ensino de artes marciais.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Aulas para Todas as Idades</h3>
+                    <p class="feature-description">
+                        Desde crianças de 5 anos até adultos, oferecemos aulas adaptadas para cada faixa etária 
+                        e nível de condicionamento.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Ambiente Seguro</h3>
+                    <p class="feature-description">
+                        Priorizamos a segurança e o bem-estar dos nossos alunos com equipamentos de qualidade 
+                        e supervisão constante.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="feature-title">Resultados Comprovados</h3>
+                    <p class="feature-description">
+                        Nossos alunos desenvolvem condicionamento físico, autoconfiança e habilidades 
+                        de defesa pessoal comprovadas.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Horários Flexíveis</h3>
+                    <p class="feature-description">
+                        Oferecemos aulas em diversos horários para se adequar à sua rotina, 
+                        incluindo manhã, tarde e noite.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item text-center animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">Família ASBJJ</h3>
+                    <p class="feature-description">
+                        Mais que uma academia, somos uma família. Ambiente acolhedor onde 
+                        você fará amigos para toda a vida.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modalidades Section -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Nossas Modalidades</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for class_obj in featured_classes %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 animate-on-scroll">
+                    {% if class_obj.image %}
+                        <img src="{{ class_obj.image.url }}" class="card-img-top" alt="{{ class_obj.name }}">
+                    {% else %}
+                        <img src="{% static 'img/class-default.jpg' %}" class="card-img-top" alt="{{ class_obj.name }}">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ class_obj.name }}</h5>
+                        <p class="card-text flex-grow-1">{{ class_obj.short_description }}</p>
+                        <div class="class-info mb-3">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <small class="text-muted">Duração</small>
+                                    <div class="fw-bold">{{ class_obj.duration_minutes }} min</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Mensalidade</small>
+                                    <div class="fw-bold text-success">R$ {{ class_obj.price_monthly }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'classes:detail' class_obj.slug %}" class="btn btn-primary">
+                            <i class="fas fa-info-circle me-2"></i>Saiba Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="text-center">
+                    <p class="text-muted">Em breve, novas modalidades serão adicionadas!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'core:services' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-list me-2"></i>Ver Todas as Modalidades
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Instrutores Section -->
+{% if featured_instructors %}
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Nossos Instrutores</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for instructor in featured_instructors %}
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 animate-on-scroll">
+                    <div class="card-body d-flex">
+                        {% if instructor.photo %}
+                            <img src="{{ instructor.photo.url }}" class="rounded-circle me-3" width="80" height="80" alt="{{ instructor.full_name }}">
+                        {% else %}
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-user fa-2x text-white"></i>
+                            </div>
+                        {% endif %}
+                        <div class="flex-grow-1">
+                            <h5 class="card-title mb-1">{{ instructor.full_name }}</h5>
+                            <p class="card-text text-muted mb-2">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                {{ instructor.experience_years }} anos de experiência
+                            </p>
+                            <p class="card-text">{{ instructor.bio|truncatewords:20 }}</p>
+                            <small class="text-muted">
+                                {% for specialization in instructor.specializations %}
+                                    <span class="badge bg-secondary me-1">{{ specialization }}</span>
+                                {% endfor %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'core:about' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-users me-2"></i>Conhecer Toda a Equipe
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Depoimentos Section -->
+{% if testimonials %}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">O que nossos alunos dizem</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial animate-on-scroll">
+                    <div class="testimonial-rating">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= testimonial.rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="testimonial-content">"{{ testimonial.content|truncatewords:25 }}"</p>
+                    <div class="testimonial-author">
+                        {% if testimonial.author_photo %}
+                            <img src="{{ testimonial.author_photo.url }}" class="testimonial-avatar" alt="{{ testimonial.author_name }}">
+                        {% else %}
+                            <div class="testimonial-avatar bg-primary d-flex align-items-center justify-content-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                        {% endif %}
+                        <div class="testimonial-info">
+                            <h6>{{ testimonial.author_name }}</h6>
+                            <small>Aluno ASBJJ</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'testimonials:list' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-comments me-2"></i>Ver Todos os Depoimentos
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Galeria Section -->
+{% if gallery_images %}
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Galeria de Fotos</h2>
+                <p class="text-center text-muted mb-4">Momentos especiais da nossa academia</p>
+            </div>
+        </div>
+        <div class="row g-3">
+            {% for image in gallery_images %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="gallery-item animate-on-scroll">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-src="{{ image.image.url }}" data-bs-title="{{ image.title }}">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'core:gallery' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-images me-2"></i>Ver Galeria Completa
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Blog Section -->
+{% if recent_posts %}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Últimas do Blog</h2>
+                <p class="text-center text-muted mb-4">Dicas, técnicas e novidades do mundo das artes marciais</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for post in recent_posts %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 animate-on-scroll">
+                    {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <div class="mb-2">
+                            <span class="badge bg-primary">{{ post.get_category_display }}</span>
+                            <small class="text-muted ms-2">{{ post.published_at|date:"d/m/Y" }}</small>
+                        </div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text flex-grow-1">{{ post.excerpt|truncatewords:20 }}</p>
+                        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-right me-2"></i>Ler Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'core:blog_list' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-newspaper me-2"></i>Ver Todos os Posts
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="section bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="mb-3">Pronto para começar sua jornada?</h2>
+                <p class="mb-0 fs-5">
+                    Agende sua aula experimental gratuita e descubra como as artes marciais 
+                    podem transformar sua vida. Sem compromisso!
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'core:contact' %}" class="btn btn-warning btn-lg">
+                    <i class="fas fa-calendar-check me-2"></i>Agendar Aula Grátis
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para Galeria -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="galleryModalLabel"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <img src="" class="img-fluid" alt="" id="galleryModalImage">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Configurar modal da galeria
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryModal = document.getElementById('galleryModal');
+    if (galleryModal) {
+        galleryModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const src = button.getAttribute('data-bs-src');
+            const title = button.getAttribute('data-bs-title');
+            
+            const modalImage = galleryModal.querySelector('#galleryModalImage');
+            const modalTitle = galleryModal.querySelector('#galleryModalLabel');
+            
+            modalImage.src = src;
+            modalImage.alt = title;
+            modalTitle.textContent = title;
+        });
+    }
+    
+    // Configurar animações on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
+{% endblock %}

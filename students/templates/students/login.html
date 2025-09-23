@@ -1,0 +1,216 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Login - ASBJJ{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .login-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            margin-bottom: 30px;
+        }
+        
+        .login-logo img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .login-title {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .login-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .login-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .role-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .role-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .role-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="{% static 'core/img/logo.png' %}" alt="ASBJJ">
+            <div class="login-title">Acesso ao Sistema</div>
+        </div>
+        
+        <div class="role-info">
+            <div class="role-title">🔐 Regras de Acesso</div>
+            <div class="role-description">
+                <div style="margin-bottom: 10px;">
+                    <strong>👨‍💼 Administradores (admin/fabianosf):</strong><br>
+                    <small>• Acesso completo ao sistema<br>
+                    • Gerenciar alunos e pagamentos<br>
+                    • Relatórios financeiros<br>
+                    • Controle total</small>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <strong>👨‍🏫 Professores:</strong><br>
+                    <small>• Visualizar todos os alunos<br>
+                    • Ver alunos que pagaram/não pagaram<br>
+                    • Acompanhar presenças<br>
+                    • Acesso limitado</small>
+                </div>
+                <div>
+                    <strong>👨‍🎓 Alunos:</strong><br>
+                    <small>• Marcar presença nas aulas<br>
+                    • Ver seus próprios pagamentos<br>
+                    • Próximas aulas agendadas<br>
+                    • Acesso restrito</small>
+                </div>
+            </div>
+        </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{% if message.tags == 'error' %}error-message{% else %}success-message{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-button">
+                Entrar no Sistema
+            </button>
+        </form>
+        
+        <div class="login-links">
+            <a href="/">← Voltar ao Site</a>
+        </div>
+        
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #2196f3;">
+            <div style="font-weight: bold; color: #1976d2; margin-bottom: 10px;">🧪 Usuários de Teste:</div>
+            <div style="font-size: 0.9em; color: #666;">
+                <strong>Admin:</strong> admin / admin<br>
+                <strong>Professor:</strong> professor / 123456<br>
+                <strong>Aluno:</strong> joao.silva / 123456
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

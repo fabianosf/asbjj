@@ -1,0 +1,50 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+<h2>Confirmação de Agendamento</h2>
+
+<p>Olá <strong>{{ booking.full_name }}</strong>,</p>
+
+<p>Obrigado pelo seu interesse em fazer uma aula experimental conosco!</p>
+
+<div class="highlight">
+    <h3>Detalhes do seu Agendamento</h3>
+    <p><strong>Aula:</strong> {{ booking.class_obj.name }}</p>
+    <p><strong>Data Preferida:</strong> {{ booking.preferred_date|date:"d/m/Y" }}</p>
+    <p><strong>Horário Preferido:</strong> {{ booking.preferred_time|time:"H:i"|default:"A definir" }}</p>
+    {% if booking.notes %}
+    <p><strong>Observações:</strong> {{ booking.notes }}</p>
+    {% endif %}
+</div>
+
+<div class="highlight">
+    <h3>O que esperar na sua aula experimental:</h3>
+    <ul>
+        <li>✅ Aula experimental gratuita</li>
+        <li>✅ Conhecer nossos instrutores</li>
+        <li>✅ Experimentar a modalidade</li>
+        <li>✅ Receber orientações sobre equipamentos</li>
+        <li>✅ Conhecer nossa estrutura</li>
+    </ul>
+</div>
+
+<p><strong>Nossa equipe entrará em contato em até 24 horas</strong> para confirmar o horário e fornecer mais detalhes sobre a aula.</p>
+
+<div class="contact-info">
+    <h3>Dúvidas?</h3>
+    <p>Se tiver alguma dúvida, entre em contato conosco:</p>
+    <p><strong>Telefone:</strong> +55 11 99999-9999</p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/5511999999999">+55 11 99999-9999</a></p>
+    <p><strong>E-mail:</strong> admin@asbjj.com.br</p>
+</div>
+
+<a href="{{ site_url }}/sobre/" class="button">
+    Conhecer Nossa Academia
+</a>
+
+<p>Estamos ansiosos para conhecê-lo(a)!</p>
+
+<p>Atenciosamente,<br>
+<strong>Equipe ASBJJ</strong><br>
+Alexandre Salgado Brazilian Jiu-Jitsu</p>
+{% endblock %}

@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Login - ASBJJ{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-hero {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .login-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "img/tatame.jpeg" %}') center/cover;
+        opacity: 0.1;
+        z-index: 1;
+    }
+    
+    .login-container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .login-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .login-header {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .login-header::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: white;
+        border-radius: 2px;
+    }
+    
+    .login-body {
+        padding: 2.5rem;
+    }
+    
+    .form-floating {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-floating .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 1rem 0.75rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-floating .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    
+    .form-floating label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    .btn-login {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-login::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .btn-login:hover::before {
+        left: 100%;
+    }
+    
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+    }
+    
+    .register-link {
+        color: #28a745;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .register-link:hover {
+        color: #20c997;
+        text-decoration: underline;
+    }
+    
+    .forgot-password {
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+    
+    .forgot-password:hover {
+        color: #28a745;
+    }
+    
+    .remember-me {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+        .login-hero {
+            min-height: auto;
+            padding: 2rem 0;
+        }
+        
+        .login-body {
+            padding: 1.5rem;
+        }
+        
+        .login-header {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-hero">
+    <div class="container login-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-xl-5">
+                <div class="login-card">
+                    <!-- Header -->
+                    <div class="login-header">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <img src="{% static 'img/logo.png' %}" alt="ASBJJ" height="50" class="me-3">
+                            <h2 class="mb-0 fw-bold">Login</h2>
+                        </div>
+                        <p class="mb-0 opacity-90">Bem-vindo de volta à nossa academia</p>
+                    </div>
+                    
+                    <!-- Body -->
+                    <div class="login-body">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-{% if message.tags == 'success' %}check-circle{% elif message.tags == 'error' %}exclamation-triangle{% else %}info-circle{% endif %} me-2"></i>
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if error %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                {{ error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endif %}
+
+                        <form method="post" id="loginForm">
+                            {% csrf_token %}
+                            
+                            <!-- Username/Email -->
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Usuário ou E-mail" required>
+                                <label for="username">
+                                    <i class="fas fa-user me-2"></i>Usuário ou E-mail
+                                </label>
+                            </div>
+                            
+                            <!-- Password -->
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                                <label for="password">
+                                    <i class="fas fa-lock me-2"></i>Senha
+                                </label>
+                            </div>
+                            
+                            <!-- Remember Me & Forgot Password -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                                    <label class="form-check-label remember-me" for="rememberMe">
+                                        Lembrar de mim
+                                    </label>
+                                </div>
+                                <a href="{% url 'accounts:password_reset' %}" class="forgot-password">
+                                    <i class="fas fa-key me-1"></i>Esqueceu a senha?
+                                </a>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-login text-white">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Entrar
+                                </button>
+                            </div>
+                        </form>
+
+                        <hr class="my-4">
+                        
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">
+                                Não tem uma conta? 
+                                <a href="{% url 'accounts:register' %}" class="register-link">
+                                    <i class="fas fa-user-plus me-1"></i>Cadastre-se aqui
+                                </a>
+                            </p>
+                        </div>
+                        
+                        <!-- Quick Access -->
+                        <div class="mt-4">
+                            <div class="text-center">
+                                <small class="text-muted">Acesso rápido:</small>
+                            </div>
+                            <div class="d-flex justify-content-center gap-2 mt-2">
+                                <a href="{% url 'core:index' %}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-home me-1"></i>Início
+                                </a>
+                                <a href="{% url 'core:contact' %}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-envelope me-1"></i>Contato
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Form enhancement
+    const form = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Add loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entrando...';
+            submitBtn.disabled = true;
+            
+            // Re-enable after 3 seconds (in case of error)
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+    }
+    
+    // Auto-focus on username field
+    if (usernameInput) {
+        usernameInput.focus();
+    }
+    
+    // Enter key enhancement
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                form.submit();
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

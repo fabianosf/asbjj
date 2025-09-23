@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% include 'core/alerta_mensagem.html' %}
+<style>
+/* Carrossel Item */
+.carousel-item {
+  height: 90vh; /* Altura do carrossel ajustada com base na altura da viewport */
+  background-size: cover; /* Ajusta a imagem para cobrir todo o carrossel */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 767px) {
+  .carousel-item {
+    height: 40vh; /* Reduz a altura do carrossel em telas menores */
+  }
+}
+
+/* Remove margens e padding adicionais */
+.carousel-caption {
+  margin-bottom: 0; /* Remove o margin-bottom padrão */
+}
+
+#home-heading {
+  position: relative;
+  min-height: 200px;
+  background: url("{% static 'img/tatame.jpeg' %}");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #fff;
+  background-size: cover;
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2); /* aqui ele da uma escuricida na imagem do titulo */
+}
+
+#video-play {
+  position: relative;
+  min-height: 200px;
+  background-image: url("{% static 'img/tatame2.png' %}");
+  background-attachment: fixed;
+  background-size: cover; /* Adiciona para garantir que a imagem cubra a área */
+  background-repeat: no-repeat;
+  background-position: center center; /* Centraliza a imagem */
+  text-align: center;
+  color: #fff;
+}
+
+
+
+</style>
+
+<!-- begin carrousel -->
+<section id="showcase">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/imagem1.jpg' %}" class="d-block w-100" alt="Graduação">
+        <div class="carousel-caption d-none d-md-block text-right mb-5">
+          <h1 class="display-3">Graduação</h1>
+          <p class="lead"></p>
+          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'img/imagem2.jpg' %}" class="d-block w-100" alt="Guerreiras no Tatame">
+        <div class="carousel-caption d-none d-md-block text-right mb-5">
+          <h1 class="display-3">Guerreiras no Tatame</h1>
+          <p class="lead"></p>
+          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'img/imagem3.jpg' %}" class="d-block w-100" alt="Crianças no Tatame">
+        <div class="carousel-caption d-none d-md-block text-right mb-5">
+          <h1 class="display-3">Crianças no Tatame</h1>
+          <p class="lead"></p>
+          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+      </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+
+
+
+
+
+<!-- end carousel -->
+
+<!-- begin section services-->
+<section id="home-icon" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4 text-center">
+        <i class="fas fa-user-ninja fa-3x mb-2"></i>
+        <h3>Jiu-Jitsu</h3>
+        <p>Escola de artes marciais Alexandre Salgado</p>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <i class="fas fa-dumbbell fa-3x mb-2"></i>
+        <h3>Defesa Pessoal</h3>
+        <p>Professores Alexandre Salgado e Ana Carolina</p>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <i class="fas fa-person-praying fa-3x mb-2"></i>
+        <h3>Yoga</h3>
+        <p>Professora Ana Carolina</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section services-->
+
+<!-- begin Titulo-->
+<section id="home-heading" class="p-5">
+  <div class="dark-overlay">
+    <div class="row">
+      <div class="col">
+        <div class="container pt-5">
+          <h1>Gostaria de fazer uma aula experiemental conosco ?</h1>          
+          <p class="d-none d-md-block"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end Titulo-->
+
+<!-- begin info section -->
+
+<section id="info" class="py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <h3>Conheca nossa academia.</h3>
+        <p>Um de nossos tatamos ao lado</p>
+        <a href="{% url 'sobre' %}" class="btn btn-outline-danger btn-lg">Saiba mais</a>
+      </div>
+
+      <div class="col-md-6">
+        <img src="{% static 'img/tatame2.png' %}" alt="" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end info section-->
+
+<!-- begin video institucional -->
+<section id="video-play">
+  <div class="dark-overlay">
+    <div class="row">
+      <div class="col">
+        <div class="container p-5">
+          <a href="#" class="video" data-video="https://www.youtube.com/embed/S4jrhBwhjOw" data-toggle="modal"
+            data-target="#videoModal">
+            <i class="fas fa-play fa-3x"></i>
+          </a>
+          <h1>veja o que fazemos</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end video institucional -->
+
+
+
+<!-- begin video modal-->
+<div class="modal fade" id="videoModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+        <iframe src="" frameborder="0" height="350" width="100%" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end video modal-->
+
+<!-- begin photo galeria-->
+
+
+
+<section id="gallery" class="py-5">
+  <div class="container">
+    <h1 class="text-center">Galeria de fotos</h1>
+    <p class="text-center">Clique em nossas imagens</p>
+    <div class="row mb-4">
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal1.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal1.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal2.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal2.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal3.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal3.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+
+    </div>
+
+    <div class="row mb-4">
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal4.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal4.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal5.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal5.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+
+      <div class="col md-4">
+        <a href="{% static 'img/pessoal6.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
+          data-width="560">
+          <img src="{% static 'img/pessoal6.jpg' %}" alt="" class="img-fluid">
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- end photo galeria-->
+
+<!-- begin newsletter -->
+<section id="newsletter" class="text-center p-5 bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Inscreva-se em nossa lista de Newsletter</h1>     
+        <form class="form-inline justify-content-center">
+          <input type="text" class="form-control mb-2 mr-2" placeholder="insira seu nome">
+          <input type="email" class="form-control mb-2 mr-2" placeholder="insira seu email">
+          <button class="btn btn-primary mb-2">Inscreva-se</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end newsletter -->
+
+<!-- begin Rodape -->
+ <!-- 
+<footer id="main-footer" class="text-center p-4">
+  <div class="container">
+    <div class="footer-text">
+      <p>
+        ASBJJ - Academia de Artes Marciais | Este site é desenvolvido com <i class="fa fa-heart" aria-hidden="true"></i> por <a
+          href="https://fabianosf.github.io/fabianosf_/" target="_blank">Fabiano Freitas</a>
+      </p>
+    </div>
+  </div>
+</footer>
+-->
+<!-- end Rodape -->
+{% endblock %}

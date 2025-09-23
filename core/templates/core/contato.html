@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- Begin Page servicos -->
+<!-- 
+<div id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1>Entre em contato</h1>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!-- End Page servico -->
+
+<!--  begin section contato-->
+<section id="contact" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h4><b>Entre em contato</b></h4>
+                        <p><b>Professor Alexandre Salgado</b></p>
+                        <h4><b>Endereco</b></h4>
+                        <p><b>Boulevard 28 de Setembro, 617 - Vila Isabel, Rio de Janeiro - RJ</b></p>
+                        <h4><b>Email</b></h4>
+                        <p><b>cursos@marketing.com.br</b></p>
+                        <h4><b>Fone:</b></h4>
+                        <p><b>(21)9999-9999</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h3 class="text-center"><b>Preencha nosso formulário de contato</b></h3>
+                        <form action="{% url 'core:contact' %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="form-group">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.name.errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.email.errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.phone.label_tag }}
+                                {{ form.phone }}
+                                {% if form.phone.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.phone.errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                                {% if form.message.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.message.errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Enviar" class="btn btn-outline-danger btn-block">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- end section contato-->
+
+<!-- begin equipe -->
+<section id="staff" class="py-5 text-center bg-dark text-white">
+    <div class="container">
+        <h1>Nossa equipe</h1>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-md-4 staff-member">
+                <img src="{% static 'img/alexandre.jpg' %}" alt="Alexandre Salgado" class="img-fluid rounded-circle mb-2">
+                <h4>Alexandre Salgado</h4>
+                <small>Professor</small>
+            </div>
+            <div class="col-md-4 staff-member">
+                <img src="{% static 'img/ana.jpg' %}" alt="Ana Carol" class="img-fluid rounded-circle mb-2">
+                <h4>Ana Carol</h4>
+                <small>Professora</small>
+            </div>
+            <div class="col-md-4 staff-member">
+                <img src="{% static 'img/professores.jpg' %}" alt="Alexandre Salgado e Ana Carolina" class="img-fluid rounded-circle mb-2">
+                <h4>Renata Bastos</h4>
+                <small>Aluna Renata</small>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- begin equipe -->
+
+<!-- begin footer-->
+ <!-- 
+<footer id="main-footer" class="text-center p-4">
+     
+    <div class="container">
+        <div class="footer-text">
+            <p>
+                ASBJJ - Academia de Artes Marciais | Este site é desenvolvido com <i class="fa fa-heart" aria-hidden="true"></i> por <a
+                    href="https://fabianosf.github.io/fabianosf_/" target="_blank">Fabiano Freitas</a>
+            </p>
+        </div>
+    </div>
+</footer>
+-->
+<!-- end footer-->
+
+
+{% endblock %}

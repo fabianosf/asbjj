@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Begin Page servicos -->
+<div id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1>Nossos Servicos</h1>
+                
+        </div>
+    </div>
+</div>
+<!-- End Page servico -->
+
+
+
+<!-- begin section servicos -->
+<section id="servicos" class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- coluna 1 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Jiu-Jitsu</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </h4>
+                        <p>Benefícios do Jiu-Jitsu</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Melhora da Condição Física
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Perda de Peso
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Melhora da Resiliência Física
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Redução do Estresse
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Desenvolvimento do Autocontrole
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Habilidades de Autodefesa
+                            </li>
+                        </ul>
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary btn-block mt-3">Obter Servico</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Consulte a gente
+                    </div>
+                </div>
+            </div>
+            <!--end coluna 1-->
+
+            <!-- coluna 2 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Defesa Pessoal</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </h4>
+                        <p>Aprendendo a se defender</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Aumento da Confiança
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Redução do Estresse e Ansiedade
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Desenvolvimento do Autocontrole
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Resiliência Mental
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Empoderamento Pessoal
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Independência
+                            </li>
+                        </ul>
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary btn-block mt-3">Obter Servico</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Consulte a gente
+                    </div>
+                </div>
+            </div>
+            <!--end coluna 2-->
+
+            <!-- coluna 3-->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Yoga</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </h4>
+                        <p>Beneficios Yoga</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Aumento da Flexibilidade
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Melhora da Postura
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Melhora da Respiração
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Redução do Estresse
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Melhora do Sono
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check"></i> Sensação de Paz Interior
+                            </li>
+                        </ul>
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary btn-block mt-3">Obter Servico</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Consulte a gente
+                    </div>
+                </div>
+            </div>
+            <!--end coluna 3-->
+        </div>
+    </div>
+</section>
+<!-- end section servicos -->
+
+
+
+
+<!-- begin Perguntas mais frente -->
+<section id="faq" class="p-5 bg-dark text-white">
+    <div class="container">
+        <h1 class="text-center">Perguntas mais frequentes</h1>
+        <hr>
+        <div class="row">
+            <!-- INICIO COLUNA 1 -->
+            <div class="col-md-6">
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseUm" data-toggle="collapse" data-parent="accordion"> O que é
+                                    jiu-jitsu?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseUm" class="collapse">
+                            <div class="card-body">
+                                O jiu-jítsu é uma arte marcial focada em técnicas de alavanca, imobilizações e
+                                submissões, permitindo que uma pessoa menor e mais fraca possa se defender de um
+                                oponente maior e mais forte.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseDois" data-toggle="collapse" data-parent="accordion">Preciso ter
+                                    experiência para começar?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseDois" class="collapse">
+                            <div class="card-body">
+                                Não, nossa academia oferece aulas para todos os níveis, desde iniciantes até
+                                avançados. Todo mundo começa do zero, e estamos aqui para ajudar no seu progresso.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseTres" data-toggle="collapse" data-parent="accordion">Quais são os
+                                    benefícios de praticar jiu-jítsu?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseTres" class="collapse">
+                            <div class="card-body">
+                                Os benefícios incluem melhora da forma física, autoconfiança, disciplina,
+                                aprendizado de autodefesa, além de ser uma excelente forma de aliviar o estresse.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+            </div>
+            <!-- FIM COLUNA 1 -->
+
+            <!-- INICIO COLUNA 2 -->
+            <div class="col-md-6">
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseQuatro" data-toggle="collapse" data-parent="accordion">Quanto
+                                    tempo leva para obter a faixa preta?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseQuatro" class="collapse">
+                            <div class="card-body">
+                                O tempo varia de pessoa para pessoa, dependendo da dedicação, frequência de treino e
+                                aprendizado. Geralmente, leva de 8 a 12 anos para obter a faixa preta.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseCinco" data-toggle="collapse" data-parent="accordion">Quais
+                                    equipamentos são necessários?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseCinco" class="collapse">
+                            <div class="card-body">
+                                Para iniciar, você precisará de um kimono (Gi). Oferecemos kimonos para venda na
+                                academia. Mais adiante, você pode adquirir outros equipamentos, como rashguards e
+                                protetores bucais.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+
+                <!-- accordion-->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a href="#collapseSeis" data-toggle="collapse" data-parent="accordion">Há um limite
+                                    de idade para começar?</a>
+                            </h5>
+                        </div>
+                        <div id="collapseSeis" class="collapse">
+                            <div class="card-body">
+                                Não há limite de idade. Temos alunos de todas as idades, desde crianças até adultos
+                                mais velhos. O jiu-jitsu é uma arte marcial inclusiva para todas as idades.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion -->
+            </div>
+            <!-- FIM COLUNA 2 -->
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- end Perguntas mais frente -->
+
+<!-- begin footer-->
+ <!-- 
+<footer id="main-footer" class="text-center p-4">
+    <div class="container">
+        <div class="footer-text">
+            <p>
+                ASBJJ - Academia de Artes Marciais | Este site é desenvolvido com <i class="fa fa-heart" aria-hidden="true"></i> por <a
+                    href="https://fabianosf.github.io/fabianosf_/" target="_blank">Fabiano Freitas</a>
+            </p>
+        </div>
+    </div>
+</footer>
+-->
+<!-- end footer-->
+
+
+{% endblock %}

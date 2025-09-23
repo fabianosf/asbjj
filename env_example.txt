@@ -1,0 +1,143 @@
+# ASBJJ - Configurações de Ambiente
+# Copie este arquivo para .env e configure as variáveis conforme necessário
+
+# =============================================================================
+# CONFIGURAÇÕES BÁSICAS DO DJANGO
+# =============================================================================
+
+# Chave secreta do Django (OBRIGATÓRIO)
+# Gere uma nova chave em: https://djecrety.ir/
+SECRET_KEY=django-insecure-change-this-in-production
+
+# Modo de debug (True para desenvolvimento, False para produção)
+DEBUG=True
+
+# Hosts permitidos (separados por vírgula)
+ALLOWED_HOSTS=localhost,127.0.0.1,asbjj.com.br,www.asbjj.com.br
+
+# =============================================================================
+# BANCO DE DADOS
+# =============================================================================
+
+# SQLite (desenvolvimento)
+DATABASE_URL=sqlite:///db.sqlite3
+
+# PostgreSQL (produção)
+# DATABASE_URL=postgresql://usuario:senha@localhost:5432/asbjj
+
+# =============================================================================
+# REDIS (CACHE E SESSÕES)
+# =============================================================================
+
+# URL do Redis (deixe vazio para usar cache local)
+REDIS_URL=redis://localhost:6379/0
+
+# Prefixo para chaves de cache
+CACHE_KEY_PREFIX=asbjj
+
+# =============================================================================
+# CONFIGURAÇÕES DE EMAIL
+# =============================================================================
+
+# Usar console para emails em desenvolvimento
+EMAIL_CONSOLE=True
+
+# Configurações SMTP (produção)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=seu-email@gmail.com
+EMAIL_HOST_PASSWORD=sua-senha-de-app
+DEFAULT_FROM_EMAIL=noreply@asbjj.com.br
+
+# =============================================================================
+# CONFIGURAÇÕES DE SEGURANÇA (PRODUÇÃO)
+# =============================================================================
+
+# Redirecionamento HTTPS
+SECURE_SSL_REDIRECT=True
+
+# Cookies seguros
+SESSION_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE=True
+
+# HSTS (HTTP Strict Transport Security)
+SECURE_HSTS_SECONDS=31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS=True
+SECURE_HSTS_PRELOAD=True
+
+# =============================================================================
+# LOGGING
+# =============================================================================
+
+# Nível de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+LOG_LEVEL=INFO
+
+# =============================================================================
+# SENTRY (MONITORAMENTO DE ERROS)
+# =============================================================================
+
+# DSN do Sentry (deixe vazio para desabilitar)
+SENTRY_DSN=
+
+# Taxa de amostragem de traces (0.0 a 1.0)
+SENTRY_TRACES_SAMPLE_RATE=0.1
+
+# Ambiente do Sentry
+SENTRY_ENVIRONMENT=production
+
+# =============================================================================
+# CONFIGURAÇÕES PERSONALIZADAS DO SITE
+# =============================================================================
+
+# Nome do site
+SITE_NAME=ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu
+
+# URL do site
+SITE_URL=https://asbjj.com.br
+
+# Email do administrador
+ADMIN_EMAIL=admin@asbjj.com.br
+
+# Google Analytics ID
+GOOGLE_ANALYTICS_ID=
+
+# Número do WhatsApp
+WHATSAPP_NUMBER=+5511999999999
+
+# =============================================================================
+# CONFIGURAÇÕES DO DOCKER COMPOSE
+# =============================================================================
+
+# Para usar com docker-compose, descomente e configure:
+
+# DEBUG=False
+# SECRET_KEY=sua-chave-secreta-aqui
+# DATABASE_URL=postgresql://postgres:password@db:5432/asbjj
+# REDIS_URL=redis://redis:6379/0
+# EMAIL_CONSOLE=False
+# SENTRY_DSN=sua-dsn-do-sentry
+# SENTRY_ENVIRONMENT=docker
+
+# =============================================================================
+# CONFIGURAÇÕES AVANÇADAS
+# =============================================================================
+
+# Timezone
+TIME_ZONE=America/Sao_Paulo
+
+# Idioma
+LANGUAGE_CODE=pt-br
+
+# Configurações de upload de arquivos
+FILE_UPLOAD_MAX_MEMORY_SIZE=5242880  # 5MB
+DATA_UPLOAD_MAX_MEMORY_SIZE=5242880  # 5MB
+
+# Configurações de sessão
+SESSION_COOKIE_AGE=1209600  # 2 semanas
+SESSION_EXPIRE_AT_BROWSER_CLOSE=False
+
+# Configurações de CSRF
+CSRF_COOKIE_AGE=31449600  # 1 ano
+CSRF_COOKIE_HTTPONLY=True
+CSRF_COOKIE_SAMESITE=Lax
