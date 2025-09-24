@@ -157,7 +157,7 @@ function setupForms() {
     });
 
     // Máscara para telefone
-    const phoneInputs = document.querySelectorAll('input[type="tel"], input[name="phone"]');
+    const phoneInputs = document.querySelectorAll('input[type="tel"], input[name="phone"], input[name="whatsapp"]');
     phoneInputs.forEach(input => {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -180,6 +180,15 @@ function setupForms() {
                 value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
             }
             e.target.value = value;
+        });
+        // Validação simples de comprimento
+        input.addEventListener('blur', function(e) {
+            const onlyDigits = e.target.value.replace(/\D/g, '');
+            if (onlyDigits && onlyDigits.length !== 11) {
+                e.target.classList.add('is-invalid');
+            } else {
+                e.target.classList.remove('is-invalid');
+            }
         });
     });
 }

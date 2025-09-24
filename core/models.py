@@ -29,12 +29,14 @@ class SiteSettings(models.Model):
     facebook_url = models.URLField('Facebook', blank=True)
     youtube_url = models.URLField('YouTube', blank=True)
     tiktok_url = models.URLField('TikTok', blank=True)
+    google_maps_url = models.URLField('Google Maps (embed/view URL)', blank=True)
     
     # SEO
     meta_title = models.CharField('Meta Title', max_length=200, blank=True)
     meta_description = models.TextField('Meta Description', blank=True)
     meta_keywords = models.TextField('Meta Keywords', blank=True)
     google_analytics_id = models.CharField('Google Analytics ID', max_length=20, blank=True)
+    tawkto_property_id = models.CharField('Tawk.to Property ID', max_length=100, blank=True)
     
     # Configurações
     is_maintenance_mode = models.BooleanField('Modo Manutenção', default=False)

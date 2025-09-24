@@ -31,7 +31,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="hero-image text-center">
-                    <img src="{% static 'img/tatame.jpeg' %}" alt="Artes Marciais" class="img-fluid rounded shadow-custom" style="max-height: 400px;">
+                    <img src="{% static 'img/tatame.jpeg' %}" alt="Artes Marciais" class="img-fluid rounded shadow-custom" style="max-height: 420px; filter: none;">
                 </div>
             </div>
         </div>
@@ -280,6 +280,27 @@
 </section>
 {% endif %}
 
+<!-- Vídeos Section -->
+{% if site_config.youtube_url %}
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Vídeos</h2>
+                <p class="text-center text-muted mb-4">Conheça mais sobre nossa academia</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="ratio ratio-16x9 animate-on-scroll">
+                    <iframe src="https://www.youtube.com/embed?listType=user_uploads&list={{ site_config.youtube_url|cut:'https://www.youtube.com/@'|cut:'/' }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
 <!-- Galeria Section -->
 {% if gallery_images %}
 <section class="section bg-light">
@@ -345,13 +366,7 @@
             </div>
             {% endfor %}
         </div>
-        <div class="row mt-4">
-            <div class="col-12 text-center">
-                <a href="{% url 'core:blog_list' %}" class="btn btn-outline-primary btn-lg">
-                    <i class="fas fa-newspaper me-2"></i>Ver Todos os Posts
-                </a>
-            </div>
-        </div>
+        
     </div>
 </section>
 {% endif %}
@@ -390,6 +405,27 @@
         </div>
     </div>
 </div>
+    
+<!-- Social Feed (Facebook Page) -->
+{% if site_config.facebook_url %}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title animate-on-scroll">Acompanhe no Facebook</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="fb-root"></div>
+                <div class="fb-page" data-href="{{ site_config.facebook_url }}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="{{ site_config.facebook_url }}" class="fb-xfbml-parse-ignore"><a href="{{ site_config.facebook_url }}">Facebook</a></blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 {% endblock %}
 
 {% block extra_js %}

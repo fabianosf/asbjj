@@ -52,6 +52,7 @@ class UserProfile(models.Model):
     # Metadados
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
+    must_change_password = models.BooleanField('Exigir troca de senha no próximo login', default=False)
 
     class Meta:
         verbose_name = 'Perfil do Usuário'

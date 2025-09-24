@@ -7,6 +7,7 @@ from django.db.models import Sum, Count, Q
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from datetime import datetime, timedelta
+from django.views.decorators.csrf import csrf_protect
 
 from .models import Student, Payment, PaymentPlan, StudentSubscription, Attendance
 from .user_models import UserProfile
@@ -183,13 +184,14 @@ def student_payment_view(request):
         return redirect('students:login')
 
 
+@csrf_protect
 def login_view(request):
     """Página de login personalizada"""
     if request.user.is_authenticated:
         try:
             profile = request.user.student_profile
             if profile.is_admin:
-                return redirect('dashboard')
+                return redirect('students:dashboard')
             elif profile.is_instructor:
                 return redirect('instructor_dashboard')
             elif profile.is_student:
@@ -207,9 +209,13 @@ def login_view(request):
             login(request, user)
             try:
                 profile = user.student_profile
+                # Forçar troca de senha se necessário
+                if getattr(profile, 'must_change_password', False):
+                    messages.warning(request, 'Defina uma nova senha para continuar.')
+                    return redirect('password_reset')
                 if profile.is_admin:
                     messages.success(request, f'Bem-vindo, {user.get_full_name()}! Acesso administrativo.')
-                    return redirect('dashboard')
+                    return redirect('students:dashboard')
                 elif profile.is_instructor:
                     messages.success(request, f'Bem-vindo, Professor {user.get_full_name()}!')
                     return redirect('instructor_dashboard')

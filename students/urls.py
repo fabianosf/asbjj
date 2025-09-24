@@ -1,11 +1,12 @@
 from django.urls import path, include
-from django.contrib import admin
 from .admin import custom_admin_site
 from . import payment_views, dashboard_views
 
+app_name = 'students'
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dashboard/', custom_admin_site.urls),
+    # Admin customizado sob /dashboard/admin/ com namespace do próprio site (custom_admin)
+    path('admin/', custom_admin_site.urls),
     
     # Views personalizadas
     path('', payment_views.dashboard_view, name='dashboard'),

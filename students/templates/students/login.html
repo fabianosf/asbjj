@@ -7,7 +7,7 @@
     {{ block.super }}
     <style>
         .login-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: radial-gradient(1000px 600px at 20% 0%, #eef2ff 0%, #f8fafc 40%, #f3f4f6 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -16,10 +16,10 @@
         }
         
         .login-card {
-            background: white;
+            background: #ffffff;
             border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 36px 32px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
             width: 100%;
             max-width: 400px;
             text-align: center;
@@ -34,54 +34,34 @@
             margin-bottom: 15px;
         }
         
-        .login-title {
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
+        .login-title { color: #0f172a; font-size: 22px; font-weight: 800; margin-bottom: 18px; }
         
         .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
+        .form-group label { display: block; margin-bottom: 6px; color: #334155; font-weight: 600; font-size: 14px; }
         
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
+        .form-group input { width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 15px; transition: box-shadow .2s, border-color .2s; background: #fff; }
         
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
+        .form-group input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 4px rgba(99,102,241,0.12); }
         
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+        .login-button { width: 100%; padding: 12px; background: #4f46e5; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform .15s, background .2s; }
         
-        .login-button:hover {
-            transform: translateY(-2px);
+        .login-button:hover { transform: translateY(-1px); background: #4338ca; }
+
+        .login-button.secondary { margin-top: 10px; background: #ffffff; color: #111827; border: 1px solid #e5e7eb; }
+        .login-button.secondary:hover { background: #f9fafb; }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        @media (min-width: 480px) {
+            .quick-actions { grid-template-columns: 1fr 1fr; }
         }
         
         .login-links {
@@ -98,24 +78,23 @@
         .login-links a:hover {
             text-decoration: underline;
         }
-        
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 14px;
+
+        .forgot-password {
+            margin-top: 8px;
+            text-align: right;
         }
-        
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 14px;
+
+        .forgot-password a {
+            color: #667eea;
+            font-size: 13px;
+            text-decoration: none;
         }
+
+        .forgot-password a:hover { text-decoration: underline; }
+        
+        .error-message { background: #fef2f2; color: #991b1b; padding: 10px 12px; border-radius: 10px; margin-bottom: 14px; border: 1px solid #fee2e2; font-size: 14px; text-align: left; }
+        
+        .success-message { background: #ecfdf5; color: #065f46; padding: 10px 12px; border-radius: 10px; margin-bottom: 14px; border: 1px solid #d1fae5; font-size: 14px; text-align: left; }
         
         .role-info {
             background: #e3f2fd;
@@ -142,8 +121,15 @@
 <div class="login-container">
     <div class="login-card">
         <div class="login-logo">
-            <img src="{% static 'core/img/logo.png' %}" alt="ASBJJ">
+            <img src="{% static 'img/logo.png' %}" alt="ASBJJ">
             <div class="login-title">Acesso ao Sistema</div>
+            <!-- 
+            <div>
+                <a href="{% url 'accounts:password_reset' %}" class="login-button secondary" role="button" style="display:inline-block; width:auto; padding:8px 14px; font-size:14px;">
+                    🔒 Esqueci minha senha / Primeiro acesso
+                </a>
+            </div>
+            -->
         </div>
         
         <div class="role-info">
@@ -181,7 +167,7 @@
             {% endfor %}
         {% endif %}
         
-        <form method="post">
+        <form method="post" action="{% url 'students:login' %}" autocomplete="off">
             {% csrf_token %}
             
             <div class="form-group">
@@ -192,11 +178,22 @@
             <div class="form-group">
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required>
+                <div class="forgot-password">
+                    <a href="{% url 'accounts:password_reset' %}">Esqueci minha senha</a>
+                </div>
             </div>
             
             <button type="submit" class="login-button">
                 Entrar no Sistema
             </button>
+            <div class="quick-actions">
+                <a class="login-button secondary" href="{% url 'accounts:password_reset' %}" role="button">
+                    🔑 Primeiro acesso
+                </a>
+                <a class="login-button secondary" href="{% url 'accounts:password_reset' %}" role="button">
+                    🔒 Esqueci minha senha
+                </a>
+            </div>
         </form>
         
         <div class="login-links">

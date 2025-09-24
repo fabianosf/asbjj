@@ -7,10 +7,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 from django.urls import reverse_lazy
 import os
 from django.conf import settings
+from students.user_models import UserProfile
 
 
 def login_view(request):
@@ -87,3 +88,19 @@ def robots(request):
     #print(path)     
         #return HttpResponse(arq, content_type="text/plain")
     # return HttpResponse("teste")
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    """Após redefinir, limpar o flag must_change_password do perfil."""
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        try:
+            user = getattr(self, 'user', None)
+            if user and hasattr(user, 'student_profile'):
+                profile = user.student_profile
+                if getattr(profile, 'must_change_password', False):
+                    profile.must_change_password = False
+                    profile.save(update_fields=['must_change_password'])
+        except Exception:
+            pass
+        return response

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendário de Eventos{% endblock %}
+{% block description %}Agenda de competições, workshops e eventos da ASBJJ.{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h1>Calendário de Eventos</h1>
+        <p class="text-muted">Fique por dentro de competições, workshops e eventos da academia.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&showTitle=0&showPrint=0&wkst=2&bgcolor=%23ffffff" style="border:0" frameborder="0" scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

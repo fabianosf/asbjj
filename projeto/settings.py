@@ -189,10 +189,23 @@ else:
     SECURE_HSTS_PRELOAD = False
     X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+    # Forçar novo cookie de CSRF em dev (evita cookie antigo com flag Secure)
+    CSRF_COOKIE_NAME = 'csrftoken_dev'
+    CSRF_COOKIE_HTTPONLY = False
+
 CSRF_TRUSTED_ORIGINS = [
     'https://asbjj.com.br',
     'https://www.asbjj.com.br'
 ]
+
+# Em desenvolvimento, confiar também em origens locais
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += [
+        'http://127.0.0.1',
+        'http://localhost',
+        'http://127.0.0.1:8000',
+        'http://localhost:8000',
+    ]
 
 # Quando atrás de proxy (ex.: Nginx), respeitar cabeçalho X-Forwarded-Proto
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

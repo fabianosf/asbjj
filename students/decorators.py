@@ -24,7 +24,7 @@ def student_required(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if request.user.username in ['admin', 'fabianosf']:
             messages.info(request, 'Administradores devem usar o dashboard administrativo.')
-            return redirect('dashboard')
+            return redirect('students:dashboard')
         
         try:
             profile = request.user.student_profile
@@ -47,7 +47,7 @@ def instructor_required(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if request.user.username in ['admin', 'fabianosf']:
             messages.info(request, 'Administradores devem usar o dashboard administrativo.')
-            return redirect('dashboard')
+            return redirect('students:dashboard')
         
         try:
             profile = request.user.student_profile
@@ -60,6 +60,8 @@ def instructor_required(view_func):
         
         return view_func(request, *args, **kwargs)
     return _wrapped_view
+
+
 
 
 

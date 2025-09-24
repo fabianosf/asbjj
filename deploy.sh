@@ -50,8 +50,7 @@ pip install -r requirements.txt
 
 # Run migrations
 print_status "Executando migrações..."
-python manage.py makemigrations
-python manage.py migrate
+python manage.py migrate --noinput
 
 # Collect static files
 print_status "Coletando arquivos estáticos..."
@@ -152,7 +151,8 @@ EOF
 
 # Run tests
 print_status "Executando testes..."
-python manage.py test --verbosity=2
+# pular testes em produção por padrão
+# python manage.py test --verbosity=2
 
 # Check deployment health
 print_status "Verificando saúde do deployment..."

@@ -63,6 +63,7 @@ class Command(BaseCommand):
                     'phone': student.phone,
                     'whatsapp': student.whatsapp,
                     'student_profile': student,
+                    'must_change_password': True,
                 }
             )
             

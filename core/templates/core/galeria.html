@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Galeria de Fotos{% endblock %}
+{% block description %}Veja fotos de aulas, eventos e momentos da ASBJJ.{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Galeria de Fotos</h1>
+                <form method="get" class="d-flex" role="search">
+                    <select name="categoria" class="form-select me-2" onchange="this.form.submit()">
+                        <option value="">Todas as categorias</option>
+                        <option value="academy" {% if request.GET.categoria == 'academy' %}selected{% endif %}>Academia</option>
+                        <option value="classes" {% if request.GET.categoria == 'classes' %}selected{% endif %}>Aulas</option>
+                        <option value="events" {% if request.GET.categoria == 'events' %}selected{% endif %}>Eventos</option>
+                        <option value="graduations" {% if request.GET.categoria == 'graduations' %}selected{% endif %}>Graduações</option>
+                        <option value="competitions" {% if request.GET.categoria == 'competitions' %}selected{% endif %}>Competições</option>
+                        <option value="team" {% if request.GET.categoria == 'team' %}selected{% endif %}>Equipe</option>
+                    </select>
+                    <noscript><button class="btn btn-primary">Filtrar</button></noscript>
+                </form>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for img in images %}
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="gallery-item">
+                    <img src="{{ img.image.url }}" alt="{{ img.title }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-src="{{ img.image.url }}" data-bs-title="{{ img.title }}">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12"><p class="text-center text-muted">Nenhuma imagem encontrada.</p></div>
+            {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+        <nav class="mt-4" aria-label="Paginação">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                {% endif %}
+                <li class="page-item disabled"><span class="page-link">Página {{ page_obj.number }} de {{ paginator.num_pages }}</span></li>
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- Modal Reuso do index -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white" id="galleryModalLabel"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <img src="" class="img-fluid" alt="" id="galleryModalImage">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

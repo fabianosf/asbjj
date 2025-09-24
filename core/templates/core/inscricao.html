@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Inscrição de Aluno{% endblock %}
+{% block description %}Inscreva-se na ASBJJ preenchendo seus dados para matrícula.{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Inscrição</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary btn-lg">Enviar inscrição</button>
+                </form>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="alert alert-info">
+                    Após o envio, nossa equipe entrará em contato para confirmar os dados e finalizar a matrícula.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

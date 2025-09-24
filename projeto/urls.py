@@ -22,6 +22,9 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
 from students import dashboard_views
+from django.views.generic.base import RedirectView
+from django.contrib.auth import views as auth_views
+from accounts.views import CustomPasswordResetConfirmView
 
 # Importar sitemaps
 try:
@@ -38,7 +41,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     
     # Dashboard personalizado
-    path("dashboard/", include("students.urls")),
+    path("dashboard/", include(("students.urls", "students"), namespace="students")),
     
     # Dashboards por tipo de usuário
     path("login/", dashboard_views.login_view, name="login"),
@@ -53,12 +56,20 @@ urlpatterns = [
     
     # App URLs
     path("accounts/", include("accounts.urls")),
+
+    # Password reset aliases (sem namespace) para compatibilidade com templates/padrões
+    path("password_reset/", auth_views.PasswordResetView.as_view(), name="password_reset"),
+    path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path("reset/<uidb64>/<token>/", CustomPasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path("reset/done/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
     
     # Sitemap
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     
     # Robots.txt
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    # Favicon
+    path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "img/logo.png", permanent=True)),
 ]
 
 # Debug toolbar (apenas em desenvolvimento)
