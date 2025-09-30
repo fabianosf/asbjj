@@ -67,7 +67,8 @@ body::before { content: none; }
     background: rgba(44, 62, 80, 0.95) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 9998 !important;
-    position: relative;
+    position: sticky;
+    top: 0;
     box-shadow: var(--box-shadow);
 }
 
@@ -80,7 +81,8 @@ body::before { content: none; }
 /* Header com z-index alto para ficar sempre na frente */
 header {
     z-index: 9998 !important;
-    position: relative;
+    position: sticky;
+    top: 0;
 }
 
 /* Garantir que os botões do navbar tenham z-index adequado */
@@ -127,6 +129,11 @@ header {
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
+    color: #fff !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.1);
 }
 
 .navbar-nav .nav-link {
@@ -135,20 +142,65 @@ header {
     transition: var(--transition);
     border-radius: var(--border-radius);
     margin: 0 0.25rem;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .navbar-nav .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+    color: #fff !important;
 }
 
 .navbar-toggler {
-    border: none;
-    padding: 0.25rem 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-toggler:focus {
-    box-shadow: none;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* Mobile navbar collapse */
+.navbar-collapse {
+    background: rgba(44, 62, 80, 0.98);
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(44, 62, 80, 0.98) !important;
+        padding: 1rem;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        margin-top: 0;
+    }
+    
+    .navbar-nav {
+        width: 100%;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 1rem;
+        margin: 0.25rem 0;
+        border-radius: 4px;
+        color: #fff !important;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: none;
+    }
 }
 
 /* ===== BOTÕES ===== */

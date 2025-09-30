@@ -143,19 +143,38 @@
             
             /* Better mobile navigation */
             .navbar-toggler {
-                border: none;
-                padding: 8px;
+                border: 2px solid rgba(255, 255, 255, 0.7) !important;
+                padding: 8px 12px;
                 min-height: 44px;
                 min-width: 44px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .navbar-toggler:focus {
+                box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25) !important;
+            }
+            
+            .navbar-toggler-icon {
+                width: 24px;
+                height: 24px;
             }
             
             .navbar-collapse {
-                background: rgba(44, 62, 80, 0.98);
+                background: rgba(44, 62, 80, 0.98) !important;
                 backdrop-filter: blur(10px);
-                border-radius: 8px;
-                margin-top: 8px;
+                border-radius: 0 0 8px 8px;
+                margin-top: 0;
                 padding: 16px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+            
+            .navbar-collapse.show,
+            .navbar-collapse.collapsing {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1000;
             }
             
             /* Mobile cards spacing */
@@ -309,7 +328,7 @@
     <!-- Header -->
     <header class="bg-dark shadow-sm">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+            <div class="container position-relative">
                 <!-- Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{% url 'core:index' %}">
                     {% if site_config.site_logo and site_config.site_logo.url %}
