@@ -47,8 +47,8 @@ except ImportError:
 
 urlpatterns = [
     # Admin com logout personalizado
-    path("admin/logout/", dashboard_views.logout_view, name="admin_logout"),
-    path("admin/", admin.site.urls),
+    path(f"{settings.ADMIN_URL}logout/", dashboard_views.logout_view, name="admin_logout"),
+    path(settings.ADMIN_URL, admin.site.urls),
     
     # Dashboard personalizado
     path("dashboard/", include(("students.urls", "students"), namespace="students")),
