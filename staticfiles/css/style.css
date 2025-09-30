@@ -679,63 +679,389 @@ footer a:hover {
 }
 
 /* ===== RESPONSIVIDADE ===== */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section {
-        padding: 3rem 0;
+
+/* Tablets e dispositivos médios */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(44, 62, 80, 0.98);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin-top: 1rem;
+        box-shadow: var(--box-shadow-lg);
     }
     
     .navbar-nav .nav-link {
-        padding: 0.5rem 0;
+        padding: 0.75rem 1rem;
         margin: 0.25rem 0;
+        border-radius: var(--border-radius);
     }
     
-    .card-img-top {
-        height: 200px;
-    }
-    
-    .feature-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
-    
-    .gallery-item img {
-        height: 200px;
-    }
-}
-
-@media (max-width: 576px) {
     .hero {
-        padding: 4rem 0;
+        padding: 6rem 0 4rem;
+        min-height: auto;
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+}
+
+/* Smartphones e dispositivos pequenos */
+@media (max-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
+    
+    /* Navbar Mobile */
+    .navbar-brand span {
+        font-size: 1.2rem;
+    }
+    
+    .navbar-brand img {
+        height: 45px !important;
+    }
+    
+    .navbar-toggler {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+    }
+    
+    /* Hero Section Mobile */
+    .hero {
+        padding: 4rem 0 3rem;
+        min-height: auto;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
     
     .hero-subtitle {
         font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
     
-    .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+    
+    .hero-image img {
+        max-height: 300px !important;
+        margin-top: 2rem;
+    }
+    
+    /* Sections Mobile */
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Cards Mobile */
+    .card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-img-top {
+        height: 220px;
     }
     
     .card-body {
-        padding: 1rem;
+        padding: 1.5rem;
     }
     
+    .card-title {
+        font-size: 1.15rem;
+    }
+    
+    /* Features Mobile */
+    .feature-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-title {
+        font-size: 1.25rem;
+    }
+    
+    .feature-item {
+        margin-bottom: 2rem;
+    }
+    
+    /* Gallery Mobile */
+    .gallery-item img {
+        height: 220px;
+    }
+    
+    /* Footer Mobile */
+    footer {
+        padding: 3rem 0 !important;
+    }
+    
+    footer .col-lg-4,
+    footer .col-lg-2,
+    footer .col-md-6 {
+        margin-bottom: 2rem;
+    }
+    
+    /* WhatsApp Button Mobile */
+    .whatsapp-float {
+        width: 55px !important;
+        height: 55px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .whatsapp-float i {
+        font-size: 1.75rem !important;
+    }
+    
+    /* Testimonials Mobile */
     .testimonial {
         padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-avatar {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Smartphones muito pequenos */
+@media (max-width: 576px) {
+    body {
+        font-size: 0.95rem;
+    }
+    
+    /* Container ajustado */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Navbar extra small */
+    .navbar-brand span {
+        font-size: 1rem;
+    }
+    
+    .navbar-brand img {
+        height: 40px !important;
+    }
+    
+    /* Hero extra small */
+    .hero {
+        padding: 3rem 0 2rem;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .hero-image {
+        margin-top: 1.5rem;
+    }
+    
+    .hero-image img {
+        max-height: 250px !important;
+    }
+    
+    /* Section titles extra small */
+    .section {
+        padding: 2.5rem 0;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Buttons extra small */
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Cards extra small */
+    .card-img-top {
+        height: 180px;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    /* Features extra small */
+    .feature-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+    
+    .feature-title {
+        font-size: 1.15rem;
+    }
+    
+    .feature-description {
+        font-size: 0.9rem;
+    }
+    
+    /* Gallery extra small */
+    .gallery-item img {
+        height: 180px;
+    }
+    
+    /* Testimonials extra small */
+    .testimonial {
+        padding: 1.25rem;
+    }
+    
+    .testimonial::before {
+        font-size: 3rem;
+        top: -5px;
+        left: 15px;
+    }
+    
+    .testimonial-content {
+        font-size: 0.9rem;
+    }
+    
+    .testimonial-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Footer extra small */
+    footer {
+        padding: 2.5rem 0 !important;
+    }
+    
+    footer h5,
+    footer h6 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    footer p,
+    footer a,
+    footer li {
+        font-size: 0.9rem;
+    }
+    
+    /* WhatsApp Button extra small */
+    .whatsapp-float {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 12px !important;
+        right: 12px !important;
+    }
+    
+    .whatsapp-float i {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Landscape orientation fixes */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+}
+
+/* Modo escuro em dispositivos móveis */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+    .navbar-collapse {
+        background: rgba(33, 37, 41, 0.98);
+    }
+    
+    .card {
+        background-color: #2d3238;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+        opacity: 0;
+    }
+    
+    /* Make tap targets larger */
+    .btn,
+    .nav-link,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Better spacing for touch */
+    .navbar-nav .nav-item {
+        margin: 0.25rem 0;
     }
 }
 

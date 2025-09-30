@@ -96,6 +96,18 @@
     
     <!-- Mobile optimizations -->
     <style>
+        /* Smooth scrolling for all devices */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        /* Better tap highlight */
+        * {
+            -webkit-tap-highlight-color: rgba(44, 62, 80, 0.1);
+        }
+        
         /* Touch-friendly buttons */
         @media (max-width: 768px) {
             .btn {
@@ -106,6 +118,9 @@
             /* Larger tap targets */
             .nav-link {
                 padding: 12px 16px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
             
             /* Better spacing for mobile */
@@ -114,33 +129,68 @@
                 padding-right: 15px;
             }
             
-            /* Prevent zoom on input focus */
+            /* Prevent zoom on input focus (iOS fix) */
             input[type="text"],
             input[type="email"],
             input[type="tel"],
             input[type="password"],
+            input[type="number"],
+            input[type="search"],
             textarea,
             select {
-                font-size: 16px;
-            }
-            
-            /* Smooth scrolling */
-            html {
-                scroll-behavior: smooth;
+                font-size: 16px !important;
             }
             
             /* Better mobile navigation */
             .navbar-toggler {
                 border: none;
                 padding: 8px;
+                min-height: 44px;
+                min-width: 44px;
             }
             
             .navbar-collapse {
-                background: rgba(255, 255, 255, 0.95);
+                background: rgba(44, 62, 80, 0.98);
                 backdrop-filter: blur(10px);
                 border-radius: 8px;
                 margin-top: 8px;
                 padding: 16px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Mobile cards spacing */
+            .card {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Mobile images */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 576px) {
+            body {
+                font-size: 0.95rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+            }
+            
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
             }
         }
         
@@ -150,9 +200,33 @@
                 padding-top: env(safe-area-inset-top);
             }
             
-            .footer {
+            footer {
                 padding-bottom: env(safe-area-inset-bottom);
             }
+        }
+        
+        /* Landscape orientation */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            
+            .navbar-brand img {
+                height: 40px !important;
+            }
+        }
+        
+        /* Prevent text inflation on some mobile browsers */
+        body {
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        
+        /* Optimize scrolling performance */
+        * {
+            -webkit-overflow-scrolling: touch;
         }
     </style>
     
