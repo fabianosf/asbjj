@@ -278,13 +278,14 @@ DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # Template optimization
 if not DEBUG:
+    # Quando usar loaders customizados, APP_DIRS deve ser False
+    TEMPLATES[0]['APP_DIRS'] = False
     TEMPLATES[0]['OPTIONS']['loaders'] = [
         ('django.template.loaders.cached.Loader', [
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
         ]),
     ]
-    TEMPLATES[0]['OPTIONS']['app_dirs'] = False
 
 # Logging optimization
 LOGGING = {
