@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Área do Cliente - ASBJJ{% endblock %}
+{% block description %}Acompanhe seus pedidos{% endblock %}
+
+{% block extra_css %}
+<style>
+.customer-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.order-card {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-pending { background-color: #fff3cd; color: #856404; }
+.status-confirmed { background-color: #d1ecf1; color: #0c5460; }
+.status-processing { background-color: #d4edda; color: #155724; }
+.status-shipped { background-color: #cce5ff; color: #004085; }
+.status-delivered { background-color: #d1ecf1; color: #0c5460; }
+.status-cancelled { background-color: #f8d7da; color: #721c24; }
+
+.payment-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.payment-pending { background-color: #fff3cd; color: #856404; }
+.payment-paid { background-color: #d4edda; color: #155724; }
+.payment-failed { background-color: #f8d7da; color: #721c24; }
+.payment-refunded { background-color: #e2e3e5; color: #383d41; }
+
+.search-form {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .order-card {
+    padding: 1rem;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header da Área do Cliente -->
+<div class="customer-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Área do Cliente</h1>
+        <p class="mb-0">Acompanhe seus pedidos e histórico de compras</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <a href="{% url 'core:shop' %}" class="btn btn-outline-light">
+          <i class="fas fa-shopping-bag me-2"></i>Continuar Comprando
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item active">Área do Cliente</li>
+    </ol>
+  </nav>
+
+  <!-- Formulário de Busca -->
+  <div class="search-form">
+    <h4 class="mb-3">Buscar Pedidos</h4>
+    <form method="get">
+      <div class="row">
+        <div class="col-md-8">
+          <label for="email" class="form-label">E-mail utilizado no pedido</label>
+          <input type="email" class="form-control" id="email" name="email" 
+                 value="{{ search_email }}" placeholder="Digite seu e-mail">
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-search me-2"></i>Buscar Pedidos
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if search_email %}
+    {% if orders %}
+    <div class="row">
+      <div class="col-12">
+        <h4 class="mb-3">Seus Pedidos ({{ orders|length }})</h4>
+        
+        {% for order in orders %}
+        <div class="order-card">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <h6 class="mb-1">Pedido #{{ order.order_number }}</h6>
+              <small class="text-muted">{{ order.created_at|date:"d/m/Y H:i" }}</small>
+            </div>
+            <div class="col-md-2">
+              <span class="order-status status-{{ order.status }}">
+                {{ order.get_status_display }}
+              </span>
+            </div>
+            <div class="col-md-2">
+              <span class="payment-status payment-{{ order.payment_status }}">
+                {{ order.get_payment_status_display }}
+              </span>
+            </div>
+            <div class="col-md-2">
+              <strong>R$ {{ order.total|floatformat:2 }}</strong>
+            </div>
+            <div class="col-md-3 text-end">
+              <a href="{% url 'core:order_detail' order.id %}" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-eye me-1"></i>Ver Detalhes
+              </a>
+            </div>
+          </div>
+          
+          <!-- Itens do Pedido (Preview) -->
+          <div class="mt-3 pt-3 border-top">
+            <div class="row">
+              {% for item in order.items.all|slice:":3" %}
+              <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                  <img src="{{ item.product.main_image.url }}" 
+                       class="rounded me-2" width="40" height="40" 
+                       alt="{{ item.product.name }}">
+                  <div>
+                    <small class="fw-bold">{{ item.product.name }}</small><br>
+                    <small class="text-muted">Qtd: {{ item.quantity }}</small>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              {% if order.items.count > 3 %}
+              <div class="col-md-4">
+                <small class="text-muted">+{{ order.items.count|add:"-3" }} outros itens</small>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    {% else %}
+    <!-- Nenhum Pedido Encontrado -->
+    <div class="text-center py-5">
+      <div class="text-muted mb-3">
+        <i class="fas fa-search fa-3x"></i>
+      </div>
+      <h4>Nenhum pedido encontrado</h4>
+      <p class="text-muted">Não encontramos pedidos para o e-mail <strong>{{ search_email }}</strong></p>
+      <p class="text-muted">Verifique se o e-mail está correto ou faça seu primeiro pedido.</p>
+      <a href="{% url 'core:shop' %}" class="btn btn-primary">
+        <i class="fas fa-shopping-bag me-2"></i>Ir para a Loja
+      </a>
+    </div>
+    {% endif %}
+    
+  {% else %}
+  <!-- Instruções -->
+  <div class="text-center py-5">
+    <div class="text-primary mb-3">
+      <i class="fas fa-user-circle fa-3x"></i>
+    </div>
+    <h4>Bem-vindo à Área do Cliente</h4>
+    <p class="text-muted">Digite o e-mail utilizado em seus pedidos para acompanhar o status e histórico de compras.</p>
+    
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Como funciona?</h6>
+            <ul class="list-unstyled text-start">
+              <li class="mb-2">
+                <i class="fas fa-check text-success me-2"></i>
+                Digite o e-mail usado no pedido
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-check text-success me-2"></i>
+                Visualize todos os seus pedidos
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-check text-success me-2"></i>
+                Acompanhe o status de entrega
+              </li>
+              <li class="mb-0">
+                <i class="fas fa-check text-success me-2"></i>
+                Veja detalhes de cada compra
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

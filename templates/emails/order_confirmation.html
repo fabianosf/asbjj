@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Pedido - ASBJJ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .order-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2c3e50;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ASBJJ</h1>
+        <h2>Pedido Confirmado!</h2>
+    </div>
+    
+    <div class="content">
+        <p>Olá <strong>{{ order.customer_name }}</strong>,</p>
+        
+        <p>Seu pedido foi confirmado com sucesso! Agradecemos pela sua compra.</p>
+        
+        <div class="order-info">
+            <h3>Detalhes do Pedido</h3>
+            <p><strong>Número do Pedido:</strong> {{ order.order_number }}</p>
+            <p><strong>Data:</strong> {{ order.created_at|date:"d/m/Y H:i" }}</p>
+            <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+            <p><strong>Método de Pagamento:</strong> {{ order.get_payment_method_display }}</p>
+        </div>
+        
+        <div class="order-info">
+            <h3>Itens do Pedido</h3>
+            {% for item in order.items.all %}
+            <div class="item">
+                <div>
+                    <strong>{{ item.product.name }}</strong><br>
+                    <small>Quantidade: {{ item.quantity }}</small>
+                </div>
+                <div>R$ {{ item.total_price|floatformat:2 }}</div>
+            </div>
+            {% endfor %}
+            
+            <div class="item">
+                <div><strong>Subtotal:</strong></div>
+                <div>R$ {{ order.subtotal|floatformat:2 }}</div>
+            </div>
+            
+            <div class="item">
+                <div><strong>Frete:</strong></div>
+                <div>Grátis</div>
+            </div>
+            
+            <div class="item total">
+                <div><strong>Total:</strong></div>
+                <div>R$ {{ order.total|floatformat:2 }}</div>
+            </div>
+        </div>
+        
+        <div class="order-info">
+            <h3>Endereço de Entrega</h3>
+            <p>
+                {{ order.shipping_address }}<br>
+                {{ order.shipping_city }} - {{ order.shipping_state }}<br>
+                CEP: {{ order.shipping_zip_code }}
+            </p>
+        </div>
+        
+        <p>Em breve entraremos em contato para finalizar o pagamento e organizar a entrega.</p>
+        
+        <p>Para acompanhar seu pedido, acesse nossa área do cliente:</p>
+        <a href="{{ site_url }}/area-cliente/?email={{ order.customer_email }}" class="btn">
+            Acompanhar Pedido
+        </a>
+        
+        <p>Se tiver alguma dúvida, entre em contato conosco.</p>
+        
+        <p>Atenciosamente,<br>
+        <strong>Equipe ASBJJ</strong></p>
+    </div>
+    
+    <div class="footer">
+        <p>Este é um email automático, por favor não responda.</p>
+        <p>ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu</p>
+    </div>
+</body>
+</html>

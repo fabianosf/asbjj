@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pagamento - ASBJJ{% endblock %}
+{% block description %}Finalize o pagamento do seu pedido{% endblock %}
+
+{% block extra_css %}
+<style>
+.payment-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.payment-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.payment-method-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method-card:hover {
+  border-color: #2c3e50;
+  background-color: #f8f9fa;
+}
+
+.payment-method-card.selected {
+  border-color: #2c3e50;
+  background-color: #e3f2fd;
+}
+
+.payment-method-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header do Pagamento -->
+<div class="payment-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Pagamento</h1>
+        <p class="mb-0">Finalize o pagamento do seu pedido</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        {% if order %}
+        <span class="fs-5">Pedido #{{ order.order_number }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:shop' %}">Loja</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:cart' %}">Carrinho</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:checkout' %}">Checkout</a></li>
+      <li class="breadcrumb-item active">Pagamento</li>
+    </ol>
+  </nav>
+
+  {% if order %}
+  <div class="row">
+    <!-- Resumo do Pedido -->
+    <div class="col-lg-4">
+      <div class="payment-container">
+        <h4 class="mb-3">Resumo do Pedido</h4>
+        
+        <div class="mb-3">
+          <strong>Pedido:</strong> #{{ order.order_number }}<br>
+          <strong>Data:</strong> {{ order.created_at|date:"d/m/Y H:i" }}
+        </div>
+        
+        <hr>
+        
+        <h6>Itens do Pedido</h6>
+        {% for item in order.items.all %}
+        <div class="d-flex justify-content-between mb-2">
+          <div>
+            <small>{{ item.product.name }}</small><br>
+            <small class="text-muted">Qtd: {{ item.quantity }}</small>
+          </div>
+          <div class="text-end">
+            <small>R$ {{ item.total_price|floatformat:2 }}</small>
+          </div>
+        </div>
+        {% endfor %}
+        
+        <hr>
+        
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal:</span>
+          <span>R$ {{ order.subtotal|floatformat:2 }}</span>
+        </div>
+        
+        <div class="d-flex justify-content-between mb-2">
+          <span>Frete:</span>
+          <span class="text-success">Grátis</span>
+        </div>
+        
+        <hr>
+        
+        <div class="d-flex justify-content-between">
+          <strong>Total:</strong>
+          <strong class="text-primary">R$ {{ order.total|floatformat:2 }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métodos de Pagamento -->
+    <div class="col-lg-8">
+      <div class="payment-container">
+        <h4 class="mb-3">Escolha a Forma de Pagamento</h4>
+        
+        {% if payment_error %}
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          {{ payment_error }}
+        </div>
+        {% endif %}
+        
+        <!-- PIX -->
+        {% if order.payment_method == 'pix' %}
+        <div class="payment-method-card selected">
+          <div class="d-flex align-items-center">
+            <div class="payment-method-icon">
+              <i class="fas fa-qrcode"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h5 class="mb-1">PIX</h5>
+              <p class="mb-0 text-muted">Pagamento instantâneo via PIX</p>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-success">Recomendado</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Cartão de Crédito -->
+        {% if order.payment_method == 'credit_card' %}
+        <div class="payment-method-card selected">
+          <div class="d-flex align-items-center">
+            <div class="payment-method-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h5 class="mb-1">Cartão de Crédito</h5>
+              <p class="mb-0 text-muted">Visa, Mastercard, Elo, American Express</p>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-primary">Até 12x</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Cartão de Débito -->
+        {% if order.payment_method == 'debit_card' %}
+        <div class="payment-method-card selected">
+          <div class="d-flex align-items-center">
+            <div class="payment-method-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h5 class="mb-1">Cartão de Débito</h5>
+              <p class="mb-0 text-muted">Débito em conta corrente</p>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-info">À vista</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Transferência Bancária -->
+        {% if order.payment_method == 'bank_transfer' %}
+        <div class="payment-method-card selected">
+          <div class="d-flex align-items-center">
+            <div class="payment-method-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h5 class="mb-1">Transferência Bancária</h5>
+              <p class="mb-0 text-muted">TED, DOC ou PIX</p>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-warning">Manual</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Botão de Pagamento -->
+        {% if payment_url %}
+        <div class="text-center mt-4">
+          <a href="{{ payment_url }}" class="btn btn-primary btn-lg" id="payment-button">
+            <i class="fas fa-credit-card me-2"></i>
+            Finalizar Pagamento
+          </a>
+          <p class="text-muted small mt-2">
+            Você será redirecionado para o Mercado Pago
+          </p>
+        </div>
+        {% else %}
+        <div class="text-center mt-4">
+          <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            Para este método de pagamento, entre em contato conosco para finalizar a compra.
+          </div>
+          <a href="{% url 'core:contact' %}" class="btn btn-outline-primary">
+            <i class="fas fa-envelope me-2"></i>
+            Entrar em Contato
+          </a>
+        </div>
+        {% endif %}
+        
+        <!-- Informações de Segurança -->
+        <div class="mt-4 p-3 bg-light rounded">
+          <h6 class="mb-2">
+            <i class="fas fa-shield-alt text-success me-2"></i>
+            Compra 100% Segura
+          </h6>
+          <ul class="list-unstyled mb-0 small">
+            <li><i class="fas fa-check text-success me-2"></i>Dados protegidos com criptografia SSL</li>
+            <li><i class="fas fa-check text-success me-2"></i>Processamento seguro pelo Mercado Pago</li>
+            <li><i class="fas fa-check text-success me-2"></i>Garantia de entrega ou reembolso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <!-- Erro -->
+  <div class="text-center py-5">
+    <div class="text-danger mb-3">
+      <i class="fas fa-exclamation-triangle fa-3x"></i>
+    </div>
+    <h3>Pedido não encontrado</h3>
+    <p class="text-muted">Não foi possível encontrar o pedido para pagamento.</p>
+    <a href="{% url 'core:shop' %}" class="btn btn-primary">
+      <i class="fas fa-shopping-bag me-2"></i>Ir para a Loja
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const paymentButton = document.getElementById('payment-button');
+  
+  if (paymentButton) {
+    paymentButton.addEventListener('click', function(e) {
+      // Mostrar loading
+      const originalText = this.innerHTML;
+      this.innerHTML = '<span class="loading-spinner me-2"></span>Redirecionando...';
+      this.disabled = true;
+      
+      // Se não redirecionar em 3 segundos, restaurar botão
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+      }, 3000);
+    });
+  }
+});
+</script>
+{% endblock %}

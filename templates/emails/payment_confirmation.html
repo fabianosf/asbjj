@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado - ASBJJ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .success-icon {
+            font-size: 3rem;
+            color: #27ae60;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .order-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ASBJJ</h1>
+        <h2>Pagamento Confirmado!</h2>
+    </div>
+    
+    <div class="content">
+        <div class="success-icon">✅</div>
+        
+        <p>Olá <strong>{{ order.customer_name }}</strong>,</p>
+        
+        <p>Ótimas notícias! Seu pagamento foi confirmado com sucesso.</p>
+        
+        <div class="order-info">
+            <h3>Detalhes do Pagamento</h3>
+            <p><strong>Número do Pedido:</strong> {{ order.order_number }}</p>
+            <p><strong>Valor Pago:</strong> R$ {{ order.total|floatformat:2 }}</p>
+            <p><strong>Método de Pagamento:</strong> {{ order.get_payment_method_display }}</p>
+            <p><strong>Status:</strong> {{ order.get_payment_status_display }}</p>
+        </div>
+        
+        <p>Seu pedido está sendo processado e em breve será enviado para o endereço informado.</p>
+        
+        <p>Você receberá um email com o código de rastreamento assim que o pedido for enviado.</p>
+        
+        <p>Para acompanhar seu pedido, acesse nossa área do cliente:</p>
+        <a href="{{ site_url }}/area-cliente/?email={{ order.customer_email }}" class="btn">
+            Acompanhar Pedido
+        </a>
+        
+        <p>Obrigado por escolher a ASBJJ!</p>
+        
+        <p>Atenciosamente,<br>
+        <strong>Equipe ASBJJ</strong></p>
+    </div>
+    
+    <div class="footer">
+        <p>Este é um email automático, por favor não responda.</p>
+        <p>ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu</p>
+    </div>
+</body>
+</html>

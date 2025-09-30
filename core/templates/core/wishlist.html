@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Desejos - ASBJJ{% endblock %}
+{% block description %}Sua lista de produtos favoritos{% endblock %}
+
+{% block extra_css %}
+<style>
+.wishlist-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.wishlist-item {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.wishlist-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.wishlist-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.empty-wishlist {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-wishlist-icon {
+  font-size: 4rem;
+  color: #e91e63;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .wishlist-item {
+    padding: 1rem;
+  }
+  
+  .wishlist-item-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header da Lista de Desejos -->
+<div class="wishlist-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Lista de Desejos</h1>
+        <p class="mb-0">Seus produtos favoritos</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <span class="fs-5">{{ wishlist.total_items }} itens</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:shop' %}">Loja</a></li>
+      <li class="breadcrumb-item active">Lista de Desejos</li>
+    </ol>
+  </nav>
+
+  {% if wishlist_items %}
+  <div class="row">
+    {% for item in wishlist_items %}
+    <div class="col-lg-6 mb-4">
+      <div class="wishlist-item" id="wishlist-item-{{ item.id }}">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <img src="{{ item.product.main_image.url }}" class="wishlist-item-image" alt="{{ item.product.name }}">
+          </div>
+          <div class="col-md-6">
+            <h5 class="mb-2">{{ item.product.name }}</h5>
+            <p class="text-muted small mb-2">{{ item.product.short_description|truncatechars:80 }}</p>
+            
+            <!-- Avaliação -->
+            <div class="rating-stars mb-2">
+              {% for i in "12345" %}
+                <i class="fas fa-star text-warning"></i>
+              {% endfor %}
+              <span class="ms-1 text-muted small">(5.0)</span>
+            </div>
+            
+            <!-- Preço -->
+            <div class="mb-2">
+              <span class="fw-bold text-primary fs-5">R$ {{ item.product.price|floatformat:2 }}</span>
+              {% if item.product.compare_price %}
+              <span class="text-muted text-decoration-line-through ms-2">R$ {{ item.product.compare_price|floatformat:2 }}</span>
+              {% endif %}
+            </div>
+            
+            <!-- Status -->
+            {% if item.product.is_available %}
+            <span class="badge bg-success">Disponível</span>
+            {% else %}
+            <span class="badge bg-danger">Esgotado</span>
+            {% endif %}
+          </div>
+          <div class="col-md-2">
+            <div class="d-grid gap-2">
+              {% if item.product.is_available %}
+              <form method="post" action="{% url 'core:add_to_cart' item.product.id %}" class="d-inline">
+                {% csrf_token %}
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn btn-primary btn-sm" type="submit">
+                  <i class="fas fa-shopping-cart me-1"></i>Comprar
+                </button>
+              </form>
+              {% endif %}
+              
+              <a href="{{ item.product.get_absolute_url }}" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-eye me-1"></i>Ver Detalhes
+              </a>
+              
+              <button class="btn btn-outline-danger btn-sm" onclick="removeFromWishlist({{ item.product.id }})">
+                <i class="fas fa-heart-broken me-1"></i>Remover
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Ações -->
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{% url 'core:shop' %}" class="btn btn-outline-primary">
+      <i class="fas fa-arrow-left me-2"></i>Continuar Comprando
+    </a>
+    <button class="btn btn-outline-danger" onclick="clearWishlist()">
+      <i class="fas fa-trash me-2"></i>Limpar Lista
+    </button>
+  </div>
+
+  {% else %}
+  <!-- Lista Vazia -->
+  <div class="empty-wishlist">
+    <div class="empty-wishlist-icon">
+      <i class="fas fa-heart"></i>
+    </div>
+    <h3>Sua lista de desejos está vazia</h3>
+    <p class="text-muted mb-4">Adicione produtos que você gostou para não perder de vista</p>
+    <a href="{% url 'core:shop' %}" class="btn btn-primary btn-lg">
+      <i class="fas fa-shopping-bag me-2"></i>Ir para a Loja
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Scripts -->
+<script>
+function removeFromWishlist(productId) {
+  if (confirm('Tem certeza que deseja remover este item da lista de desejos?')) {
+    fetch(`/favoritos/remover/${productId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById(`wishlist-item-${productId}`).remove();
+        
+        // Atualizar contador
+        const currentCount = parseInt(document.querySelector('.fs-5').textContent);
+        const newCount = currentCount - 1;
+        document.querySelector('.fs-5').textContent = `${newCount} itens`;
+        
+        // Se não há mais itens, recarregar página
+        if (newCount === 0) {
+          location.reload();
+        }
+      } else {
+        alert('Erro ao remover item');
+      }
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert('Erro ao remover item');
+    });
+  }
+}
+
+function clearWishlist() {
+  if (confirm('Tem certeza que deseja limpar toda a lista de desejos?')) {
+    // Implementar limpeza da lista
+    location.reload();
+  }
+}
+</script>
+
+<!-- CSRF Token -->
+{% csrf_token %}
+{% endblock %}

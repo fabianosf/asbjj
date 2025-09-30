@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- SEO Meta Tags -->
@@ -11,24 +11,80 @@
     <meta name="description" content="{% block description %}{{ site_config.meta_description|default:"Academia de Jiu-Jitsu, Defesa Pessoal e Yoga em São Paulo. Professores Alexandre Salgado e Ana Carolina." }}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{{ site_config.meta_keywords|default:"jiu-jitsu, defesa pessoal, yoga, academia, São Paulo, Alexandre Salgado" }}{% endblock %}">
     <meta name="author" content="ASBJJ">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="language" content="pt-BR">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="geo.region" content="BR-SP">
+    <meta name="geo.placename" content="São Paulo">
+    <meta name="geo.position" content="-23.5505;-46.6333">
+    <meta name="ICBM" content="-23.5505, -46.6333">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}">
+    
+    <!-- Alternate languages -->
+    <link rel="alternate" hreflang="pt-BR" href="{{ request.build_absolute_uri }}">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{% block og_title %}{{ site_config.site_name|default:"ASBJJ" }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ site_config.site_description|default:"Academia de Jiu-Jitsu, Defesa Pessoal e Yoga" }}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{% if site_config.site_logo and site_config.site_logo.url %}{{ site_config.site_logo.url }}{% else %}/static/img/logo.png{% endif %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="ASBJJ">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{% block og_image_alt %}ASBJJ - Academia de Jiu-Jitsu{% endblock %}">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}{{ site_config.site_name|default:"ASBJJ" }}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{{ site_config.site_description|default:"Academia de Jiu-Jitsu, Defesa Pessoal e Yoga" }}{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{% if site_config.site_logo and site_config.site_logo.url %}{{ site_config.site_logo.url }}{% else %}/static/img/logo.png{% endif %}{% endblock %}">
+    <meta name="twitter:site" content="@asbjj">
+    <meta name="twitter:creator" content="@asbjj">
+    <meta name="twitter:image:alt" content="{% block twitter_image_alt %}ASBJJ - Academia de Jiu-Jitsu{% endblock %}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% if site_config.site_favicon %}{{ site_config.site_favicon.url }}{% else %}{% static 'img/logo.png' %}{% endif %}">
     <link rel="apple-touch-icon" href="{% if site_config.site_logo and site_config.site_logo.url %}{{ site_config.site_logo.url }}{% else %}{% static 'img/logo.png' %}{% endif %}">
     <link rel="manifest" href="/static/manifest.webmanifest">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% block schema_type %}Organization{% endblock %}",
+        "name": "ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu",
+        "description": "Academia de Jiu-Jitsu, Defesa Pessoal e Yoga em São Paulo",
+        "url": "{{ request.build_absolute_uri }}",
+        "logo": "{% if site_config.site_logo and site_config.site_logo.url %}{{ site_config.site_logo.url }}{% else %}/static/img/logo.png{% endif %}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "{% if site_config.contact_phone %}{{ site_config.contact_phone }}{% else %}+55-11-99999-9999{% endif %}",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        },
+        "sameAs": [
+            "https://www.instagram.com/asbjj",
+            "https://www.facebook.com/asbjj"
+        ]
+    }
+    </script>
     
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +94,68 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
+    <!-- Mobile optimizations -->
+    <style>
+        /* Touch-friendly buttons */
+        @media (max-width: 768px) {
+            .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Larger tap targets */
+            .nav-link {
+                padding: 12px 16px;
+            }
+            
+            /* Better spacing for mobile */
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            /* Prevent zoom on input focus */
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="password"],
+            textarea,
+            select {
+                font-size: 16px;
+            }
+            
+            /* Smooth scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Better mobile navigation */
+            .navbar-toggler {
+                border: none;
+                padding: 8px;
+            }
+            
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                margin-top: 8px;
+                padding: 16px;
+            }
+        }
+        
+        /* PWA optimizations */
+        @media (display-mode: standalone) {
+            .navbar {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .footer {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+    </style>
+    
     <!-- Google Analytics -->
     {% if site_config.google_analytics_id %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site_config.google_analytics_id }}"></script>
@@ -45,9 +163,65 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '{{ site_config.google_analytics_id }}');
+        gtag('config', '{{ site_config.google_analytics_id }}', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=Strict;Secure',
+            'send_page_view': true
+        });
+        
+        // Enhanced e-commerce tracking
+        gtag('config', '{{ site_config.google_analytics_id }}', {
+            'custom_map': {
+                'custom_parameter_1': 'user_type',
+                'custom_parameter_2': 'page_category'
+            }
+        });
     </script>
     {% endif %}
+    
+    <!-- Performance monitoring -->
+    <script>
+        // Core Web Vitals monitoring
+        function sendToAnalytics(metric) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', metric.name, {
+                    event_category: 'Web Vitals',
+                    event_label: metric.id,
+                    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+                    non_interaction: true,
+                });
+            }
+        }
+        
+        // Monitor page load performance
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'page_load_time', {
+                            event_category: 'Performance',
+                            value: Math.round(loadTime),
+                            non_interaction: true,
+                        });
+                    }
+                }
+            }
+        });
+        
+        // Error tracking
+        window.addEventListener('error', function(e) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'javascript_error', {
+                    event_category: 'Error',
+                    event_label: e.message,
+                    value: 1,
+                    non_interaction: true,
+                });
+            }
+        });
+    </script>
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -120,6 +294,27 @@
 
                     <!-- User menu -->
                     <ul class="navbar-nav">
+                        <!-- Favoritos -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{% url 'core:wishlist' %}">
+                                <i class="fas fa-heart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="wishlist-badge" style="display: none;">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+                        
+                        <!-- Carrinho -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{% url 'core:cart' %}" title="Carrinho de Compras">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-badge" style="display: none;">
+                                    0
+                                </span>
+                                <small class="d-block text-muted" id="cart-total" style="font-size: 0.7rem; line-height: 1;">R$ 0,00</small>
+                            </a>
+                        </li>
+                        
                         {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -338,6 +533,35 @@
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/static/js/sw.js').catch(() => {});
     }
+    
+    // Carregar total do carrinho ao carregar a página
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/carrinho/total/', {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const cartBadge = document.getElementById('cart-badge');
+                const cartTotal = document.getElementById('cart-total');
+                
+                if (cartBadge && data.cart_total_items > 0) {
+                    cartBadge.textContent = data.cart_total_items;
+                    cartBadge.style.display = 'inline';
+                }
+                
+                if (cartTotal) {
+                    cartTotal.textContent = data.cart_total_price_formatted;
+                }
+            }
+        })
+        .catch(error => {
+            // Erro ao carregar total do carrinho
+        });
+    });
     </script>
 </body>
 </html>

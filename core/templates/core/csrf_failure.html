@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Erro de Segurança - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        Erro de Segurança
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Token de segurança inválido</strong>
+                    </div>
+                    
+                    <p>Ocorreu um erro de segurança ao processar sua solicitação. Isso pode acontecer quando:</p>
+                    
+                    <ul>
+                        <li>A página ficou aberta por muito tempo</li>
+                        <li>Você tentou enviar o mesmo formulário duas vezes</li>
+                        <li>Há um problema de conectividade</li>
+                    </ul>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="javascript:history.back()" class="btn btn-primary">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            Voltar
+                        </a>
+                        <a href="{% url 'core:index' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-home me-2"></i>
+                            Página Inicial
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

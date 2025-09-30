@@ -14,3 +14,4 @@ sentry-sdk[django]==1.40.6
 requests==2.31.0
 qrcode==7.4.2
 Pillow==10.4.0
+mercadopago==2.3.0

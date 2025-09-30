@@ -1,0 +1,413 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Suporte - ASBJJ{% endblock %}
+{% block description %}Chat de suporte online{% endblock %}
+
+{% block extra_css %}
+<style>
+.chat-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.chat-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #f8f9fa;
+}
+
+.message {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.message.customer {
+  justify-content: flex-end;
+}
+
+.message.admin {
+  justify-content: flex-start;
+}
+
+.message.system {
+  justify-content: center;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  position: relative;
+}
+
+.message.customer .message-bubble {
+  background: #2c3e50;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message.admin .message-bubble {
+  background: white;
+  color: #333;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 4px;
+}
+
+.message.system .message-bubble {
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.message-info {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.chat-input {
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input-field {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.75rem 1rem;
+  outline: none;
+}
+
+.chat-input-field:focus {
+  border-color: #2c3e50;
+}
+
+.chat-send-btn {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-send-btn:hover {
+  background: #34495e;
+}
+
+.chat-status {
+  padding: 0.5rem 1rem;
+  background: #e3f2fd;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #1976d2;
+}
+
+.status-waiting {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-open {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-closed {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.no-chat {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    height: 500px;
+  }
+  
+  .message-bubble {
+    max-width: 85%;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header do Chat -->
+<div class="chat-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Suporte Online</h1>
+        <p class="mb-0">Chat de suporte em tempo real</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <span class="badge bg-success">Online</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item active">Suporte</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      {% if chat_room %}
+      <!-- Chat Existente -->
+      <div class="chat-container">
+        <div class="chat-status status-{{ chat_room.status }}">
+          <i class="fas fa-circle me-2"></i>
+          Status: {{ chat_room.get_status_display }}
+          {% if chat_room.assigned_to %}
+          - Atribuído a: {{ chat_room.assigned_to.get_full_name|default:chat_room.assigned_to.username }}
+          {% endif %}
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+          {% for message in messages %}
+          <div class="message {{ message.sender_type }}">
+            <div class="message-bubble">
+              <div>{{ message.message }}</div>
+              <div class="message-info">
+                {{ message.sender_name }} - {{ message.created_at|date:"d/m H:i" }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div class="chat-input">
+          <form class="chat-form" id="chat-form">
+            <input type="hidden" id="chat-id" value="{{ chat_room.id }}">
+            <input type="hidden" id="sender-name" value="{{ chat_room.customer_name }}">
+            <input type="hidden" id="sender-email" value="{{ chat_room.customer_email }}">
+            <input type="text" class="chat-input-field" id="message-input" placeholder="Digite sua mensagem..." required>
+            <button type="submit" class="chat-send-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      {% else %}
+      <!-- Formulário para Iniciar Chat -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="mb-3">Iniciar Conversa</h4>
+          
+          <form id="start-chat-form">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="customer-name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="customer-name" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="customer-email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="customer-email" required>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="subject" class="form-label">Assunto</label>
+              <select class="form-control" id="subject" required>
+                <option value="">Selecione um assunto</option>
+                <option value="Dúvida sobre produto">Dúvida sobre produto</option>
+                <option value="Problema com pedido">Problema com pedido</option>
+                <option value="Cancelamento">Cancelamento</option>
+                <option value="Troca/Devolução">Troca/Devolução</option>
+                <option value="Informações sobre entrega">Informações sobre entrega</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="message" class="form-label">Mensagem</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="Descreva sua dúvida ou problema..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-comments me-2"></i>Iniciar Chat
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const startChatForm = document.getElementById('start-chat-form');
+  const chatForm = document.getElementById('chat-form');
+  const chatMessages = document.getElementById('chat-messages');
+  const messageInput = document.getElementById('message-input');
+  
+  // Iniciar novo chat
+  if (startChatForm) {
+    startChatForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        customer_name: document.getElementById('customer-name').value,
+        customer_email: document.getElementById('customer-email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+      
+      fetch('/chat/start/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          location.reload();
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao iniciar chat');
+      });
+    });
+  }
+  
+  // Enviar mensagem
+  if (chatForm) {
+    chatForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const message = messageInput.value.trim();
+      if (!message) return;
+      
+      const formData = {
+        chat_id: document.getElementById('chat-id').value,
+        sender_name: document.getElementById('sender-name').value,
+        sender_email: document.getElementById('sender-email').value,
+        message: message,
+        sender_type: 'customer'
+      };
+      
+      fetch('/chat/send/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          messageInput.value = '';
+          addMessageToChat(formData.sender_name, message, 'customer');
+          scrollToBottom();
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao enviar mensagem');
+      });
+    });
+  }
+  
+  // Adicionar mensagem ao chat
+  function addMessageToChat(senderName, message, senderType) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${senderType}`;
+    
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('pt-BR', { 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+    
+    messageDiv.innerHTML = `
+      <div class="message-bubble">
+        <div>${message}</div>
+        <div class="message-info">
+          ${senderName} - ${timeString}
+        </div>
+      </div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+  }
+  
+  // Scroll para o final
+  function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Auto-scroll inicial
+  if (chatMessages) {
+    scrollToBottom();
+  }
+});
+</script>
+
+<!-- CSRF Token -->
+{% csrf_token %}
+{% endblock %}

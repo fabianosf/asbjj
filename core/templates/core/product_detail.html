@@ -1,0 +1,626 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - ASBJJ{% endblock %}
+{% block description %}{{ product.short_description|default:product.description|truncatechars:160 }}{% endblock %}
+
+{% block og_type %}product{% endblock %}
+{% block og_image %}{{ product.image.url }}{% endblock %}
+{% block og_title %}{{ product.name }} - ASBJJ{% endblock %}
+{% block og_description %}{{ product.short_description|default:product.description|truncatechars:160 }}{% endblock %}
+
+{% block schema_type %}Product{% endblock %}
+
+{% block extra_css %}
+<style>
+.product-detail {
+  padding: 2rem 0;
+}
+
+.share-buttons {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.share-buttons h5 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.share-btn {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.share-btn:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+.share-btn.facebook { background: #3b5998; }
+.share-btn.twitter { background: #1da1f2; }
+.share-btn.whatsapp { background: #25d366; }
+.share-btn.pinterest { background: #bd081c; }
+.share-btn.linkedin { background: #0077b5; }
+.share-btn.email { background: #6c757d; }
+
+.reviews-section {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 2px solid #ecf0f1;
+}
+
+.review-card {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-author {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.review-date {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.review-rating {
+  color: #ffc107;
+  margin-bottom: 0.5rem;
+}
+
+.review-text {
+  color: #555;
+  line-height: 1.6;
+}
+
+.review-helpful {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.add-review-form {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.product-image {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.product-info {
+  padding: 2rem;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.product-compare-price {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 1rem;
+}
+
+.discount-badge {
+  background: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.rating-stars {
+  color: #ffc107;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.product-attributes {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.attribute-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.attribute-row:last-child {
+  border-bottom: none;
+}
+
+.attribute-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.attribute-value {
+  color: #666;
+}
+
+.out-of-stock {
+  background: #6c757d;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.related-products {
+  background: #f8f9fa;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.related-product-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.related-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.related-product-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.reviews-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.review-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-author {
+  font-weight: 600;
+  color: #333;
+}
+
+.review-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.review-rating {
+  color: #ffc107;
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'core:shop' %}">Loja</a></li>
+        <li class="breadcrumb-item"><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="row">
+      <!-- Imagem do Produto -->
+      <div class="col-lg-6">
+        <div class="product-image">
+          <img src="{{ product.main_image.url }}" class="img-fluid w-100" alt="{{ product.name }}">
+        </div>
+      </div>
+
+      <!-- Informações do Produto -->
+      <div class="col-lg-6">
+        <div class="product-info">
+          <h1 class="product-title">{{ product.name }}</h1>
+          
+          <!-- Avaliação -->
+          <div class="rating-stars">
+            {% for i in "12345" %}
+              {% if forloop.counter <= 5 %}
+                <i class="fas fa-star"></i>
+              {% else %}
+                <i class="far fa-star"></i>
+              {% endif %}
+            {% endfor %}
+            <span class="ms-2 text-muted">(5.0) - {{ total_reviews }} avaliações</span>
+          </div>
+
+          <!-- Preço -->
+          <div class="d-flex align-items-center">
+            <span class="product-price">R$ {{ product.price|floatformat:2 }}</span>
+            {% if product.compare_price %}
+            <span class="product-compare-price">R$ {{ product.compare_price|floatformat:2 }}</span>
+            {% endif %}
+          </div>
+
+          {% if product.discount_percentage > 0 %}
+          <div class="discount-badge">-{{ product.discount_percentage }}% OFF</div>
+          {% endif %}
+
+          <!-- Descrição -->
+          <div class="mb-4">
+            <p class="text-muted">{{ product.description|linebreaks }}</p>
+          </div>
+
+          <!-- Status de Estoque -->
+          {% if not product.is_available %}
+          <div class="out-of-stock">ESGOTADO</div>
+          {% else %}
+          <div class="d-grid gap-2">
+            <form method="post" action="{% url 'core:add_to_cart' product.id %}" class="d-inline add-to-cart-form">
+              {% csrf_token %}
+              <div class="input-group mb-2">
+                <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(-1)">-</button>
+                <input type="number" class="form-control text-center" id="quantity" name="quantity" value="1" min="1" max="10">
+                <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(1)">+</button>
+              </div>
+              <button class="btn btn-primary btn-lg w-100" type="submit">
+                <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+              </button>
+            </form>
+            <button class="btn btn-outline-secondary" type="button" onclick="addToWishlist({{ product.id }})">
+              <i class="fas fa-heart me-2"></i>Adicionar aos Favoritos
+            </button>
+          </div>
+          {% endif %}
+
+          <!-- Atributos do Produto -->
+          <div class="product-attributes">
+            <h5 class="mb-3">Especificações</h5>
+            
+            {% if product.category %}
+            <div class="attribute-row">
+              <span class="attribute-label">Categoria:</span>
+              <span class="attribute-value">{{ product.category.name }}</span>
+            </div>
+            {% endif %}
+            
+            {% if product.weight %}
+            <div class="attribute-row">
+              <span class="attribute-label">Peso:</span>
+              <span class="attribute-value">{{ product.weight }} kg</span>
+            </div>
+            {% endif %}
+            
+            {% if product.dimensions %}
+            <div class="attribute-row">
+              <span class="attribute-label">Dimensões:</span>
+              <span class="attribute-value">{{ product.dimensions }}</span>
+            </div>
+            {% endif %}
+            
+            {% if product.colors %}
+            <div class="attribute-row">
+              <span class="attribute-label">Cores:</span>
+              <span class="attribute-value">{{ product.colors|join:", " }}</span>
+            </div>
+            {% endif %}
+            
+            {% if product.sizes %}
+            <div class="attribute-row">
+              <span class="attribute-label">Tamanhos:</span>
+              <span class="attribute-value">{{ product.sizes|join:", " }}</span>
+            </div>
+            {% endif %}
+            
+            <div class="attribute-row">
+              <span class="attribute-label">Estoque:</span>
+              <span class="attribute-value">
+                {% if product.track_stock %}
+                  {{ product.stock_quantity }} unidades
+                {% else %}
+                  Disponível
+                {% endif %}
+              </span>
+            </div>
+          </div>
+          
+          <!-- Compartilhar Produto -->
+          <div class="share-buttons">
+            <h5><i class="fas fa-share-alt me-2"></i>Compartilhar:</h5>
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(event)" title="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(event)" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(event)" title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="share-btn pinterest" onclick="shareOnPinterest(event)" title="Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+            <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(event)" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="share-btn email" onclick="shareViaEmail(event)" title="E-mail">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avaliações -->
+    {% if reviews %}
+    <div class="reviews-section">
+      <h3>Avaliações dos Clientes</h3>
+      
+      {% for review in reviews %}
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="review-author">{{ review.name }}</div>
+            <div class="review-rating">
+              {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}
+                  <i class="fas fa-star"></i>
+                {% else %}
+                  <i class="far fa-star"></i>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="review-date">{{ review.created_at|date:"d/m/Y" }}</div>
+        </div>
+        <h6 class="mb-2">{{ review.title }}</h6>
+        <p class="mb-0">{{ review.comment }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Produtos Relacionados -->
+    {% if related_products %}
+    <div class="related-products">
+      <div class="container">
+        <h3 class="text-center mb-4">Produtos Relacionados</h3>
+        <div class="row g-4">
+          {% for related_product in related_products %}
+          <div class="col-md-3">
+            <div class="related-product-card card">
+              <img src="{{ related_product.main_image.url }}" class="card-img-top related-product-image" alt="{{ related_product.name }}">
+              <div class="card-body">
+                <h6 class="card-title">{{ related_product.name }}</h6>
+                <p class="card-text text-muted small">{{ related_product.short_description|truncatechars:60 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-primary">R$ {{ related_product.price|floatformat:2 }}</span>
+                  <a href="{{ related_product.get_absolute_url }}" class="btn btn-sm btn-outline-primary">Ver</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+function changeQuantity(delta) {
+  const quantityInput = document.getElementById('quantity');
+  let currentValue = parseInt(quantityInput.value);
+  let newValue = currentValue + delta;
+  
+  if (newValue < 1) newValue = 1;
+  if (newValue > 10) newValue = 10;
+  
+  quantityInput.value = newValue;
+}
+
+// Adicionar ao carrinho via AJAX
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartForm = document.querySelector('.add-to-cart-form');
+  
+  if (addToCartForm) {
+    addToCartForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      
+      fetch(this.action, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          
+          // Atualizar badge do carrinho
+          const cartBadge = document.getElementById('cart-badge');
+          if (cartBadge) {
+            cartBadge.textContent = data.cart_total_items;
+            cartBadge.style.display = 'inline';
+          }
+          
+          // Atualizar total do carrinho na navbar
+          const cartTotal = document.getElementById('cart-total');
+          if (cartTotal) {
+            cartTotal.textContent = data.cart_total_price_formatted;
+          }
+          
+          // Mostrar notificação com detalhes do item adicionado
+          const itemTotal = data.item_price * data.item_quantity;
+          const itemTotalFormatted = `R$ ${itemTotal.toFixed(2)}`.replace('.', ',');
+          showNotification(`${data.message}<br><small>Item: ${data.item_price_formatted} × ${data.item_quantity} = ${itemTotalFormatted}<br>Total do carrinho: ${data.cart_total_price_formatted}`, 'success');
+          
+          // Feedback visual no botão
+          const button = this.querySelector('button[type="submit"]');
+          const originalText = button.innerHTML;
+          button.innerHTML = '<i class="fas fa-check me-2"></i>Adicionado!';
+          button.classList.add('btn-success');
+          button.classList.remove('btn-primary');
+          
+          setTimeout(() => {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-success');
+            button.classList.add('btn-primary');
+          }, 2000);
+        } else {
+          showNotification(data.message, 'error');
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        showNotification('Erro ao adicionar produto', 'error');
+      });
+    });
+  }
+});
+
+// Função para mostrar notificações
+function showNotification(message, type) {
+  const notification = document.createElement('div');
+  notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show position-fixed`;
+  notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+  notification.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Remover automaticamente após 3 segundos
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.remove();
+    }
+  }, 3000);
+}
+
+function addToWishlist(productId) {
+  fetch(`/favoritos/adicionar/${productId}/`, {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // Mostrar notificação
+      showNotification(data.message, 'success');
+      
+      // Atualizar badge
+      const badge = document.getElementById('wishlist-badge');
+      if (badge) {
+        badge.textContent = data.wishlist_total_items;
+        badge.style.display = 'inline';
+      }
+      
+      // Feedback visual
+      const button = event.target;
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-heart me-2 text-danger"></i>Adicionado!';
+      button.classList.add('btn-success');
+      button.classList.remove('btn-outline-secondary');
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-outline-secondary');
+      }, 2000);
+    } else {
+      showNotification(data.message, 'error');
+    }
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+    showNotification('Erro ao adicionar aos favoritos', 'error');
+  });
+}
+</script>
+
+<!-- CSRF Token -->
+{% csrf_token %}
+{% endblock %}

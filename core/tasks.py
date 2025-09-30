@@ -94,7 +94,7 @@ Equipe ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu
 @shared_task
 def send_trial_booking_notification(booking_id):
     """Enviar notificação de novo agendamento experimental"""
-    from schedule.models import TrialClassBooking
+    # from schedule.models import TrialClassBooking  # App removido
     
     try:
         booking = TrialClassBooking.objects.get(id=booking_id)
@@ -143,7 +143,7 @@ IP: {booking.ip_address}
 @shared_task
 def send_trial_booking_confirmation(booking_id):
     """Enviar confirmação de agendamento experimental"""
-    from schedule.models import TrialClassBooking
+    # from schedule.models import TrialClassBooking  # App removido
     
     try:
         booking = TrialClassBooking.objects.get(id=booking_id)
@@ -196,7 +196,7 @@ Equipe ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu
 @shared_task
 def send_newsletter_confirmation(subscriber_id):
     """Enviar e-mail de confirmação da newsletter"""
-    from newsletter.models import NewsletterSubscriber
+    # from newsletter.models import NewsletterSubscriber  # App removido
     
     try:
         subscriber = NewsletterSubscriber.objects.get(id=subscriber_id)
@@ -248,49 +248,9 @@ Equipe ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu
 
 @shared_task
 def send_testimonial_notification(testimonial_id):
-    """Enviar notificação de novo depoimento"""
-    from testimonials.models import Testimonial
-    
-    try:
-        testimonial = Testimonial.objects.get(id=testimonial_id)
-        
-        subject = f'[ASBJJ] Novo depoimento aguardando aprovação - {testimonial.author_name}'
-        
-        html_content = render_to_string('emails/testimonial_notification.html', {
-            'testimonial': testimonial,
-            'site_url': settings.SITE_URL,
-        })
-        
-        text_content = f"""
-Novo depoimento aguardando aprovação:
-
-Autor: {testimonial.author_name}
-E-mail: {testimonial.author_email}
-Avaliação: {testimonial.rating}/5 estrelas
-Título: {testimonial.title}
-
-Depoimento:
-{testimonial.content}
-
-Aula relacionada: {testimonial.class_related.name if testimonial.class_related else 'Nenhuma'}
-
----
-Enviado em: {testimonial.created_at}
-IP: {testimonial.ip_address}
-        """
-        
-        msg = EmailMultiAlternatives(
-            subject,
-            text_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [settings.ADMIN_EMAIL]
-        )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-        
-        return f'Notificação de depoimento enviada'
-    except Exception as e:
-        return f'Erro ao enviar notificação de depoimento: {str(e)}'
+    """Enviar notificação de novo depoimento - DESABILITADO (app removido)"""
+    # from testimonials.models import Testimonial  # App removido
+    return f'Funcionalidade desabilitada - app testimonials removido'
 
 @shared_task
 def cleanup_old_sessions():
@@ -307,60 +267,6 @@ def cleanup_old_sessions():
 
 @shared_task
 def send_weekly_newsletter():
-    """Enviar newsletter semanal"""
-    from newsletter.models import NewsletterSubscriber
-    from core.models import BlogPost
-    
-    try:
-        # Buscar posts da semana
-        week_ago = timezone.now() - timedelta(days=7)
-        recent_posts = BlogPost.objects.filter(
-            status='published',
-            published_at__gte=week_ago
-        ).order_by('-published_at')[:3]
-        
-        # Assinantes ativos
-        subscribers = NewsletterSubscriber.objects.filter(
-            is_active=True,
-            is_verified=True,
-            frequency__in=['weekly', 'monthly']
-        )
-        
-        subject = 'Newsletter Semanal ASBJJ - Novidades e Dicas'
-        
-        for subscriber in subscribers:
-            html_content = render_to_string('emails/weekly_newsletter.html', {
-                'subscriber': subscriber,
-                'posts': recent_posts,
-                'site_url': settings.SITE_URL,
-                'unsubscribe_url': f"{settings.SITE_URL}/newsletter/descadastrar/{subscriber.unsubscribe_token}/",
-            })
-            
-            text_content = f"""
-Olá {subscriber.full_name or 'Prezado(a)'},
-
-Confira as novidades desta semana na ASBJJ:
-
-"""
-            for post in recent_posts:
-                text_content += f"- {post.title}\n  {post.excerpt}\n  Leia mais: {settings.SITE_URL}{post.get_absolute_url()}\n\n"
-            
-            text_content += f"""
-Para se descadastrar, acesse: {settings.SITE_URL}/newsletter/descadastrar/{subscriber.unsubscribe_token}/
-
-Atenciosamente,
-Equipe ASBJJ
-            """
-            
-            msg = EmailMultiAlternatives(
-                subject,
-                text_content,
-                settings.DEFAULT_FROM_EMAIL,
-                [subscriber.email]
-            )
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
-        
-        return f'Newsletter semanal enviada para {subscribers.count()} assinantes'
-    except Exception as e:
-        return f'Erro ao enviar newsletter semanal: {str(e)}'
+    """Enviar newsletter semanal - DESABILITADO (app removido)"""
+    # from newsletter.models import NewsletterSubscriber  # App removido
+    return f'Funcionalidade desabilitada - app newsletter removido'

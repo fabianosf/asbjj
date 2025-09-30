@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Carrinho - ASBJJ{% endblock %}
+{% block description %}Seu carrinho de compras ASBJJ{% endblock %}
+
+{% block extra_css %}
+<style>
+.cart-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.cart-item {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.quantity-input {
+  width: 80px;
+  text-align: center;
+}
+
+.cart-summary {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  height: fit-content;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-cart-icon {
+  font-size: 4rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .cart-item {
+    padding: 1rem;
+  }
+  
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header do Carrinho -->
+<div class="cart-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Carrinho de Compras</h1>
+        <p class="mb-0">Revise seus itens antes de finalizar a compra</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <span class="fs-5">{{ cart.total_items }} itens</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:shop' %}">Loja</a></li>
+      <li class="breadcrumb-item active">Carrinho</li>
+    </ol>
+  </nav>
+
+  {% if cart_items %}
+  <div class="row">
+    <!-- Itens do Carrinho -->
+    <div class="col-lg-8">
+      {% for item in cart_items %}
+      <div class="cart-item" id="cart-item-{{ item.id }}">
+        <div class="row align-items-center">
+          <div class="col-md-2">
+            <img src="{{ item.product.main_image.url }}" class="cart-item-image" alt="{{ item.product.name }}">
+          </div>
+          <div class="col-md-4">
+            <h5 class="mb-1">{{ item.product.name }}</h5>
+            <p class="text-muted small mb-0">{{ item.product.short_description|truncatechars:60 }}</p>
+            {% if item.product.colors %}
+            <span class="badge bg-secondary">{{ item.product.colors|first }}</span>
+            {% endif %}
+          </div>
+          <div class="col-md-2">
+            <div class="input-group">
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="updateQuantity({{ item.id }}, {{ item.quantity|add:'-1' }})">-</button>
+              <input type="number" class="form-control quantity-input" id="quantity-{{ item.id }}" value="{{ item.quantity }}" min="1" onchange="updateQuantity({{ item.id }}, this.value)">
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="updateQuantity({{ item.id }}, {{ item.quantity|add:'1' }})">+</button>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="text-center">
+              <div class="fw-bold text-primary" id="item-total-{{ item.id }}">R$ {{ item.total_price|floatformat:2 }}</div>
+              <small class="text-muted">R$ {{ item.product.price|floatformat:2 }} cada</small>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="text-end">
+              <button class="btn btn-outline-danger btn-sm" onclick="removeItem({{ item.product.id }})">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+      <!-- Ações do Carrinho -->
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'core:shop' %}" class="btn btn-outline-primary">
+          <i class="fas fa-arrow-left me-2"></i>Continuar Comprando
+        </a>
+        <button class="btn btn-outline-danger" onclick="clearCart()">
+          <i class="fas fa-trash me-2"></i>Limpar Carrinho
+        </button>
+      </div>
+    </div>
+
+    <!-- Resumo do Carrinho -->
+    <div class="col-lg-4">
+      <div class="cart-summary">
+        <h4 class="mb-3">Resumo do Pedido</h4>
+        
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal ({{ cart.total_items }} itens):</span>
+          <span id="cart-subtotal">R$ {{ cart.total_price|floatformat:2 }}</span>
+        </div>
+        
+        <!-- Cupom de Desconto -->
+        <div class="mb-3">
+          <label for="coupon-code" class="form-label small">Cupom de Desconto</label>
+          <div class="input-group">
+            <input type="text" class="form-control form-control-sm" id="coupon-code" placeholder="Digite o código">
+            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="applyCoupon()">Aplicar</button>
+          </div>
+          <div id="coupon-message" class="small mt-1"></div>
+        </div>
+        
+        <!-- Desconto -->
+        <div class="d-flex justify-content-between mb-2" id="discount-row" style="display: none;">
+          <span class="text-success">Desconto:</span>
+          <span class="text-success" id="discount-value">-R$ 0,00</span>
+        </div>
+        
+        <!-- Cálculo de Frete -->
+        <div class="mb-3">
+          <label for="shipping-cep" class="form-label small">Calcular Frete</label>
+          <div class="input-group">
+            <input type="text" class="form-control form-control-sm" id="shipping-cep" placeholder="00000-000" maxlength="9">
+            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="calculateShipping()">Calcular</button>
+          </div>
+          <div id="shipping-message" class="small mt-1"></div>
+        </div>
+        
+        <div class="d-flex justify-content-between mb-2">
+          <span>Frete:</span>
+          <span id="shipping-cost">Grátis</span>
+        </div>
+        
+        <hr>
+        
+        <div class="d-flex justify-content-between mb-3">
+          <strong>Total:</strong>
+          <strong class="text-primary" id="cart-total">R$ {{ cart.total_price|floatformat:2 }}</strong>
+        </div>
+        
+        <a href="{% url 'core:checkout' %}" class="btn btn-primary btn-lg w-100">
+          <i class="fas fa-credit-card me-2"></i>Finalizar Compra
+        </a>
+        
+        <div class="mt-3 text-center">
+          <small class="text-muted">
+            <i class="fas fa-shield-alt me-1"></i>
+            Compra 100% segura
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <!-- Carrinho Vazio -->
+  <div class="empty-cart">
+    <div class="empty-cart-icon">
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+    <h3>Seu carrinho está vazio</h3>
+    <p class="text-muted mb-4">Adicione alguns produtos para começar suas compras</p>
+    <a href="{% url 'core:shop' %}" class="btn btn-primary btn-lg">
+      <i class="fas fa-shopping-bag me-2"></i>Ir para a Loja
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Scripts -->
+<script>
+function updateQuantity(itemId, quantity) {
+  if (quantity < 1) {
+    quantity = 1;
+  }
+  
+  fetch(`/carrinho/atualizar/${itemId}/`, {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `quantity=${quantity}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      document.getElementById(`quantity-${itemId}`).value = quantity;
+      document.getElementById(`item-total-${itemId}`).textContent = `R$ ${data.item_total_price.toFixed(2)}`;
+      document.getElementById('cart-subtotal').textContent = `R$ ${data.cart_total_price.toFixed(2)}`;
+      document.getElementById('cart-total').textContent = `R$ ${data.cart_total_price.toFixed(2)}`;
+      
+      if (data.cart_total_items === 0) {
+        location.reload();
+      }
+    } else {
+      alert('Erro ao atualizar quantidade');
+    }
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+    alert('Erro ao atualizar quantidade');
+  });
+}
+
+function removeItem(productId) {
+  if (confirm('Tem certeza que deseja remover este item do carrinho?')) {
+    fetch(`/carrinho/remover/${productId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        location.reload();
+      } else {
+        alert('Erro ao remover item');
+      }
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert('Erro ao remover item');
+    });
+  }
+}
+
+function clearCart() {
+  if (confirm('Tem certeza que deseja limpar todo o carrinho?')) {
+    fetch('/carrinho/limpar/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        location.reload();
+      } else {
+        alert('Erro ao limpar carrinho');
+      }
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert('Erro ao limpar carrinho');
+    });
+  }
+}
+
+function applyCoupon() {
+  const couponCode = document.getElementById('coupon-code').value.trim();
+  const messageDiv = document.getElementById('coupon-message');
+  
+  if (!couponCode) {
+    messageDiv.innerHTML = '<span class="text-danger">Digite um código de cupom</span>';
+    return;
+  }
+  
+  fetch('/cupom/aplicar/', {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `coupon_code=${couponCode}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      messageDiv.innerHTML = `<span class="text-success">${data.message}</span>`;
+      document.getElementById('discount-row').style.display = 'flex';
+      document.getElementById('discount-value').textContent = `-R$ ${data.discount.toFixed(2)}`;
+      document.getElementById('cart-total').textContent = `R$ ${data.new_total.toFixed(2)}`;
+      document.getElementById('coupon-code').value = '';
+    } else {
+      messageDiv.innerHTML = `<span class="text-danger">${data.message}</span>`;
+    }
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+    messageDiv.innerHTML = '<span class="text-danger">Erro ao aplicar cupom</span>';
+  });
+}
+
+function calculateShipping() {
+  const cep = document.getElementById('shipping-cep').value.replace(/\D/g, '');
+  const messageDiv = document.getElementById('shipping-message');
+  
+  if (cep.length !== 8) {
+    messageDiv.innerHTML = '<span class="text-danger">CEP deve ter 8 dígitos</span>';
+    return;
+  }
+  
+  fetch(`/frete/calcular/?cep=${cep}`)
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      messageDiv.innerHTML = `<span class="text-success">${data.message}</span>`;
+      const shippingCost = data.shipping_cost > 0 ? `R$ ${data.shipping_cost.toFixed(2)}` : 'Grátis';
+      document.getElementById('shipping-cost').textContent = shippingCost;
+      
+      // Atualizar total se necessário
+      updateTotal();
+    } else {
+      messageDiv.innerHTML = `<span class="text-danger">${data.message}</span>`;
+    }
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+    messageDiv.innerHTML = '<span class="text-danger">Erro ao calcular frete</span>';
+  });
+}
+
+function updateTotal() {
+  // Função para atualizar o total considerando desconto e frete
+  // Implementação simplificada - em produção seria mais complexa
+}
+
+// Máscara para CEP
+document.getElementById('shipping-cep').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+  if (value.length > 5) {
+    value = value.substring(0, 5) + '-' + value.substring(5, 8);
+  }
+  e.target.value = value;
+});
+</script>
+
+<!-- CSRF Token -->
+{% csrf_token %}
+{% endblock %}

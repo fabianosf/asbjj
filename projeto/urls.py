@@ -28,9 +28,19 @@ from accounts.views import CustomPasswordResetConfirmView
 
 # Importar sitemaps
 try:
-    from core.sitemaps import StaticViewSitemap
+    from core.sitemaps import (
+        StaticViewSitemap, 
+        ProductSitemap, 
+        ProductCategorySitemap, 
+        BlogPostSitemap, 
+        GallerySitemap
+    )
     sitemaps = {
         'static': StaticViewSitemap,
+        'products': ProductSitemap,
+        'categories': ProductCategorySitemap,
+        'blog': BlogPostSitemap,
+        'gallery': GallerySitemap,
     }
 except ImportError:
     sitemaps = {}

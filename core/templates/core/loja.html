@@ -4,56 +4,572 @@
 {% block title %}Loja - ASBJJ{% endblock %}
 {% block description %}Produtos oficiais da academia: camisetas, kimonos e acessórios.{% endblock %}
 
+{% block extra_css %}
+<style>
+.shop-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.product-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.product-image {
+  height: 250px;
+  object-fit: cover;
+  background: #f8f9fa;
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.rating-stars {
+  color: #ffc107;
+  font-size: 0.9rem;
+}
+
+.filter-sidebar {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: fit-content;
+}
+
+.filter-title {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+}
+
+.filter-option {
+  margin-bottom: 0.5rem;
+}
+
+.filter-option label {
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.filter-option input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.sort-dropdown {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: white;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-info {
+  padding: 1rem;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.product-compare-price {
+  font-size: 1rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+}
+
+.discount-badge {
+  background: #dc3545;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.out-of-stock {
+  background: #6c757d;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .filter-sidebar {
+    margin-bottom: 2rem;
+  }
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<section class="section">
+<!-- Header da Loja -->
+<div class="shop-header">
   <div class="container">
-    <div class="row mb-4">
-      <div class="col-12 text-center">
-        <h1>Loja</h1>
-        <p class="text-muted">Em breve, compra online. Por enquanto, consulte na recepção.</p>
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Loja ASBJJ</h1>
+        <p class="mb-0">Produtos oficiais da academia: kimonos, camisetas e acessórios</p>
       </div>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card h-100">
-          <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="Camiseta ASBJJ">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Camiseta ASBJJ</h5>
-            <p class="card-text">Algodão premium, várias cores e tamanhos.</p>
-            <div class="mt-auto">
-              <span class="fw-bold">R$ 69,90</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100">
-          <img src="{% static 'img/tatame2.png' %}" class="card-img-top" alt="Kimono">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Kimono Oficial</h5>
-            <p class="card-text">Modelo leve e resistente, patches da academia.</p>
-            <div class="mt-auto">
-              <span class="fw-bold">R$ 399,00</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100">
-          <img src="{% static 'img/logo_login.png' %}" class="card-img-top" alt="Mochila">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Mochila ASBJJ</h5>
-            <p class="card-text">Compartimento para kimono e acessórios.</p>
-            <div class="mt-auto">
-              <span class="fw-bold">R$ 149,00</span>
-            </div>
+      <div class="col-md-4 text-md-end">
+        <div class="d-flex align-items-center justify-content-md-end">
+          <span class="me-3">{{ total_products }} produtos</span>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-light btn-sm" id="grid-view">
+              <i class="fas fa-th"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light btn-sm" id="list-view">
+              <i class="fas fa-list"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item active">Loja</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <!-- Sidebar de Filtros -->
+    <div class="col-lg-3">
+      <div class="filter-sidebar">
+        <form method="get" id="filter-form">
+          <!-- Busca -->
+          <div class="mb-4">
+            <label for="search" class="form-label filter-title">Buscar</label>
+            <input type="text" class="form-control" id="search" name="q" 
+                   value="{{ current_search }}" placeholder="Digite o nome do produto...">
+          </div>
+
+          <!-- Categoria -->
+          <div class="mb-4">
+            <h6 class="filter-title">Categoria</h6>
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="categoria" value="" 
+                       {% if not current_category %}checked{% endif %}>
+                Todas as categorias
+              </label>
+            </div>
+            {% for category in categories %}
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="categoria" value="{{ category.slug }}" 
+                       {% if current_category == category.slug %}checked{% endif %}>
+                {{ category.name }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Cor -->
+          {% if available_colors %}
+          <div class="mb-4">
+            <h6 class="filter-title">Cor</h6>
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="cor" value="" 
+                       {% if not current_color %}checked{% endif %}>
+                Todas as cores
+              </label>
+            </div>
+            {% for color in available_colors %}
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="cor" value="{{ color }}" 
+                       {% if current_color == color %}checked{% endif %}>
+                {{ color }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- Tamanho -->
+          {% if available_sizes %}
+          <div class="mb-4">
+            <h6 class="filter-title">Tamanho</h6>
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="tamanho" value="" 
+                       {% if not current_size %}checked{% endif %}>
+                Todos os tamanhos
+              </label>
+            </div>
+            {% for size in available_sizes %}
+            <div class="filter-option">
+              <label>
+                <input type="radio" name="tamanho" value="{{ size }}" 
+                       {% if current_size == size %}checked{% endif %}>
+                {{ size }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn-primary w-100">Aplicar Filtros</button>
+          <a href="{% url 'core:shop' %}" class="btn btn-outline-secondary w-100 mt-2">Limpar Filtros</a>
+        </form>
+      </div>
+    </div>
+
+    <!-- Área de Produtos -->
+    <div class="col-lg-9">
+      <!-- Controles de Ordenação -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <span class="text-muted">{{ total_products }} produtos encontrados</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <label for="sort" class="form-label me-2 mb-0">Ordenar por:</label>
+          <select class="form-select sort-dropdown" id="sort" name="ordenar" onchange="this.form.submit()">
+            <option value="novidades" {% if current_order == 'novidades' %}selected{% endif %}>Novidades</option>
+            <option value="preco_menor" {% if current_order == 'preco_menor' %}selected{% endif %}>Menor preço</option>
+            <option value="preco_maior" {% if current_order == 'preco_maior' %}selected{% endif %}>Maior preço</option>
+            <option value="nome" {% if current_order == 'nome' %}selected{% endif %}>Nome A-Z</option>
+            <option value="mais_vendidos" {% if current_order == 'mais_vendidos' %}selected{% endif %}>Mais vendidos</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid de Produtos -->
+      {% if products %}
+      <div class="product-grid" id="products-grid">
+        {% for product in products %}
+        <div class="product-card card">
+          <div class="position-relative">
+            <img src="{{ product.main_image.url }}" class="card-img-top product-image" alt="{{ product.name }}">
+            
+            <!-- Badges -->
+            {% if product.is_featured %}
+            <span class="badge bg-warning product-badge">Destaque</span>
+            {% elif product.is_bestseller %}
+            <span class="badge bg-success product-badge">Mais Vendido</span>
+            {% endif %}
+            
+            {% if product.discount_percentage > 0 %}
+            <span class="badge bg-danger product-badge" style="top: 40px;">-{{ product.discount_percentage }}%</span>
+            {% endif %}
+          </div>
+          
+          <div class="product-info">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text text-muted small">{{ product.short_description|truncatechars:80 }}</p>
+            
+            <!-- Avaliação -->
+            <div class="rating-stars mb-2">
+              {% for i in "12345" %}
+                {% if forloop.counter <= 5 %}
+                  <i class="fas fa-star"></i>
+                {% else %}
+                  <i class="far fa-star"></i>
+                {% endif %}
+              {% endfor %}
+              <span class="ms-1 text-muted small">(5.0)</span>
+            </div>
+            
+            <!-- Preço -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="product-price">R$ {{ product.price|floatformat:2 }}</span>
+                {% if product.compare_price %}
+                <span class="product-compare-price">R$ {{ product.compare_price|floatformat:2 }}</span>
+                {% endif %}
+              </div>
+            </div>
+            
+            <!-- Status de Estoque -->
+            {% if not product.is_available %}
+            <div class="out-of-stock">ESGOTADO</div>
+            {% else %}
+            <div class="d-grid gap-2">
+              <form method="post" action="{% url 'core:add_to_cart' product.id %}" class="d-inline add-to-cart-form">
+                {% csrf_token %}
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn btn-primary w-100" type="submit">
+                  <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+                </button>
+              </form>
+              <div class="d-flex gap-2">
+                <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary flex-grow-1">Ver Detalhes</a>
+                <button class="btn btn-outline-danger" onclick="addToWishlist({{ product.id }})" title="Adicionar aos Favoritos">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Paginação -->
+      {% if is_paginated %}
+      <nav aria-label="Paginação de produtos" class="mt-5">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">Anterior</a>
+          </li>
+          {% endif %}
+          
+          {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+          <li class="page-item active">
+            <span class="page-link">{{ num }}</span>
+          </li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li class="page-item">
+            <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}">{{ num }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+          
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">Próximo</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+
+      {% else %}
+      <!-- Nenhum produto encontrado -->
+      <div class="text-center py-5">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h4>Nenhum produto encontrado</h4>
+        <p class="text-muted">Tente ajustar os filtros ou buscar por outros termos.</p>
+        <a href="{% url 'core:shop' %}" class="btn btn-primary">Ver Todos os Produtos</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Auto-submit do formulário de filtros
+  const filterForm = document.getElementById('filter-form');
+  const filterInputs = filterForm.querySelectorAll('input[type="radio"]');
   
-</section>
-{% endblock %}
+  filterInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      filterForm.submit();
+    });
+  });
+  
+  // Busca com debounce
+  const searchInput = document.getElementById('search');
+  let searchTimeout;
+  
+  searchInput.addEventListener('input', function() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      filterForm.submit();
+    }, 500);
+  });
+  
+  // Alternar visualização
+  const gridView = document.getElementById('grid-view');
+  const listView = document.getElementById('list-view');
+  const productsGrid = document.getElementById('products-grid');
+  
+  gridView.addEventListener('click', function() {
+    productsGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
+    gridView.classList.add('active');
+    listView.classList.remove('active');
+  });
+  
+  listView.addEventListener('click', function() {
+    productsGrid.style.gridTemplateColumns = '1fr';
+         listView.classList.add('active');
+         gridView.classList.remove('active');
+       });
+       
+       // Adicionar ao carrinho via AJAX
+       document.addEventListener('DOMContentLoaded', function() {
+         const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+         
+         addToCartForms.forEach(form => {
+           form.addEventListener('submit', function(e) {
+             e.preventDefault();
+             
+             const formData = new FormData(this);
+             const productId = this.action.split('/').slice(-2, -1)[0];
+             
+             fetch(this.action, {
+               method: 'POST',
+               headers: {
+                 'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                 'X-Requested-With': 'XMLHttpRequest'
+               },
+               body: formData
+             })
+             .then(response => response.json())
+             .then(data => {
+               if (data.success) {
+                 
+                 // Atualizar badge do carrinho
+                 const cartBadge = document.getElementById('cart-badge');
+                 if (cartBadge) {
+                   cartBadge.textContent = data.cart_total_items;
+                   cartBadge.style.display = 'inline';
+                 }
+                 
+                 // Atualizar total do carrinho na navbar
+                 const cartTotal = document.getElementById('cart-total');
+                 if (cartTotal) {
+                   cartTotal.textContent = data.cart_total_price_formatted;
+                 }
+                 
+                 // Mostrar notificação com detalhes do item adicionado
+                 const itemTotal = data.item_price * data.item_quantity;
+                 const itemTotalFormatted = `R$ ${itemTotal.toFixed(2)}`.replace('.', ',');
+                 showNotification(`${data.message}<br><small>Item: ${data.item_price_formatted} × ${data.item_quantity} = ${itemTotalFormatted}<br>Total do carrinho: ${data.cart_total_price_formatted}`, 'success');
+                 
+                 // Feedback visual no botão
+                 const button = this.querySelector('button');
+                 const originalText = button.innerHTML;
+                 button.innerHTML = '<i class="fas fa-check me-2"></i>Adicionado!';
+                 button.classList.add('btn-success');
+                 button.classList.remove('btn-primary');
+                 
+                 setTimeout(() => {
+                   button.innerHTML = originalText;
+                   button.classList.remove('btn-success');
+                   button.classList.add('btn-primary');
+                 }, 2000);
+               } else {
+                 showNotification(data.message, 'error');
+               }
+             })
+             .catch(error => {
+               console.error('Erro:', error);
+               showNotification('Erro ao adicionar produto', 'error');
+             });
+           });
+         });
+       });
+       
+       // Função para mostrar notificações
+       function showNotification(message, type) {
+         const notification = document.createElement('div');
+         notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show position-fixed`;
+         notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+         notification.innerHTML = `
+           ${message}
+           <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         `;
+         
+         document.body.appendChild(notification);
+         
+         // Remover automaticamente após 3 segundos
+         setTimeout(() => {
+           if (notification.parentNode) {
+             notification.remove();
+           }
+         }, 3000);
+       }
+       
+       // Adicionar aos favoritos
+       window.addToWishlist = function(productId) {
+         fetch(`/favoritos/adicionar/${productId}/`, {
+           method: 'POST',
+           headers: {
+             'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+             'Content-Type': 'application/x-www-form-urlencoded',
+           }
+         })
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             // Mostrar notificação
+             showNotification(data.message, 'success');
+             
+             // Atualizar badge
+             const badge = document.getElementById('wishlist-badge');
+             if (badge) {
+               badge.textContent = data.wishlist_total_items;
+               badge.style.display = 'inline';
+             }
+             
+             // Feedback visual
+             event.target.innerHTML = '<i class="fas fa-heart text-danger"></i>';
+             setTimeout(() => {
+               event.target.innerHTML = '<i class="fas fa-heart"></i>';
+             }, 1000);
+           } else {
+             showNotification(data.message, 'error');
+           }
+         })
+         .catch(error => {
+           console.error('Erro:', error);
+           showNotification('Erro ao adicionar aos favoritos', 'error');
+         });
+       };
+     });
+     </script>
+     
+     <!-- CSRF Token -->
+     {% csrf_token %}
+     {% endblock %}
 
 

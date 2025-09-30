@@ -22,6 +22,11 @@ environ.Env.read_env(BASE_DIR / '.env')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default='django-insecure-ep24b3!wp^l@rdar&ki!2bvgn)p09%22_90@584f=%9ph$1^3!')
 
+# Security: Generate new secret key if using default
+if SECRET_KEY == 'django-insecure-ep24b3!wp^l@rdar&ki!2bvgn)p09%22_90@584f=%9ph$1^3!':
+    import warnings
+    warnings.warn("Using default SECRET_KEY. Generate a new one for production!")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=True)
 
@@ -58,6 +63,8 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'core.middleware.PerformanceMiddleware',
+    'core.middleware.SecurityHeadersMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,6 +72,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Rate limiting apenas em produção
+if not DEBUG:
+    MIDDLEWARE.extend([
+        'core.middleware.RateLimitMiddleware',
+        'core.middleware.ErrorHandlingMiddleware',
+    ])
 
 ROOT_URLCONF = 'projeto.urls'
 
@@ -180,6 +194,30 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
     SECURE_CROSS_ORIGIN_EMBEDDER_POLICY = 'require-corp'
+    # Additional security headers
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Strict'
+    CSRF_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_SAMESITE = 'Strict'
+    # Password validation
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+            'OPTIONS': {
+                'min_length': 12,
+            }
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
 else:
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
@@ -197,6 +235,103 @@ CSRF_TRUSTED_ORIGINS = [
     'https://asbjj.com.br',
     'https://www.asbjj.com.br'
 ]
+
+# Rate limiting
+RATELIMIT_ENABLE = True
+RATELIMIT_USE_CACHE = 'default'
+
+# Session security
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 3600  # 1 hour
+SESSION_SAVE_EVERY_REQUEST = True
+
+# CSRF settings
+CSRF_COOKIE_AGE = 3600
+CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
+
+# File upload security
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000
+
+# Admin security
+ADMIN_URL = env('ADMIN_URL', default='admin/')
+
+# WhatsApp configuration
+ADMIN_WHATSAPP = env('ADMIN_WHATSAPP', default='')  # Formato: 5521999999999 (código país + DDD + número)
+
+# Database optimization
+DATABASES['default']['CONN_MAX_AGE'] = 60
+
+# MySQL specific options
+if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
+    DATABASES['default']['OPTIONS'] = {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        'charset': 'utf8mb4',
+    }
+
+# Static files optimization
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files optimization
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+# Template optimization
+if not DEBUG:
+    TEMPLATES[0]['OPTIONS']['loaders'] = [
+        ('django.template.loaders.cached.Loader', [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ]),
+    ]
+    TEMPLATES[0]['OPTIONS']['app_dirs'] = False
+
+# Logging optimization
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'maxBytes': 1024*1024*15,  # 15MB
+            'backupCount': 10,
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG' if DEBUG else 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+    },
+}
 
 # Em desenvolvimento, confiar também em origens locais
 if DEBUG:
@@ -220,8 +355,16 @@ if REDIS_URL and not DEBUG:
             'LOCATION': REDIS_URL,
             'OPTIONS': {
                 'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'CONNECTION_POOL_KWARGS': {
+                    'max_connections': 50,
+                    'retry_on_timeout': True,
+                },
+                'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+                'SERIALIZER': 'django_redis.serializers.json.JSONSerializer',
             },
-            'KEY_PREFIX': env('CACHE_KEY_PREFIX', default='asbjj')
+            'KEY_PREFIX': env('CACHE_KEY_PREFIX', default='asbjj'),
+            'TIMEOUT': 300,  # 5 minutes default
+            'VERSION': 1,
         }
     }
     SESSION_ENGINE = 'django.contrib.sessions.backends.cache'

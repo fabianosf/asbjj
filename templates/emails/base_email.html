@@ -3,157 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASBJJ - {{ title|default:"E-mail" }}</title>
+    <title>{% block title %}ASBJJ{% endblock %}</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
             background-color: #f4f4f4;
         }
-        .email-container {
+        
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
             background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            overflow: hidden;
         }
-        .header {
-            background: linear-gradient(135deg, #dc3545, #ffc107);
-            color: white;
+        
+        .email-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ffffff;
             padding: 30px 20px;
             text-align: center;
         }
-        .header h1 {
+        
+        .email-header h1 {
+            font-size: 24px;
+            font-weight: 700;
             margin: 0;
-            font-size: 28px;
+        }
+        
+        .email-header .logo {
+            font-size: 32px;
             font-weight: bold;
+            margin-bottom: 10px;
         }
-        .header p {
-            margin: 10px 0 0 0;
-            font-size: 16px;
-            opacity: 0.9;
+        
+        .email-body {
+            padding: 40px 30px;
         }
-        .content {
-            padding: 30px 20px;
-        }
-        .content h2 {
-            color: #dc3545;
-            border-bottom: 2px solid #ffc107;
-            padding-bottom: 10px;
+        
+        .email-body h2 {
+            color: #2c3e50;
+            font-size: 22px;
             margin-bottom: 20px;
         }
-        .content p {
+        
+        .email-body p {
             margin-bottom: 15px;
+            color: #555;
         }
-        .highlight {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 20px 0;
+        
+        .info-box {
+            background-color: #ecf0f1;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 25px 0;
         }
+        
+        .info-box strong {
+            color: #2c3e50;
+        }
+        
         .button {
             display: inline-block;
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: #ffffff !important;
             text-decoration: none;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 5px;
-            font-weight: bold;
-            margin: 10px 0;
+            margin: 20px 0;
+            font-weight: 600;
+            text-align: center;
         }
+        
         .button:hover {
-            background: linear-gradient(135deg, #c82333, #a71e2a);
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
         }
-        .footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px;
+        
+        .email-footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 30px 20px;
             text-align: center;
             font-size: 14px;
         }
-        .footer a {
-            color: #ffc107;
+        
+        .email-footer p {
+            margin: 10px 0;
+            color: #ecf0f1;
+        }
+        
+        .email-footer a {
+            color: #e74c3c;
             text-decoration: none;
         }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .contact-info {
-            background-color: #f8f9fa;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        .contact-info h3 {
-            margin: 0 0 10px 0;
-            color: #dc3545;
-        }
-        .contact-info p {
-            margin: 5px 0;
-        }
+        
         .social-links {
             margin: 20px 0;
         }
+        
         .social-links a {
             display: inline-block;
             margin: 0 10px;
-            color: #ffc107;
+            color: #ffffff;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 20px;
         }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
+        
+        .divider {
+            height: 1px;
+            background-color: #ecf0f1;
+            margin: 30px 0;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 30px 20px;
             }
-            .header {
-                padding: 20px 15px;
-            }
-            .header h1 {
-                font-size: 24px;
-            }
-            .content {
-                padding: 20px 15px;
+            
+            .button {
+                display: block;
+                margin: 20px 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <div class="header">
-            <h1>ASBJJ</h1>
-            <p>Alexandre Salgado Brazilian Jiu-Jitsu</p>
+    <div class="email-wrapper">
+        <div class="email-header">
+            <div class="logo">🥋 ASBJJ</div>
+            <h1>Alexandre Salgado Brazilian Jiu-Jitsu</h1>
         </div>
         
-        <div class="content">
+        <div class="email-body">
             {% block content %}{% endblock %}
         </div>
         
-        <div class="footer">
-            <div class="contact-info">
-                <h3>Entre em Contato</h3>
-                <p><strong>E-mail:</strong> admin@asbjj.com.br</p>
-                <p><strong>WhatsApp:</strong> +55 11 99999-9999</p>
-                <p><strong>Site:</strong> <a href="https://asbjj.com.br">https://asbjj.com.br</a></p>
-            </div>
-            
+        <div class="email-footer">
             <div class="social-links">
-                <a href="https://instagram.com/asbjj">Instagram</a>
-                <a href="https://facebook.com/asbjj">Facebook</a>
-                <a href="https://youtube.com/asbjj">YouTube</a>
+                <a href="https://www.instagram.com/asbjj" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/asbjj" title="Facebook">👥</a>
+                <a href="https://wa.me/5521989307826" title="WhatsApp">💬</a>
             </div>
             
-            <p>
-                Este e-mail foi enviado para {{ recipient_email }}.<br>
-                Se você não deseja mais receber nossos e-mails, 
-                <a href="{{ unsubscribe_url }}">clique aqui para se descadastrar</a>.
-            </p>
+            <div class="divider"></div>
             
-            <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
-                ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu. Academia de Artes Marciais.
+            <p><strong>ASBJJ - Alexandre Salgado Brazilian Jiu-Jitsu</strong></p>
+            <p>📍 São Paulo, Brasil</p>
+            <p>📧 <a href="mailto:contato@asbjj.com.br">contato@asbjj.com.br</a></p>
+            <p>📱 <a href="https://wa.me/5521989307826">(21) 98930-7826</a></p>
+            
+            <p style="margin-top: 20px; font-size: 12px; color: #95a5a6;">
+                Este é um e-mail automático, por favor não responda.<br>
+                Para entrar em contato, use os canais informados acima.
             </p>
         </div>
     </div>

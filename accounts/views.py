@@ -2,8 +2,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -11,7 +9,6 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmVie
 from django.urls import reverse_lazy
 import os
 from django.conf import settings
-from students.user_models import UserProfile
 
 
 def login_view(request):
@@ -33,7 +30,6 @@ def login_view(request):
 
             # Autenticar com username
             user = authenticate(request, username=username, password=password)
-            print(f"Authenticated User: {user}")  # Adicione isso para depuração
 
             if user is not None:
                 login(request, user)
@@ -68,8 +64,6 @@ def register_view(request):
             form.save()
             messages.success(request, "Registro realizado com sucesso! Faça login para continuar.")
             return redirect("accounts:login")
-        else:
-            print(form.errors)  # Isso ajudará a depurar possíveis erros
     else:
         form = UserRegistrationForm()
     return render(request, "accounts/register.html", {"form": form})
@@ -85,7 +79,6 @@ def robots(request):
     with open(path, 'r') as arquivo:
         return HttpResponse(arquivo, content_type="text/plain")
         
-    #print(path)     
         #return HttpResponse(arq, content_type="text/plain")
     # return HttpResponse("teste")
 

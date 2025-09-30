@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - ASBJJ{% endblock %}
+{% block description %}Finalize sua compra na ASBJJ{% endblock %}
+
+{% block extra_css %}
+<style>
+.checkout-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.checkout-form {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.order-summary {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  height: fit-content;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.payment-method {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.payment-method.selected {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+}
+
+.payment-method input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .checkout-form {
+    padding: 1rem;
+  }
+  
+  .order-summary {
+    margin-top: 2rem;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header do Checkout -->
+<div class="checkout-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="mb-2">Finalizar Compra</h1>
+        <p class="mb-0">Complete seus dados para finalizar o pedido</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <span class="fs-5">{{ cart.total_items }} itens</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Página inicial</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:shop' %}">Loja</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:cart' %}">Carrinho</a></li>
+      <li class="breadcrumb-item active">Checkout</li>
+    </ol>
+  </nav>
+
+  <form method="post" id="checkout-form">
+    {% csrf_token %}
+    
+    <div class="row">
+      <!-- Formulário de Checkout -->
+      <div class="col-lg-8">
+        <div class="checkout-form">
+          <h3 class="mb-4">Informações do Cliente</h3>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.customer_name.id_for_label }}" class="form-label">{{ form.customer_name.label }}</label>
+              {{ form.customer_name }}
+              {% if form.customer_name.errors %}
+                <div class="text-danger small">{{ form.customer_name.errors.0 }}</div>
+              {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.customer_phone.id_for_label }}" class="form-label">{{ form.customer_phone.label }}</label>
+              {{ form.customer_phone }}
+              {% if form.customer_phone.errors %}
+                <div class="text-danger small">{{ form.customer_phone.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="{{ form.customer_email.id_for_label }}" class="form-label">{{ form.customer_email.label }}</label>
+            {{ form.customer_email }}
+            {% if form.customer_email.errors %}
+              <div class="text-danger small">{{ form.customer_email.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <hr class="my-4">
+          
+          <h3 class="mb-4">Endereço de Entrega</h3>
+          
+          <div class="mb-3">
+            <label for="{{ form.shipping_address.id_for_label }}" class="form-label">{{ form.shipping_address.label }}</label>
+            {{ form.shipping_address }}
+            {% if form.shipping_address.errors %}
+              <div class="text-danger small">{{ form.shipping_address.errors.0 }}</div>
+            {% endif %}
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.shipping_city.id_for_label }}" class="form-label">{{ form.shipping_city.label }}</label>
+              {{ form.shipping_city }}
+              {% if form.shipping_city.errors %}
+                <div class="text-danger small">{{ form.shipping_city.errors.0 }}</div>
+              {% endif %}
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="{{ form.shipping_state.id_for_label }}" class="form-label">{{ form.shipping_state.label }}</label>
+              {{ form.shipping_state }}
+              {% if form.shipping_state.errors %}
+                <div class="text-danger small">{{ form.shipping_state.errors.0 }}</div>
+              {% endif %}
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="{{ form.shipping_zip_code.id_for_label }}" class="form-label">{{ form.shipping_zip_code.label }}</label>
+              {{ form.shipping_zip_code }}
+              {% if form.shipping_zip_code.errors %}
+                <div class="text-danger small">{{ form.shipping_zip_code.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <hr class="my-4">
+          
+          <h3 class="mb-4">Método de Pagamento</h3>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="payment-method" onclick="selectPaymentMethod('pix')">
+                <input type="radio" name="payment_method" value="pix" id="payment_pix" class="form-check-input">
+                <label for="payment_pix" class="form-check-label">
+                  <i class="fas fa-qrcode me-2"></i>PIX
+                </label>
+                <small class="d-block text-muted">Pagamento instantâneo</small>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="payment-method" onclick="selectPaymentMethod('credit_card')">
+                <input type="radio" name="payment_method" value="credit_card" id="payment_credit" class="form-check-input">
+                <label for="payment_credit" class="form-check-label">
+                  <i class="fas fa-credit-card me-2"></i>Cartão de Crédito
+                </label>
+                <small class="d-block text-muted">Visa, Mastercard, Elo</small>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="payment-method" onclick="selectPaymentMethod('debit_card')">
+                <input type="radio" name="payment_method" value="debit_card" id="payment_debit" class="form-check-input">
+                <label for="payment_debit" class="form-check-label">
+                  <i class="fas fa-credit-card me-2"></i>Cartão de Débito
+                </label>
+                <small class="d-block text-muted">Débito em conta</small>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="payment-method" onclick="selectPaymentMethod('bank_transfer')">
+                <input type="radio" name="payment_method" value="bank_transfer" id="payment_transfer" class="form-check-input">
+                <label for="payment_transfer" class="form-check-label">
+                  <i class="fas fa-university me-2"></i>Transferência Bancária
+                </label>
+                <small class="d-block text-muted">TED, DOC, PIX</small>
+              </div>
+            </div>
+          </div>
+          
+          {% if form.payment_method.errors %}
+            <div class="text-danger small">{{ form.payment_method.errors.0 }}</div>
+          {% endif %}
+
+          <hr class="my-4">
+          
+          <div class="mb-3">
+            <label for="{{ form.notes.id_for_label }}" class="form-label">{{ form.notes.label }}</label>
+            {{ form.notes }}
+            {% if form.notes.errors %}
+              <div class="text-danger small">{{ form.notes.errors.0 }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo do Pedido -->
+      <div class="col-lg-4">
+        <div class="order-summary">
+          <h4 class="mb-3">Resumo do Pedido</h4>
+          
+          {% for item in cart_items %}
+          <div class="summary-item">
+            <div class="d-flex align-items-center">
+              <img src="{{ item.product.main_image.url }}" class="summary-item-image me-3" alt="{{ item.product.name }}">
+              <div>
+                <div class="fw-bold">{{ item.product.name }}</div>
+                <small class="text-muted">Qtd: {{ item.quantity }}</small>
+              </div>
+            </div>
+            <div class="text-end">
+              <div class="fw-bold">R$ {{ item.total_price|floatformat:2 }}</div>
+            </div>
+          </div>
+          {% endfor %}
+          
+          <hr>
+          
+          <div class="summary-item">
+            <span>Subtotal ({{ cart.total_items }} itens):</span>
+            <span>R$ {{ cart.total_price|floatformat:2 }}</span>
+          </div>
+          
+          <div class="summary-item">
+            <span>Frete:</span>
+            <span class="text-success">Grátis</span>
+          </div>
+          
+          <hr>
+          
+          <div class="summary-item">
+            <strong>Total:</strong>
+            <strong class="text-primary">R$ {{ cart.total_price|floatformat:2 }}</strong>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+            <i class="fas fa-credit-card me-2"></i>Finalizar Pedido
+          </button>
+          
+          <div class="mt-3 text-center">
+            <small class="text-muted">
+              <i class="fas fa-shield-alt me-1"></i>
+              Compra 100% segura
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Scripts -->
+<script>
+function selectPaymentMethod(method) {
+  // Remove seleção anterior
+  document.querySelectorAll('.payment-method').forEach(el => {
+    el.classList.remove('selected');
+  });
+  
+  // Adiciona seleção atual
+  event.currentTarget.classList.add('selected');
+  document.getElementById(`payment_${method}`).checked = true;
+}
+
+// Validação do formulário
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+  const paymentMethod = document.querySelector('input[name="payment_method"]:checked');
+  
+  if (!paymentMethod) {
+    e.preventDefault();
+    alert('Por favor, selecione um método de pagamento');
+    return false;
+  }
+  
+  // Mostrar loading
+  const submitBtn = document.querySelector('button[type="submit"]');
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processando...';
+  submitBtn.disabled = true;
+});
+</script>
+{% endblock %}

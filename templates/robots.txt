@@ -2,21 +2,20 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: {{ SITE_URL }}/sitemap.xml
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin/
+Disallow: /dashboard/
 Disallow: /accounts/
-Disallow: /agendamentos/
+Disallow: /api/
 Disallow: /static/admin/
-Disallow: /media/
+Disallow: /media/admin/
 
 # Allow important pages
-Allow: /
-Allow: /sobre/
-Allow: /servicos/
-Allow: /contato/
-Allow: /blog/
-Allow: /galeria/
-Allow: /aulas/
-Allow: /depoimentos/
+Allow: /static/
+Allow: /media/shop/
+Allow: /media/gallery/
+
+# Crawl delay
+Crawl-delay: 1
