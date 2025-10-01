@@ -231,6 +231,39 @@
   }
 }
 
+/* Hero section mobile styles */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 3rem;
+    min-height: auto;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem !important;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero .col-lg-6:last-child {
+    margin-top: 2rem;
+  }
+}
+
 /* General mobile improvements */
 @media (max-width: 768px) {
   .container {
@@ -271,8 +304,31 @@
 }
 </style>
 
-<!-- begin carrousel -->
-<section id="showcase">
+<!-- begin hero section -->
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="hero-title">Transforme sua vida com as artes marciais</h1>
+        <p class="hero-subtitle">Academia especializada em Jiu-Jitsu, Defesa Pessoal e Yoga. Professores experientes, ambiente acolhedor e resultados garantidos.</p>
+        <div class="hero-buttons">
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg me-3">
+            <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+          </a>
+          <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="{% static 'img/imagem1.jpg' %}" alt="Artes Marciais" class="img-fluid rounded">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- begin carrousel (hidden on mobile) -->
+<section id="showcase" class="d-none d-md-block">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
