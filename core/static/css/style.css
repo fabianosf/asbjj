@@ -84,6 +84,91 @@ body::before { content: none; }
     gap: 2rem;
 }
 
+/* Bootstrap navbar overrides */
+.navbar-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.navbar-brand:hover {
+    opacity: 0.8;
+}
+
+.navbar-toggler {
+    border: 2px solid rgba(0, 0, 0, 0.3) !important;
+    padding: 8px 12px;
+    background: transparent;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* Mobile navbar collapse */
+.navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+    padding: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    
+    .navbar-nav {
+        width: 100%;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 12px 16px;
+        margin: 4px 0;
+        border-radius: 6px;
+        color: #000 !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: var(--transition);
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: #ffc107 !important;
+        transform: translateX(5px);
+    }
+    
+    .navbar-actions {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-intro {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
 /* Logo */
 .navbar-logo {
     display: flex;
