@@ -103,6 +103,10 @@ body::before { content: none; }
     background: transparent;
     border-radius: 6px;
     transition: var(--transition);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .navbar-toggler:focus {
@@ -817,7 +821,7 @@ header {
     padding: 8rem 0;
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
 }
@@ -1207,7 +1211,7 @@ footer a:hover {
     }
     
     .hero {
-        padding: 6rem 0 4rem;
+        padding: 3rem 2rem;
         min-height: auto;
     }
     
@@ -1246,7 +1250,7 @@ footer a:hover {
     
     /* Hero Section Mobile */
     .hero {
-        padding: 4rem 0 3rem;
+        padding: 4rem 3rem;
         min-height: auto;
     }
     
