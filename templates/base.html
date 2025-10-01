@@ -542,12 +542,10 @@
             // Highlight active page in navbar
             const currentPath = window.location.pathname;
             const navLinks = document.querySelectorAll('.nav-link-item');
-            
             navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath || 
-                    (currentPath === '/' && link.getAttribute('href').includes('index'))) {
-                    link.style.color = '#ffc107';
-                    link.style.borderBottom = '2px solid #ffc107';
+                const href = link.getAttribute('href');
+                if (href === currentPath || (currentPath === '/' && href.includes('index'))) {
+                    link.classList.add('active');
                 }
             });
             
