@@ -67,9 +67,10 @@ body::before { content: none; }
     left: 0;
     right: 0;
     z-index: 9999;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .modern-navbar {
@@ -104,7 +105,7 @@ body::before { content: none; }
 .logo-text {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
+    color: #000000;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -119,7 +120,7 @@ body::before { content: none; }
 }
 
 .nav-link-item {
-    color: rgba(255, 255, 255, 0.9);
+    color: #000000;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
@@ -143,6 +144,7 @@ body::before { content: none; }
 
 .nav-link-item:hover {
     color: #ffc107;
+    font-weight: 700;
 }
 
 .nav-link-item:hover::after {
@@ -178,7 +180,7 @@ body::before { content: none; }
 }
 
 .btn-cart {
-    color: #fff;
+    color: #000000;
     font-size: 1.5rem;
     text-decoration: none;
     transition: var(--transition);
@@ -188,7 +190,7 @@ body::before { content: none; }
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     position: relative;
 }
 
@@ -213,7 +215,7 @@ body::before { content: none; }
 }
 
 .btn-login {
-    color: #fff;
+    color: #000000;
     font-size: 1.5rem;
     text-decoration: none;
     transition: var(--transition);
@@ -223,7 +225,7 @@ body::before { content: none; }
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .btn-login:hover {
@@ -233,7 +235,7 @@ body::before { content: none; }
 }
 
 .btn-user {
-    color: #fff;
+    color: #000000;
     font-size: 1.5rem;
     text-decoration: none;
     transition: var(--transition);
@@ -243,7 +245,7 @@ body::before { content: none; }
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .btn-user:hover {
