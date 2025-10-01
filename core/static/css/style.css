@@ -60,7 +60,239 @@ body {
 /* Removido o fundo decorativo para maximizar contraste e legibilidade */
 body::before { content: none; }
 
-/* ===== NAVBAR ===== */
+/* ===== MODERN NAVBAR ===== */
+.modern-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modern-navbar {
+    padding: 1rem 0;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Logo */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.navbar-logo:hover {
+    opacity: 0.8;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Navigation Links */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-link-item {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-link-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ffc107;
+    transition: width 0.3s ease;
+}
+
+.nav-link-item:hover {
+    color: #ffc107;
+}
+
+.nav-link-item:hover::after {
+    width: 100%;
+}
+
+/* Action Buttons */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-intro {
+    background: #ffc107;
+    color: #000;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    border: 2px solid #ffc107;
+}
+
+.btn-intro:hover {
+    background: transparent;
+    color: #ffc107;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.btn-user {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-user:hover {
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+    transform: scale(1.1);
+}
+
+/* Responsive Navbar */
+@media (max-width: 992px) {
+    .navbar-content {
+        gap: 1rem;
+    }
+    
+    .navbar-links {
+        gap: 1rem;
+    }
+    
+    .nav-link-item {
+        font-size: 0.85rem;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modern-navbar {
+        padding: 0.75rem 0;
+    }
+    
+    .navbar-content {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .navbar-logo {
+        order: 1;
+    }
+    
+    .navbar-actions {
+        order: 2;
+    }
+    
+    .navbar-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-around;
+        gap: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-link-item {
+        font-size: 0.75rem;
+        padding: 0.25rem 0;
+    }
+    
+    .logo-text {
+        display: none;
+    }
+    
+    .logo-img {
+        height: 35px;
+    }
+    
+    .btn-intro {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-links {
+        gap: 0.25rem;
+    }
+    
+    .nav-link-item {
+        font-size: 0.7rem;
+    }
+    
+    .btn-intro {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Ajuste do body para navbar fixa */
+body {
+    padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 120px;
+    }
+}
+
+/* Old navbar styles (deprecated) */
 .navbar {
     transition: var(--transition);
     backdrop-filter: blur(20px);
