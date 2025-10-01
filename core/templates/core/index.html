@@ -284,14 +284,29 @@
       <div class="carousel-item active">
         <img src="{% static 'img/imagem1.jpg' %}" class="d-block w-100" alt="Graduação">
         <div class="carousel-caption d-none d-md-block text-right mb-5">
-          <h1 class="display-3">Graduação</h1>
-          <p class="lead"></p>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <h1 class="display-3">Transforme sua vida com as artes marciais</h1>
+          <p class="lead">Academia especializada em Jiu-Jitsu, Defesa Pessoal e Yoga. Professores experientes, ambiente acolhedor e resultados garantidos.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg me-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
         <!-- Mobile caption -->
         <div class="carousel-caption d-md-none text-center">
-          <h1>Graduação</h1>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
+          <h1>Transforme sua vida com as artes marciais</h1>
+          <p>Academia especializada em Jiu-Jitsu, Defesa Pessoal e Yoga.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm mb-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-sm">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
       </div>
 
@@ -299,13 +314,28 @@
         <img src="{% static 'img/imagem2.jpg' %}" class="d-block w-100" alt="Guerreiras no Tatame">
         <div class="carousel-caption d-none d-md-block text-right mb-5">
           <h1 class="display-3">Guerreiras no Tatame</h1>
-          <p class="lead"></p>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <p class="lead">Empoderamento feminino através das artes marciais.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg me-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
         <!-- Mobile caption -->
         <div class="carousel-caption d-md-none text-center">
           <h1>Guerreiras no Tatame</h1>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
+          <p>Empoderamento feminino através das artes marciais.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm mb-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-sm">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
       </div>
 
@@ -313,13 +343,28 @@
         <img src="{% static 'img/imagem3.jpg' %}" class="d-block w-100" alt="Crianças no Tatame">
         <div class="carousel-caption d-none d-md-block text-right mb-5">
           <h1 class="display-3">Crianças no Tatame</h1>
-          <p class="lead"></p>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <p class="lead">Desenvolvimento físico e mental para crianças.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg me-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
         <!-- Mobile caption -->
         <div class="carousel-caption d-md-none text-center">
           <h1>Crianças no Tatame</h1>
-          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
+          <p>Desenvolvimento físico e mental para crianças.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm mb-2">
+              <i class="fas fa-calendar-check me-2"></i>Aula Experimental Grátis
+            </a>
+            <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-sm">
+              <i class="fas fa-info-circle me-2"></i>Conhecer Modalidades
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -364,6 +409,81 @@
   </div>
 </section>
 <!-- end section services-->
+
+<!-- begin why choose section -->
+<section id="why-choose" class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="section-title">Por que escolher a ASBJJ?</h2>
+        <p class="lead">Descubra os diferenciais que fazem da nossa academia a melhor escolha para sua jornada nas artes marciais.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h4>Segurança em Primeiro Lugar</h4>
+          <p>Ambiente seguro e supervisionado por instrutores certificados, garantindo a segurança de todos os alunos.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h4>Resultados Comprovados</h4>
+          <p>Métodos de ensino eficazes que já transformaram centenas de vidas através das artes marciais.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Comunidade Acolhedora</h4>
+          <p>Faça parte de uma comunidade unida que apoia o crescimento pessoal e profissional de cada membro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end why choose section -->
+
+<!-- begin instructors section -->
+<section id="instructors" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="section-title">Professores Experientes</h2>
+        <p class="lead">Conheça os instrutores que vão guiar sua jornada nas artes marciais.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="text-center">
+          <div class="instructor-icon mb-3">
+            <i class="fas fa-user-ninja"></i>
+          </div>
+          <h4>Alexandre Salgado e Ana Carolina</h4>
+          <p class="text-muted">Alexandre Salgado e Ana Carolina são instrutores certificados com anos de experiência no ensino de artes marciais. Sua paixão e dedicação garantem um aprendizado de qualidade excepcional.</p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="text-center">
+          <div class="instructor-icon mb-3">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h4>Metodologia Especializada</h4>
+          <p class="text-muted">Nossa metodologia combina técnicas tradicionais com abordagens modernas, adaptadas para diferentes níveis e objetivos dos alunos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end instructors section -->
 
 <!-- begin Titulo-->
 <section id="home-heading" class="p-5">
