@@ -2,38 +2,96 @@
 {% load static %}
 {% block content %}
 
-
 {% include 'core/alerta_mensagem.html' %}
+
 <style>
 /* Carrossel Item */
 .carousel-item {
-  height: 90vh; /* Altura do carrossel ajustada com base na altura da viewport */
-  background-size: cover; /* Ajusta a imagem para cobrir todo o carrossel */
-  background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Evita repetição da imagem */
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Ajuste para dispositivos móveis */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .carousel-item {
-    height: 40vh; /* Reduz a altura do carrossel em telas menores */
+    height: 50vh;
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+  }
+  
+  .carousel-caption h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 10px;
+  }
+  
+  .carousel-caption .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item {
+    height: 45vh;
+  }
+  
+  .carousel-caption h1 {
+    font-size: 1.25rem !important;
+  }
+  
+  .carousel-caption .btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
 
 /* Remove margens e padding adicionais */
 .carousel-caption {
-  margin-bottom: 0; /* Remove o margin-bottom padrão */
+  margin-bottom: 0;
 }
 
 #home-heading {
   position: relative;
-  min-height: 200px;
+  min-height: 300px;
   background: url("{% static 'img/tatame.jpeg' %}");
   background-attachment: fixed;
   background-repeat: no-repeat;
   text-align: center;
   color: #fff;
   background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  #home-heading {
+    min-height: 250px;
+    background-attachment: scroll;
+  }
+  
+  #home-heading h1 {
+    font-size: 1.5rem !important;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  #home-heading {
+    min-height: 200px;
+  }
+  
+  #home-heading h1 {
+    font-size: 1.25rem !important;
+  }
 }
 
 .dark-overlay {
@@ -42,23 +100,175 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.2); /* aqui ele da uma escuricida na imagem do titulo */
+  background-color: rgba(0,0,0,0.4);
 }
 
 #video-play {
   position: relative;
-  min-height: 200px;
+  min-height: 250px;
   background-image: url("{% static 'img/tatame2.png' %}");
   background-attachment: fixed;
-  background-size: cover; /* Adiciona para garantir que a imagem cubra a área */
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center; /* Centraliza a imagem */
+  background-position: center center;
   text-align: center;
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  #video-play {
+    min-height: 200px;
+    background-attachment: scroll;
+  }
+  
+  #video-play h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  #video-play .fas.fa-play {
+    font-size: 2rem !important;
+  }
+}
 
+@media (max-width: 576px) {
+  #video-play {
+    min-height: 180px;
+  }
+  
+  #video-play h1 {
+    font-size: 1.25rem !important;
+  }
+  
+  #video-play .fas.fa-play {
+    font-size: 1.5rem !important;
+  }
+}
 
+/* Gallery responsive fixes */
+@media (max-width: 768px) {
+  #gallery .col {
+    margin-bottom: 15px;
+  }
+  
+  #gallery .col img {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+}
+
+/* Newsletter responsive */
+@media (max-width: 768px) {
+  #newsletter .form-inline {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #newsletter .form-control {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+  
+  #newsletter h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  #newsletter h1 {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Info section responsive */
+@media (max-width: 768px) {
+  #info .col-md-6 {
+    margin-bottom: 20px;
+  }
+  
+  #info h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px;
+  }
+  
+  #info img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Services section responsive */
+@media (max-width: 768px) {
+  #home-icon .col-md-4 {
+    margin-bottom: 30px;
+  }
+  
+  #home-icon h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  #home-icon .fas {
+    font-size: 2rem !important;
+  }
+}
+
+/* Video modal responsive */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+  
+  .modal-body iframe {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-body iframe {
+    height: 200px !important;
+  }
+}
+
+/* General mobile improvements */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  section {
+    padding: 2rem 0 !important;
+  }
+  
+  .py-5 {
+    padding: 2rem 0 !important;
+  }
+  
+  .p-5 {
+    padding: 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  section {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .py-5 {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .p-5 {
+    padding: 1.5rem !important;
+  }
+}
 </style>
 
 <!-- begin carrousel -->
@@ -76,7 +286,12 @@
         <div class="carousel-caption d-none d-md-block text-right mb-5">
           <h1 class="display-3">Graduação</h1>
           <p class="lead"></p>
-          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+        <!-- Mobile caption -->
+        <div class="carousel-caption d-md-none text-center">
+          <h1>Graduação</h1>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
         </div>
       </div>
 
@@ -85,7 +300,12 @@
         <div class="carousel-caption d-none d-md-block text-right mb-5">
           <h1 class="display-3">Guerreiras no Tatame</h1>
           <p class="lead"></p>
-          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+        <!-- Mobile caption -->
+        <div class="carousel-caption d-md-none text-center">
+          <h1>Guerreiras no Tatame</h1>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
         </div>
       </div>
 
@@ -94,7 +314,12 @@
         <div class="carousel-caption d-none d-md-block text-right mb-5">
           <h1 class="display-3">Crianças no Tatame</h1>
           <p class="lead"></p>
-          <a href="{% url 'contato' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-lg">Entre em contato</a>
+        </div>
+        <!-- Mobile caption -->
+        <div class="carousel-caption d-md-none text-center">
+          <h1>Crianças no Tatame</h1>
+          <a href="{% url 'core:contact' %}" class="btn btn-danger btn-sm">Entre em contato</a>
         </div>
       </div>
     </div>
@@ -163,7 +388,7 @@
       <div class="col-md-6 align-self-center">
         <h3>Conheca nossa academia.</h3>
         <p>Um de nossos tatamos ao lado</p>
-        <a href="{% url 'sobre' %}" class="btn btn-outline-danger btn-lg">Saiba mais</a>
+        <a href="{% url 'core:about' %}" class="btn btn-outline-danger btn-lg">Saiba mais</a>
       </div>
 
       <div class="col-md-6">
@@ -218,48 +443,48 @@
     <h1 class="text-center">Galeria de fotos</h1>
     <p class="text-center">Clique em nossas imagens</p>
     <div class="row mb-4">
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal1.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal1.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal1.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
 
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal2.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal2.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal2.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
 
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal3.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal3.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal3.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
 
     </div>
 
     <div class="row mb-4">
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal4.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal4.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal4.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
 
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal5.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal5.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal5.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
 
-      <div class="col md-4">
+      <div class="col-md-4 col-sm-6 mb-3">
         <a href="{% static 'img/pessoal6.jpg' %}" data-toggle="lightbox" data-gallery="img-gallery" data-height="560"
           data-width="560">
-          <img src="{% static 'img/pessoal6.jpg' %}" alt="" class="img-fluid">
+          <img src="{% static 'img/pessoal6.jpg' %}" alt="" class="img-fluid rounded">
         </a>
       </div>
     </div>
@@ -274,9 +499,9 @@
     <div class="row">
       <div class="col">
         <h1>Inscreva-se em nossa lista de Newsletter</h1>     
-        <form class="form-inline justify-content-center">
-          <input type="text" class="form-control mb-2 mr-2" placeholder="insira seu nome">
-          <input type="email" class="form-control mb-2 mr-2" placeholder="insira seu email">
+        <form class="form-inline justify-content-center flex-wrap">
+          <input type="text" class="form-control mb-2 mr-md-2" placeholder="Insira seu nome" style="min-width: 200px;">
+          <input type="email" class="form-control mb-2 mr-md-2" placeholder="Insira seu email" style="min-width: 200px;">
           <button class="btn btn-primary mb-2">Inscreva-se</button>
         </form>
       </div>
