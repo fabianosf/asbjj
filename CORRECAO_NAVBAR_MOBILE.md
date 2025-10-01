@@ -95,7 +95,7 @@ header {
 **Antes:**
 ```css
 .navbar-collapse {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(44, 62, 80, 0.98);
     border-radius: 8px;
     margin-top: 8px;
 }
@@ -196,7 +196,7 @@ header {
 }
 
 .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(18, 18, 18, 0.48) !important;
 }
 
 .navbar-nav .nav-link:hover {
